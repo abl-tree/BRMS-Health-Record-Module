@@ -14,7 +14,7 @@
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <!-- <link rel="shortcut icon" href="assets/ico/favicon.png"> -->
 
-  <title>{{ config('app.name', 'Laravel') }}</title>
+  <title>{{ config('app.name') }} | Login</title>
 
   @if(App::isLocal())
   <!-- Icons -->

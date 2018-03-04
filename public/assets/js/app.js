@@ -9,6 +9,7 @@ $.ajaxLoad = true;
 $.defaultPage = 'home';
 $.page404 = 'views/pages/404.html';
 $.mainContent = $('#ui-view');
+$.breadCrumb = $('.breadcrumb .breadcrumb-item');
 
 //Main navigation
 $.navigation = $('nav > ul.nav');
@@ -180,6 +181,7 @@ function loadPage(url) {
     success : function() {
       Pace.restart();
       $('html, body').animate({ scrollTop: 0 }, 0);
+      $.breadCrumb.text($('a[href="'+ url +'"]').text());
       $.mainContent.load(url, null, function (responseText) {
         window.location.hash = url;
       }).delay(250).animate({ opacity : 1 }, 0);

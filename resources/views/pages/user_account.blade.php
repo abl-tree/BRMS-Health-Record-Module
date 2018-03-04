@@ -8,18 +8,6 @@
   <div class="row">
     <div class="col-md-12">
       <div class="card">
-        <div id="app">
-            <div class="container">
-                <vuetable
-                    api-url="https://vuetable.ratiw.net/api/users"
-                    table-wrapper="#content"
-                    :fields="columns"
-                    :item-actions="itemActions"
-                ></vuetable>
-            </div>
-        </div>
-      </div>
-      <div class="card">
           <table class="table table-responsive-sm table-hover table-outline mb-0">
             <thead class="thead-light">
               <tr>
