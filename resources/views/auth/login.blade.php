@@ -4,25 +4,43 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta http-equiv="cache-control" content="private, max-age=0, no-cache">
-    <meta http-equiv="pragma" content="no-cache">
-    <meta http-equiv="expires" content="0">
+  <meta http-equiv="cache-control" content="private, max-age=0, no-cache">
+  <meta http-equiv="pragma" content="no-cache">
+  <meta http-equiv="expires" content="0">
   <meta name="description" content="CoreUI Bootstrap 4 Admin Template">
   <meta name="author" content="Lukasz Holeczek">
   <meta name="keyword" content="CoreUI Bootstrap 4 Admin Template">
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+  <!-- CSRF Token -->
+  <meta name="csrf-token" content="{{ csrf_token() }}">
   <!-- <link rel="shortcut icon" href="assets/ico/favicon.png"> -->
 
   <title>{{ config('app.name', 'Laravel') }}</title>
 
+  @if(App::isLocal())
   <!-- Icons -->
-    <link rel="stylesheet" href="{{ asset('/node_modules/flag-icon-css/css/flag-icon.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('/node_modules/font-awesome/css/font-awesome.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('/node_modules/simple-line-icons/css/simple-line-icons.css') }}">
+  <link rel="stylesheet" href="{{ asset('/css/flag-icon.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('/css/font-awesome.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('/css/simple-line-icons.css') }}">
 
   <!-- Main styles for this application -->
-    <link rel="stylesheet" href="{{ asset('/assets/css/style.css') }}">
+  <link rel="stylesheet" href="{{ asset('/assets/css/style.css') }}">
+  @elseif(Request::server('HTTP_X_FORWARDED_PROTO') == 'https')
+  <!-- Icons -->
+  <link rel="stylesheet" href="{{ secure_asset('/css/flag-icon.min.css') }}">
+  <link rel="stylesheet" href="{{ secure_asset('/css/font-awesome.min.css') }}">
+  <link rel="stylesheet" href="{{ secure_asset('/css/simple-line-icons.css') }}">
+
+  <!-- Main styles for this application -->
+  <link rel="stylesheet" href="{{ secure_asset('/assets/css/style.css') }}">
+  @else
+  <!-- Icons -->
+  <link rel="stylesheet" href="{{ asset('/css/flag-icon.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('/css/font-awesome.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('/css/simple-line-icons.css') }}">
+
+  <!-- Main styles for this application -->
+  <link rel="stylesheet" href="{{ asset('/assets/css/style.css') }}">
+  @endif
 
 </head>
 <body class="app flex-row align-items-center">
@@ -76,11 +94,22 @@
       </div>
     </div>
   </div>
-   
-  <!-- Bootstrap and necessary plugins -->
-    <script src="{{ asset('/node_modules/jquery/dist/jquery.min.js') }}"></script>
-    <script src="{{ asset('/node_modules/popper.js/dist/umd/popper.min.js') }}"></script>
-    <script src="{{ asset('/node_modules/bootstrap/dist/js/bootstrap.min.js') }}"></script>
 
 </body>
+  @if(App::isLocal())
+  <!-- Bootstrap and necessary plugins -->
+  <script src="{{ asset('/js/jquery/dist/jquery.min.js') }}"></script>
+  <script src="{{ asset('/js/popper.js/dist/umd/popper.min.js') }}"></script>
+  <script src="{{ asset('/js/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+  @elseif(Request::server('HTTP_X_FORWARDED_PROTO') == 'https')
+  <!-- Bootstrap and necessary plugins -->
+  <script src="{{ secure_asset('/js/jquery/dist/jquery.min.js') }}"></script>
+  <script src="{{ secure_asset('/js/popper.js/dist/umd/popper.min.js') }}"></script>
+  <script src="{{ secure_asset('/js/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+  @else
+  <!-- Bootstrap and necessary plugins -->
+  <script src="{{ asset('/js/jquery/dist/jquery.min.js') }}"></script>
+  <script src="{{ asset('/js/popper.js/dist/umd/popper.min.js') }}"></script>
+  <script src="{{ asset('/js/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+  @endif
 </html>
