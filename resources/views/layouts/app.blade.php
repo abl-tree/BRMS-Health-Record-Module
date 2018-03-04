@@ -17,7 +17,8 @@
   <title>{{ config('app.name', 'Laravel') }} | Home</title>
 
 	@if(App::isLocal())
-  <!-- Icons -->
+	<!-- Icons -->
+	<link href="{{ asset('images/tab-logo.ico') }}" rel="shortcut icon"/>
 	<link rel="stylesheet" href="{{ asset('/css/flag-icon.css') }}">
 	<link rel="stylesheet" href="{{ asset('/css/font-awesome.css') }}">
 	<link rel="stylesheet" href="{{ asset('/css/simple-line-icons.css') }}">
