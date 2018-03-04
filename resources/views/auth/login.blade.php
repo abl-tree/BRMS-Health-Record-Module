@@ -7,17 +7,16 @@
   <meta http-equiv="cache-control" content="private, max-age=0, no-cache">
   <meta http-equiv="pragma" content="no-cache">
   <meta http-equiv="expires" content="0">
-  <meta name="description" content="CoreUI Bootstrap 4 Admin Template">
-  <meta name="author" content="Lukasz Holeczek">
-  <meta name="keyword" content="CoreUI Bootstrap 4 Admin Template">
+  <meta name="description" content="Barangay Mintal Record System">
+  <meta name="keyword" content="Mintal Health Records">
   <!-- CSRF Token -->
   <meta name="csrf-token" content="{{ csrf_token() }}">
-  <!-- <link rel="shortcut icon" href="assets/ico/favicon.png"> -->
 
   <title>{{ config('app.name') }} | Login</title>
 
   @if(App::isLocal())
   <!-- Icons -->
+	<link href="{{ asset('images/tab-logo.ico') }}" rel="shortcut icon"/>
   <link rel="stylesheet" href="{{ asset('/css/flag-icon.min.css') }}">
   <link rel="stylesheet" href="{{ asset('/css/font-awesome.min.css') }}">
   <link rel="stylesheet" href="{{ asset('/css/simple-line-icons.css') }}">
@@ -26,6 +25,7 @@
   <link rel="stylesheet" href="{{ asset('/assets/css/style.css') }}">
   @elseif(Request::server('HTTP_X_FORWARDED_PROTO') == 'https')
   <!-- Icons -->
+	<link href="{{ secure_asset('images/tab-logo.ico') }}" rel="shortcut icon"/>
   <link rel="stylesheet" href="{{ secure_asset('/css/flag-icon.min.css') }}">
   <link rel="stylesheet" href="{{ secure_asset('/css/font-awesome.min.css') }}">
   <link rel="stylesheet" href="{{ secure_asset('/css/simple-line-icons.css') }}">
@@ -34,6 +34,7 @@
   <link rel="stylesheet" href="{{ secure_asset('/assets/css/style.css') }}">
   @else
   <!-- Icons -->
+	<link href="{{ asset('images/tab-logo.ico') }}" rel="shortcut icon"/>
   <link rel="stylesheet" href="{{ asset('/css/flag-icon.min.css') }}">
   <link rel="stylesheet" href="{{ asset('/css/font-awesome.min.css') }}">
   <link rel="stylesheet" href="{{ asset('/css/simple-line-icons.css') }}">
