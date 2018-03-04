@@ -16,6 +16,7 @@
 
   <title>{{ config('app.name', 'Laravel') }}</title>
 
+	@if(App::isLocal())
   <!-- Icons -->
 	<link rel="stylesheet" href="{{ asset('/css/flag-icon.css') }}">
 	<link rel="stylesheet" href="{{ asset('/css/font-awesome.css') }}">
@@ -23,6 +24,23 @@
 
   <!-- Main styles for this application -->
 	<link rel="stylesheet" href="{{ asset('/assets/css/style.css') }}">
+	@elseif(Request::server('HTTP_X_FORWARDED_PROTO') == 'https')
+  <!-- Icons -->
+	<link rel="stylesheet" href="{{ secure_asset('/css/flag-icon.css') }}">
+	<link rel="stylesheet" href="{{ secure_asset('/css/font-awesome.css') }}">
+	<link rel="stylesheet" href="{{ secure_asset('/css/simple-line-icons.css') }}">
+
+  <!-- Main styles for this application -->
+	<link rel="stylesheet" href="{{ secure_asset('/assets/css/style.css') }}">
+	@else
+  <!-- Icons -->
+	<link rel="stylesheet" href="{{ asset('/css/flag-icon.css') }}">
+	<link rel="stylesheet" href="{{ asset('/css/font-awesome.css') }}">
+	<link rel="stylesheet" href="{{ asset('/css/simple-line-icons.css') }}">
+
+  <!-- Main styles for this application -->
+	<link rel="stylesheet" href="{{ asset('/assets/css/style.css') }}">
+	@endif
 
 </head>
 <body class="app header-fixed sidebar-fixed aside-menu-fixed aside-menu-hidden">
@@ -142,7 +160,9 @@
     <span><a href="http://coreui.io">CoreUI</a> &copy; 2018 creativeLabs.</span>
     <span class="ml-auto">Powered by <a href="http://coreui.io">CoreUI</a></span>
   </footer>
-   
+</body>
+
+@if(App::isLocal())
   <!-- Bootstrap and necessary plugins -->
 	<script src="{{ asset('/js/jquery/dist/jquery.min.js') }}"></script>
 	<script src="{{ asset('/js/popper.js/dist/umd/popper.min.js') }}"></script>
@@ -154,6 +174,29 @@
 
   <!-- CoreUI main scripts -->
 	<script src="{{ asset('/assets/js/app.js') }}"></script>
+@elseif(Request::server('HTTP_X_FORWARDED_PROTO') == 'https')
+  <!-- Bootstrap and necessary plugins -->
+	<script src="{{ secure_asset('/js/jquery/dist/jquery.min.js') }}"></script>
+	<script src="{{ secure_asset('/js/popper.js/dist/umd/popper.min.js') }}"></script>
+	<script src="{{ secure_asset('/js/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+	<script src="{{ secure_asset('/js/pace-progress/pace.min.js') }}"></script>
 
-</body>
+  <!-- Plugins and scripts required by all views -->
+	<script src="{{ secure_asset('/js/chart.js/dist/Chart.min.js') }}"></script>
+
+  <!-- CoreUI main scripts -->
+	<script src="{{ secure_asset('/assets/js/app.js') }}"></script>
+@else
+  <!-- Bootstrap and necessary plugins -->
+	<script src="{{ asset('/js/jquery/dist/jquery.min.js') }}"></script>
+	<script src="{{ asset('/js/popper.js/dist/umd/popper.min.js') }}"></script>
+	<script src="{{ asset('/js/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+	<script src="{{ asset('/js/pace-progress/pace.min.js') }}"></script>
+
+  <!-- Plugins and scripts required by all views -->
+	<script src="{{ asset('/js/chart.js/dist/Chart.min.js') }}"></script>
+
+  <!-- CoreUI main scripts -->
+	<script src="{{ asset('/assets/js/app.js') }}"></script>
+@endif
 </html>
