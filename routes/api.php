@@ -1,6 +1,10 @@
 <?php
 
 use Illuminate\Http\Request;
+use App\Person;
+use App\BrgyInfo;
+use App\Http\Resources\ResidentCollection;
+use App\Http\Resources\BarangayCollection;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,4 +19,12 @@ use Illuminate\Http\Request;
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
+});
+
+Route::get('/resident', function() {
+    return new ResidentCollection(Person::all());
+});
+
+Route::get('/barangay', function() {
+    return new BarangayCollection(BrgyInfo::all());
 });

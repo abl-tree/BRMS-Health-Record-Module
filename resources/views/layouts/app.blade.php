@@ -71,9 +71,6 @@
 	      </div>
 	    </li>
 	  </ul>
-	  <button class="navbar-toggler aside-menu-toggler" type="button">
-	    <span class="navbar-toggler-icon"></span>
-	  </button>
 	</header>
 
 	<div class="app-body">
