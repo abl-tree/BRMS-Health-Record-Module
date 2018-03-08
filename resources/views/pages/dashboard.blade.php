@@ -26,17 +26,6 @@
                   </div>
                 </div>
                 <!--/.col-->
-                <div class="col-sm-6">
-                  <div class="callout callout-success">
-                    <small class="text-muted">Brgy. Health Workers</small>
-                    <br>
-                    <strong class="h4">49,123</strong>
-                    <div class="chart-wrapper">
-                      <canvas id="sparkline-chart-4" width="100" height="30"></canvas>
-                    </div>
-                  </div>
-                </div>
-                <!--/.col-->
               </div>
               <!--/.row-->
               <hr class="mt-0">
@@ -72,54 +61,6 @@
                   </div>
                 </li>
                 <li class="divider"></li>
-                <li>
-                  <i class="icon-globe"></i>
-                  <span class="title">Organic Search</span>
-                  <span class="value">191,235
-                    <span class="text-muted small">(56%)</span>
-                  </span>
-                  <div class="bars">
-                    <div class="progress progress-xs">
-                      <div class="progress-bar bg-success" role="progressbar" style="width: 56%" aria-valuenow="56" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <i class="icon-social-facebook"></i>
-                  <span class="title">Facebook</span>
-                  <span class="value">51,223
-                    <span class="text-muted small">(15%)</span>
-                  </span>
-                  <div class="bars">
-                    <div class="progress progress-xs">
-                      <div class="progress-bar bg-success" role="progressbar" style="width: 15%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <i class="icon-social-twitter"></i>
-                  <span class="title">Twitter</span>
-                  <span class="value">37,564
-                    <span class="text-muted small">(11%)</span>
-                  </span>
-                  <div class="bars">
-                    <div class="progress progress-xs">
-                      <div class="progress-bar bg-success" role="progressbar" style="width: 11%" aria-valuenow="11" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <i class="icon-social-linkedin"></i>
-                  <span class="title">LinkedIn</span>
-                  <span class="value">27,319
-                    <span class="text-muted small">(8%)</span>
-                  </span>
-                  <div class="bars">
-                    <div class="progress progress-xs">
-                      <div class="progress-bar bg-success" role="progressbar" style="width: 100%" aria-valuenow="8" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
-                  </div>
-                </li>
                 <li class="divider text-center">
                   <button type="button" class="btn btn-sm btn-link text-muted" data-toggle="tooltip" data-placement="top" title="" data-original-title="show more"><i class="icon-options"></i></button>
                 </li>
