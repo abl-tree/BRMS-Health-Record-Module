@@ -13,9 +13,9 @@ class AddTypeToAccount extends Migration
      */
     public function up()
     {
+        if(Schema::hasTable('account'))
         Schema::table('account', function($table) {
             $table->rememberToken();
-            $table->timestamps();
         });
     }
 
