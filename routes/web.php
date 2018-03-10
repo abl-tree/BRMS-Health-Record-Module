@@ -22,6 +22,7 @@ Route::middleware(['auth'])->group(function() {
 	});
 	Route::get('/test', 'UserAccountController@test');
 	Route::get('/population/{option}', 'PopulationController@population');
+	 Route::get('/refresh_person', 'HouseholdController@refresh')->name('refresh_person');
 });
 
 Route::middleware(['auth', 'ajax'])->group(function() {    

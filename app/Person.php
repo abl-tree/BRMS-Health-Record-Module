@@ -14,7 +14,7 @@ class Person extends Model
      * @var array
      */
     protected $fillable = [
-        'firstName', 'midName', 'lastName',
+        'firstName', 'midName', 'lastName','address'
     ];
 
     /**
@@ -23,6 +23,6 @@ class Person extends Model
      * @var array
      */
     protected $hidden = [
-        'address',
+        'dob','placeOfBirth','religion','nationality','highestEducationalAttainment','lastSchoolAttendance','numberOfYearsInSchool','occupationPriorToCBRAP'
     ];
 }

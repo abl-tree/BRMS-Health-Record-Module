@@ -20,7 +20,9 @@
 	<link rel="stylesheet" href="{{ asset('/css/flag-icon.css') }}">
 	<link rel="stylesheet" href="{{ asset('/css/font-awesome.css') }}">
 	<link rel="stylesheet" href="{{ asset('/css/simple-line-icons.css') }}">
-
+<link href="{{ asset('assets/css/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
+        
+        
   <!-- Main styles for this application -->
 	<link rel="stylesheet" href="{{ asset('/assets/css/style.css') }}">
 	@elseif(Request::server('HTTP_X_FORWARDED_PROTO') == 'https')
@@ -29,6 +31,9 @@
 	<link rel="stylesheet" href="{{ secure_asset('/css/flag-icon.css') }}">
 	<link rel="stylesheet" href="{{ secure_asset('/css/font-awesome.css') }}">
 	<link rel="stylesheet" href="{{ secure_asset('/css/simple-line-icons.css') }}">
+	  <!-- JQuery DataTable Css -->
+        <link href="{{ asset('assets/css/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
+        
 
   <!-- Main styles for this application -->
 	<link rel="stylesheet" href="{{ secure_asset('/assets/css/style.css') }}">
@@ -38,7 +43,8 @@
 	<link rel="stylesheet" href="{{ asset('/css/flag-icon.css') }}">
 	<link rel="stylesheet" href="{{ asset('/css/font-awesome.css') }}">
 	<link rel="stylesheet" href="{{ asset('/css/simple-line-icons.css') }}">
-
+<link href="{{ asset('assets/css/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
+    
   <!-- Main styles for this application -->
 	<link rel="stylesheet" href="{{ asset('/assets/css/style.css') }}">
 	@endif
@@ -90,12 +96,17 @@
 		      <li class="nav-item">
 		        <a href="account" class="nav-link"><i class="icon-user"></i> Users</a>
 		      </li>
+			   <li class="nav-item">
+		        <a href="person" class="nav-link"><i class="icon-people"></i>Persons</a>
+		      </li>
 		    </ul>
 		  </nav>
 		  <button class="sidebar-minimizer brand-minimizer" type="button"></button>
 		</div>
-
+		
+		
   	@yield('content')
+	
 	</div>
 
   <footer class="app-footer">
@@ -110,7 +121,10 @@
 	<script src="{{ asset('/js/popper.js/dist/umd/popper.min.js') }}"></script>
 	<script src="{{ asset('/js/bootstrap/dist/js/bootstrap.min.js') }}"></script>
 	<script src="{{ asset('/js/pace-progress/pace.min.js') }}"></script>
-
+	        <script src="{{ asset('assets/js/jquery.dataTables.min.js') }}"></script>
+	       
+        <script src="{{ asset('assets/js/dataTables.bootstrap4.min.js') }}"></script>
+      <script src="{{ asset('assets/js/datatables.js') }}"></script>
   <!-- Plugins and scripts required by all views -->
 	<script src="{{ asset('/js/chart.js/dist/Chart.min.js') }}"></script>
 
@@ -123,6 +137,11 @@
 	<script src="{{ secure_asset('/js/bootstrap/dist/js/bootstrap.min.js') }}"></script>
 	<script src="{{ secure_asset('/js/pace-progress/pace.min.js') }}"></script>
 
+	   <script src="{{ asset('assets/js/jquery.dataTables.min.js') }}"></script>
+	        
+        <script src="{{ asset('assets/js/dataTables.bootstrap4.min.js') }}"></script>
+     <script src="{{ asset('assets/js/datatables.js') }}"></script>
+	
   <!-- Plugins and scripts required by all views -->
 	<script src="{{ secure_asset('/js/chart.js/dist/Chart.min.js') }}"></script>
 
@@ -137,7 +156,10 @@
 
   <!-- Plugins and scripts required by all views -->
 	<script src="{{ asset('/js/chart.js/dist/Chart.min.js') }}"></script>
-
+   <script src="{{ asset('assets/js/jquery.dataTables.min.js') }}"></script>
+	        
+        <script src="{{ asset('assets/js/dataTables.bootstrap4.min.js') }}"></script>
+     <script src="{{ asset('assets/js/datatables.js') }}"></script>
   <!-- CoreUI main scripts -->
 	<script src="{{ asset('/assets/js/app.js') }}"></script>
 @endif

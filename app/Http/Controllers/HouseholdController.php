@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Person;
 class HouseholdController extends Controller
 {
     /**
@@ -24,5 +24,22 @@ class HouseholdController extends Controller
     public function index()
     {
         return view('pages/household');
+    }
+	
+	/*public function store(Request $request)
+    {
+
+        $expense = new Expense;
+        $expense->description = $request->expense;
+        $expense->type = $request->type;
+        $expense->amount = '₱' . number_format($request->amount, 2, '.', ',');
+        $expense->save();
+    }*/
+
+    public function refresh()
+    {
+        $person = Person::all();
+        return \DataTables::of(Person::query())->make(true);
+ 
     }
 }
