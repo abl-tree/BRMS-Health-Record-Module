@@ -5,9 +5,9 @@
     "ajax": "/resident_profile",    
     "columns": [
       {data: 'id'},
-      {data: 'firstName' },
-      {data: 'midName' },
-      {data: 'lastName' },
+      {data: 'first_name' },
+      {data: 'middle_name' },
+      {data: 'last_name' },
       {data: 'gender'},
       {data: 'address'},
     ]

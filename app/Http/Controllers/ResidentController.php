@@ -28,7 +28,20 @@ class ResidentController extends Controller
     }
 
     public function profile() {        
-        $person = Person::all();
-        return \DataTables::of(Person::query())->make(true);
+        $persons = Person::all();
+        $data = array();
+        
+        foreach ($persons as $person) {
+            $data[] = array(
+                'id' => $person->id, 
+                'first_name' => $person->firstName, 
+                'middle_name' => $person->midName, 
+                'last_name' => $person->lastName, 
+                'gender' => $person->gender, 
+                'address' => $person->address, 
+            );
+        }
+
+        return \DataTables::of($data)->make(true);
     }
 }
