@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}">
 <head>
+	<?php
+		header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
+		header("Cache-Control: post-check=0, pre-check=0", false);
+		header("Pragma: no-cache");
+	?>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<meta http-equiv="cache-control" content="private, max-age=0, no-cache">
-	<meta http-equiv="pragma" content="no-cache">
-	<meta http-equiv="expires" content="0">
   <meta name="description" content="Barangay Mintal Record System">
   <meta name="keyword" content="Mintal Health Records">
 	<!-- CSRF Token -->
