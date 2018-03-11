@@ -14,7 +14,9 @@ let mix = require('laravel-mix');
 // mix.js('resources/assets/js/app.js', 'public/js')
 //    .sass('resources/assets/sass/app.scss', 'public/css');
 
-mix.copy('node_modules/datatables/', 'public/plugins/DataTables');
+// mix.copy('node_modules/dataTables.net-bs4/', 'public/plugins/dataTables.net-bs4')
+//    .copy('node_modules/bootstrap/', 'public/plugins/bootstrap')
+//    .copy('node_modules/datatables/', 'public/plugins/DataTables')
 //    .copy('node_modules/popper.js/', 'public/js/popper.js')
 //    .copy('node_modules/bootstrap/', 'public/js/bootstrap')
 //    .copy('node_modules/chart.js/', 'public/js/chart.js')

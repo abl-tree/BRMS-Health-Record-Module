@@ -19,10 +19,11 @@
 	@if(App::isLocal())
 	<!-- Icons -->
 	<link href="{{ asset('images/tab-logo.ico') }}" rel="shortcut icon"/>
+	<link rel="stylesheet" href="{{ asset('/plugins/bootstrap/dist/css/bootstrap.css') }}">
 	<link rel="stylesheet" href="{{ asset('/css/flag-icon.css') }}">
 	<link rel="stylesheet" href="{{ asset('/css/font-awesome.css') }}">
 	<link rel="stylesheet" href="{{ asset('/css/simple-line-icons.css') }}">
-	<link rel="stylesheet" href="{{ asset('/plugins/DataTables/media/css/jquery.dataTables.min.css') }}">
+	<link rel="stylesheet" href="{{ asset('/plugins/dataTables.net-bs4/css/dataTables.bootstrap4.css') }}">
 
   <!-- Main styles for this application -->
 	<link rel="stylesheet" href="{{ asset('/assets/css/style.css') }}">
@@ -90,6 +91,9 @@
 		        Options
 		      </li>
 		      <li class="nav-item">
+		        <a href="resident" class="nav-link"><i class="icon-home"></i> Resident Profile</a>
+		      </li>
+		      <li class="nav-item">
 		        <a href="household" class="nav-link"><i class="icon-home"></i> Household</a>
 		      </li>
 		      <li class="nav-item">
@@ -119,6 +123,7 @@
   <!-- Plugins and scripts required by all views -->
 	<script src="{{ asset('/js/chart.js/dist/Chart.min.js') }}"></script>
 	<script src="{{ asset('/plugins/DataTables/media/js/jquery.dataTables.min.js') }}"></script>
+	<script src="{{ asset('/plugins/dataTables.net-bs4/js/dataTables.bootstrap4.js') }}"></script>
 
   <!-- CoreUI main scripts -->
 	<script src="{{ asset('/assets/js/app.js') }}"></script>
