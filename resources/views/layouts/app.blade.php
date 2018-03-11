@@ -99,6 +99,9 @@
 		        <a href="household" class="nav-link"><i class="icon-home"></i> Household</a>
 		      </li>
 		      <li class="nav-item">
+		        <a href="report" class="nav-link"><i class="icon-home"></i> Report</a>
+		      </li>
+		      <li class="nav-item">
 		        <a href="account" class="nav-link"><i class="icon-user"></i> Users</a>
 		      </li>
 		    </ul>

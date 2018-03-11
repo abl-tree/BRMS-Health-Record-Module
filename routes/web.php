@@ -30,4 +30,5 @@ Route::middleware(['ajax'])->group(function() {
 	Route::get('/household', 'HouseholdController@index')->name('household');
 	Route::get('/account', 'UserAccountController@index')->name('account');
 	Route::get('/resident', 'ResidentController@index')->name('resident');
+	Route::get('/report', 'ReportController@index')->name('report');
 });

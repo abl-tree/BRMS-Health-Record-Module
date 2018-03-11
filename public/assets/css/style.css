@@ -1239,7 +1239,7 @@ pre {
     vertical-align: top;
     border-top: 1px solid #a4b7c1; }
   .table thead th {
-    vertical-align: bottom;
+    vertical-align: middle;
     border-bottom: 2px solid #a4b7c1; }
   .table tbody + tbody {
     border-top: 2px solid #a4b7c1; }
