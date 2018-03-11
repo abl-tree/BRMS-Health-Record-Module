@@ -1574,14 +1574,9 @@ pre {
     background-color: rgba(0, 0, 0, 0.075); }
 
 .table .thead-dark th {
-  color: #ffffff;
+  color: #e4e5e6;
   background-color: #151b1e;
   border-color: #252f35; }
-
-.table .thead-blue th {
-  color: #ffffff;
-  background-color: #20a8d8;
-  border-color: #5b727e; }
 
 .table .thead-light th {
   color: #3e515b;
@@ -4438,18 +4433,18 @@ tbody.collapse.show {
   padding: 0.5rem 0.75rem;
   margin-left: -1px;
   line-height: 1.25;
-  color: #29363d;
+  color: #20a8d8;
   background-color: #fff;
   border: 1px solid #a4b7c1; }
   .page-link:hover, .pagination-datatables li a:hover, .pagination li a:hover {
-    color: #000000;
+    color: #167495;
     text-decoration: none;
-    background-color: #d6d6d6;
+    background-color: #c2cfd6;
     border-color: #a4b7c1; }
   .page-link:focus, .pagination-datatables li a:focus, .pagination li a:focus {
     z-index: 2;
     outline: 0;
-    box-shadow: 0 0 0 0.2rem rgba(0, 0, 0, 0.25); }
+    box-shadow: 0 0 0 0.2rem rgba(32, 168, 216, 0.25); }
   .page-link:not(:disabled):not(.disabled), .pagination-datatables li a:not(:disabled):not(.disabled), .pagination li a:not(:disabled):not(.disabled) {
     cursor: pointer; }
 
@@ -4459,8 +4454,8 @@ tbody.collapse.show {
 .page-item.active .page-link, .pagination-datatables li.active .page-link, .pagination li.active .page-link, .page-item.active .pagination-datatables li a, .pagination-datatables li .page-item.active a, .pagination-datatables li.active a, .page-item.active .pagination li a, .pagination li .page-item.active a, .pagination li.active a {
   z-index: 1;
   color: #fff;
-  background-color: #151b1e;
-  border-color: #000000; }
+  background-color: #20a8d8;
+  border-color: #20a8d8; }
 
 .page-item.disabled .page-link, .pagination-datatables li.disabled .page-link, .pagination li.disabled .page-link, .page-item.disabled .pagination-datatables li a, .pagination-datatables li .page-item.disabled a, .pagination-datatables li.disabled a, .page-item.disabled .pagination li a, .pagination li .page-item.disabled a, .pagination li.disabled a {
   color: #536c79;
@@ -10466,8 +10461,8 @@ base-chart.chart {
   .brand-minimized .app-header.navbar .navbar-brand {
     width: 50px;
     background-color: #fff;
-    background-image: url("../../images/logo-symbol.png");
-    background-size: 46px;
+    background-image: url("../img/logo-symbol.png");
+    background-size: 24px;
     border-bottom: 1px solid #a4b7c1; } }
 
 .progress-xs {
