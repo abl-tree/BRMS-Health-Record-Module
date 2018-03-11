@@ -17,6 +17,7 @@
   <div class="row">
     <div class="col-md-12">
       <div class="card">
+        <div class="card-body">
           <table class="table table-responsive-sm table-hover table-outline mb-0" id="user-account-dt" style="width:100%">
             <thead class="thead-light">
               <tr>
