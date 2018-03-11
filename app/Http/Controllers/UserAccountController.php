@@ -18,7 +18,9 @@ class UserAccountController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        // if(Auth::check()) {
+            
+        // }
     }
 
     /**
