@@ -41,7 +41,8 @@ class ResidentController extends Controller
                     'middle_name' => $person->midname, 
                     'last_name' => $person->lastname, 
                     'gender' => $person->gender, 
-                    'address' => $person->address, 
+                    'address' => $person->address,                     
+
                 );
             } else {
                 $data[] = array(

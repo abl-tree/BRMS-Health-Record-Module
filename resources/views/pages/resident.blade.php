@@ -10,6 +10,28 @@
       {data: 'last_name' },
       {data: 'gender'},
       {data: 'address'},
+     {
+              "targets": [ 0 ],
+              createdCell: function(td, cellData, rowData, row, col){
+                var a = $(td).find(">:first-child").find(">:first-child");
+                var b = $(td).find(">:first-child").find(">:last-child");
+
+          
+          b.attr("data-id", cellData);
+          b.attr("data-transit", rowData[2]);
+          b.attr("data-arrival", rowData[3]);
+          b.attr("data-target", '.container-edit-modal');
+          b.attr("data-backdrop", 'static');
+          b.attr("data-toggle", 'modal');
+          b.attr("type", 'submit');
+          b.attr("data-tooltip", 'tooltip');
+          b.attr("data-trigger", 'hover');
+          b.attr("title", 'Options');
+              },
+              render: function ( data, type, row, meta ) {
+          return '<div class="btn-group"><button type="button" class="btn btn-info fa fa-cogs fa fa-options">Options</button>';
+          }
+            }
     ]
   });
 </script>
@@ -33,6 +55,7 @@
                 <th class="text-center">Lastname</th>
                 <th class="text-center">Gender</th>
                 <th class="text-center">Address</th>
+                <th class="text-center">Actions</th>
               </tr>
             </thead>
             <tfoot class="thead-dark">
@@ -43,6 +66,7 @@
                 <th class="text-center">Lastname</th>
                 <th class="text-center">Gender</th>
                 <th class="text-center">Address</th>
+                <th class="text-center">Actions</th>
               </tr>
             </tfoot>
           </table>
