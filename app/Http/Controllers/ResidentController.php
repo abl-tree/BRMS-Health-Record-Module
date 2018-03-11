@@ -7,14 +7,16 @@ use App\Person;
 
 class ResidentController extends Controller
 {
+    protected $db_connection;
+    
     /**
      * Create a new controller instance.
      *
      * @return void
      */
     public function __construct()
-    {
-        // $this->middleware('auth');
+    {        
+        $this->db_connection = config('database.default');
     }
 
     /**
@@ -32,14 +34,25 @@ class ResidentController extends Controller
         $data = array();
         
         foreach ($persons as $person) {
-            $data[] = array(
-                'id' => $person->id, 
-                'first_name' => $person->firstName, 
-                'middle_name' => $person->midName, 
-                'last_name' => $person->lastName, 
-                'gender' => $person->gender, 
-                'address' => $person->address, 
-            );
+            if($this->db_connection === 'pgsql') {
+                $data[] = array(
+                    'id' => $person->id, 
+                    'first_name' => $person->firstname, 
+                    'middle_name' => $person->midname, 
+                    'last_name' => $person->lastname, 
+                    'gender' => $person->gender, 
+                    'address' => $person->address, 
+                );
+            } else {
+                $data[] = array(
+                    'id' => $person->id, 
+                    'first_name' => $person->firstName, 
+                    'middle_name' => $person->midName, 
+                    'last_name' => $person->lastName, 
+                    'gender' => $person->gender, 
+                    'address' => $person->address, 
+                );
+            }
         }
 
         return \DataTables::of($data)->make(true);

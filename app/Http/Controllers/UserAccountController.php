@@ -11,16 +11,16 @@ use App\AccountRole;
 
 class UserAccountController extends Controller
 {
+    protected $db_connection;
+    
     /**
      * Create a new controller instance.
      *
      * @return void
      */
     public function __construct()
-    {
-        // if(Auth::check()) {
-            
-        // }
+    {        
+        $this->db_connection = config('database.default');
     }
 
     /**
