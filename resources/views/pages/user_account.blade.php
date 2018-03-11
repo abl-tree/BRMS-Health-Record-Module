@@ -1,49 +1,48 @@
 <script>
-  var requireJS = [];
-  //loadJS(requireJS, "{{ asset('/assets/js/views/main.js') }}");
-  //loadJS(requireJS, "{{ asset('/js/app.js') }}");
+  $('#user-account-dt').DataTable({
+    "processing": true,
+    "serverSide": true,
+    "ajax": "/test",    
+    "columns": [
+      {data: 'id'},
+      {data: 'fullname'},
+      {data: 'username'},
+      {data: 'role'},
+      {data: 'created_at'},
+    ]
+  });
 </script>
 
 <div class="animated fadeIn">
   <div class="row">
     <div class="col-md-12">
       <div class="card">
-          <table class="table table-responsive-sm table-hover table-outline mb-0">
-            <thead class="thead-light">
+        <div class="card-header">
+          <i class="fa fa-align-justify"></i> List of Users
+          <div class="card-actions">
+            <button type="button" data-toggle="modal" data-target="#addModal" class="btn btn-outline-secondary"><i class="fa fa-edit"></i></button>
+          </div>
+        </div>
+        <div class="card-body">
+          <table id="user-account-dt" class="table table-hover table-bordered" cellspacing="0" width="100%">
+            <thead class="thead-dark">
               <tr>
-                <th class="text-center"><i class="icon-people"></i></th>
-                <th>User</th>
-                <th class="text-center">Country</th>
-                <th>Activity</th>
+                <th class="text-center">ID</th>
+                <th class="text-center">Full Name</th>
+                <th class="text-center">Username</th>
+                <th class="text-center">Role</th>
+                <th class="text-center">Joined</th>
               </tr>
             </thead>
-            <tbody>
-              @if($users)
-                @foreach($users as $user)
-                  <tr>
-                    <td class="text-center">
-                      <div class="avatar">
-                        <img src="{{ asset('/assets/img/avatars/1.jpg') }}" class="img-avatar" alt="admin@bootstrapmaster.com">
-                        <span class="avatar-status badge-success"></span>
-                      </div>
-                    </td>
-                    <td>
-                      <div>{{ $user->profile()->first()->first_name }}</div>
-                      <div class="small text-muted">
-                        <span>New</span> | Registered: Jan 1, 2015
-                      </div>
-                    </td>
-                    <td class="text-center">
-                      <i class="flag-icon flag-icon-ph h4 mb-0" title="ph" id="ph"></i>
-                    </td>
-                    <td>
-                      <div class="small text-muted">Last login</div>
-                      <strong>10 sec ago</strong>
-                    </td>
-                  </tr>
-                @endforeach
-              @endif
-            </tbody>
+            <tfoot class="thead-dark">
+              <tr>
+                <th class="text-center">ID</th>
+                <th class="text-center">Full Name</th>
+                <th class="text-center">Username</th>
+                <th class="text-center">Role</th>
+                <th class="text-center">Joined</th>
+              </tr>
+            </tfoot>
           </table>
         </div>
       </div>
@@ -52,3 +51,25 @@
   </div>
   <!--/.row-->
 </div>
+
+<!-- modals -->
+<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+  <div class="modal-dialog modal-info" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Modal title</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>One fine body…</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-info">Save changes</button>
+      </div>
+    </div>
+  </div>	
+</div> 
+<!-- end modals -->

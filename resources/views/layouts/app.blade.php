@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}">
 <head>
+	<?php
+		header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
+		header("Cache-Control: post-check=0, pre-check=0", false);
+		header("Pragma: no-cache");
+	?>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<meta http-equiv="cache-control" content="private, max-age=0, no-cache">
-	<meta http-equiv="pragma" content="no-cache">
-	<meta http-equiv="expires" content="0">
   <meta name="description" content="Barangay Mintal Record System">
   <meta name="keyword" content="Mintal Health Records">
 	<!-- CSRF Token -->
@@ -17,27 +19,33 @@
 	@if(App::isLocal())
 	<!-- Icons -->
 	<link href="{{ asset('images/tab-logo.ico') }}" rel="shortcut icon"/>
+	<link rel="stylesheet" href="{{ asset('/plugins/bootstrap/dist/css/bootstrap.css') }}">
 	<link rel="stylesheet" href="{{ asset('/css/flag-icon.css') }}">
 	<link rel="stylesheet" href="{{ asset('/css/font-awesome.css') }}">
 	<link rel="stylesheet" href="{{ asset('/css/simple-line-icons.css') }}">
+	<link rel="stylesheet" href="{{ asset('/plugins/dataTables.net-bs4/css/dataTables.bootstrap4.css') }}">
 
   <!-- Main styles for this application -->
 	<link rel="stylesheet" href="{{ asset('/assets/css/style.css') }}">
 	@elseif(Request::server('HTTP_X_FORWARDED_PROTO') == 'https')
   <!-- Icons -->
 	<link href="{{ secure_asset('images/tab-logo.ico') }}" rel="shortcut icon"/>
+	<link rel="stylesheet" href="{{ secure_asset('/plugins/bootstrap/dist/css/bootstrap.css') }}">
 	<link rel="stylesheet" href="{{ secure_asset('/css/flag-icon.css') }}">
 	<link rel="stylesheet" href="{{ secure_asset('/css/font-awesome.css') }}">
 	<link rel="stylesheet" href="{{ secure_asset('/css/simple-line-icons.css') }}">
+	<link rel="stylesheet" href="{{ secure_asset('/plugins/dataTables.net-bs4/css/dataTables.bootstrap4.css') }}">
 
   <!-- Main styles for this application -->
 	<link rel="stylesheet" href="{{ secure_asset('/assets/css/style.css') }}">
 	@else
   <!-- Icons -->
 	<link href="{{ asset('images/tab-logo.ico') }}" rel="shortcut icon"/>
+	<link rel="stylesheet" href="{{ asset('/plugins/bootstrap/dist/css/bootstrap.css') }}">
 	<link rel="stylesheet" href="{{ asset('/css/flag-icon.css') }}">
 	<link rel="stylesheet" href="{{ asset('/css/font-awesome.css') }}">
 	<link rel="stylesheet" href="{{ asset('/css/simple-line-icons.css') }}">
+	<link rel="stylesheet" href="{{ asset('/plugins/dataTables.net-bs4/css/dataTables.bootstrap4.css') }}">
 
   <!-- Main styles for this application -->
 	<link rel="stylesheet" href="{{ asset('/assets/css/style.css') }}">
@@ -85,6 +93,9 @@
 		        Options
 		      </li>
 		      <li class="nav-item">
+		        <a href="resident" class="nav-link"><i class="icon-home"></i> Resident Profile</a>
+		      </li>
+		      <li class="nav-item">
 		        <a href="household" class="nav-link"><i class="icon-home"></i> Household</a>
 		      </li>
 		      <li class="nav-item">
@@ -112,6 +123,8 @@
 
   <!-- Plugins and scripts required by all views -->
 	<script src="{{ asset('/js/chart.js/dist/Chart.min.js') }}" defer></script>
+	<script src="{{ asset('/plugins/DataTables/media/js/jquery.dataTables.min.js') }}" defer></script>
+	<script src="{{ asset('/plugins/dataTables.net-bs4/js/dataTables.bootstrap4.js') }}" defer></script>
 
   <!-- CoreUI main scripts -->
 	<script src="{{ asset('/assets/js/app.js') }}" defer></script>
@@ -124,6 +137,8 @@
 
   <!-- Plugins and scripts required by all views -->
 	<script src="{{ secure_asset('/js/chart.js/dist/Chart.min.js') }}" defer></script>
+	<script src="{{ secure_asset('/plugins/DataTables/media/js/jquery.dataTables.min.js') }}" defer></script>
+	<script src="{{ secure_asset('/plugins/dataTables.net-bs4/js/dataTables.bootstrap4.js') }}" defer></script>
 
   <!-- CoreUI main scripts -->
 	<script src="{{ secure_asset('/assets/js/app.js') }}" defer></script>
@@ -136,6 +151,8 @@
 
   <!-- Plugins and scripts required by all views -->
 	<script src="{{ asset('/js/chart.js/dist/Chart.min.js') }}" defer></script>
+	<script src="{{ asset('/plugins/DataTables/media/js/jquery.dataTables.min.js') }}" defer></script>
+	<script src="{{ asset('/plugins/dataTables.net-bs4/js/dataTables.bootstrap4.js') }}" defer></script>
 
   <!-- CoreUI main scripts -->
 	<script src="{{ asset('/assets/js/app.js') }}" defer></script>

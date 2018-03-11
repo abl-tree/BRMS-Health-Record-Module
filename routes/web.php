@@ -22,10 +22,12 @@ Route::middleware(['auth'])->group(function() {
 	});
 	Route::get('/test', 'UserAccountController@test');
 	Route::get('/population/{option}', 'PopulationController@population');
+	Route::get('/resident_profile', 'ResidentController@profile');
 });
 
-Route::middleware(['auth', 'ajax'])->group(function() {    
+Route::middleware(['ajax'])->group(function() {    
 	Route::get('/home', 'HomeController@index')->name('home');
 	Route::get('/household', 'HouseholdController@index')->name('household');
 	Route::get('/account', 'UserAccountController@index')->name('account');
+	Route::get('/resident', 'ResidentController@index')->name('resident');
 });

@@ -1,4 +1,4 @@
 {
-    "/js/popper.js": "/js/popper.js",
-    "/js/chart.js": "/js/chart.js"
+    "/plugins/datatables.net-fixedheader": "/plugins/datatables.net-fixedheader",
+    "/plugins/datatables.net-fixedheader-dt": "/plugins/datatables.net-fixedheader-dt"
 }

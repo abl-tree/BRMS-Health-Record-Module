@@ -7,17 +7,20 @@ use Auth;
 use App\User;
 use App\UserProfile;
 use App\BrgyInfo;
+use App\AccountRole;
 
 class UserAccountController extends Controller
 {
+    protected $db_connection;
+    
     /**
      * Create a new controller instance.
      *
      * @return void
      */
     public function __construct()
-    {
-        $this->middleware('auth');
+    {        
+        $this->db_connection = config('database.default');
     }
 
     /**
@@ -33,17 +36,19 @@ class UserAccountController extends Controller
     }
 
     public function test() {
-    	$users = User::all();
-    	$data = array();
+        $users = User::all();
+        $data = array();
+        
+        foreach ($users as $user) {
+            $data[] = array(
+                'id' => $user->id, 
+                'fullname' => $user->profiles->first_name.' '.$user->profiles->last_name, 
+                'username' => $user->username, 
+                'role' => $user->roles->role, 
+                'created_at' => $user->created_at, 
+            );
+        }
 
-    	if($users) {
-    		foreach ($users as $key => $value) {
-    			$data[$key][] = $users[$key]->profile()->first()->first_name;
-    			$data[$key][] = $users[$key]->profile()->first()->middle_name;
-    			$data[$key][] = $users[$key]->profile()->first()->last_name;
-    		}
-
-    		echo json_encode($data);
-    	}
+        return \DataTables::of($data)->make(true);
     }
 }

@@ -6,14 +6,16 @@ use Illuminate\Http\Request;
 
 class HouseholdController extends Controller
 {
+    protected $db_connection;
+    
     /**
      * Create a new controller instance.
      *
      * @return void
      */
     public function __construct()
-    {
-        $this->middleware('auth');
+    {        
+        $this->db_connection = config('database.default');
     }
 
     /**

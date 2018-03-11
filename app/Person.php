@@ -16,13 +16,4 @@ class Person extends Model
     protected $fillable = [
         'firstName', 'midName', 'lastName',
     ];
-
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
-    protected $hidden = [
-        'address',
-    ];
 }

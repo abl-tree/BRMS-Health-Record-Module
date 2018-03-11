@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use Illuminate\Support\Facades\Auth;
 use Closure;
 
 class AjaxOnlyRequest
@@ -13,8 +14,14 @@ class AjaxOnlyRequest
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle($request, Closure $next)
+    public function handle($request, Closure $next, $guard = null)
     {
+        if (!Auth::guard($guard)->check()) {
+            $route = $request->route('/');
+
+            return new Response(view($route));
+        }
+
         if(!$request->ajax()) {
             return response('Forbidden', 404);
         }
