@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<meta http-equiv="cache-control" content="private, max-age=0, no-cache">
 	<meta http-equiv="pragma" content="no-cache">
-	<meta http-equiv="expires" content="0">
+	
   <meta name="description" content="Barangay Mintal Record System">
   <meta name="keyword" content="Mintal Health Records">
 	<!-- CSRF Token -->
