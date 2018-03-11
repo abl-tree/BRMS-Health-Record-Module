@@ -25,7 +25,7 @@
         </div>
         <div class="card-body">
           <table id="residents-dt" class="table table-hover table-bordered table-responsive-sm datatable dataTable no-footer" cellspacing="0" width="100%">
-            <thead >
+            <thead class="table-info">
               <tr>
                 <th class="text-center">ID</th>
                 <th class="text-center">Firstname</th>
