@@ -17,7 +17,7 @@
         </div>
 		 
         <div class="card-body">
-		 <table class="table table-striped table-responsive-xl table-bordered datatable dataTable no-footer" id="DataTables_Table_0">
+		 <table class="table table-striped table-responsive-xl table-bordered datatable dataTable no-footer" id="DataTables_Table_0" style="width:100%">
             <thead>
               <tr  class="table-primary">
                 <th >User ID</th>
