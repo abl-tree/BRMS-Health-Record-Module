@@ -20,6 +20,7 @@
 	<link rel="stylesheet" href="{{ asset('/css/flag-icon.css') }}">
 	<link rel="stylesheet" href="{{ asset('/css/font-awesome.css') }}">
 	<link rel="stylesheet" href="{{ asset('/css/simple-line-icons.css') }}">
+	<link rel="stylesheet" href="{{ asset('/plugins/datatables/media/css/jquery.dataTables.min.css') }}">
 
   <!-- Main styles for this application -->
 	<link rel="stylesheet" href="{{ asset('/assets/css/style.css') }}">
@@ -29,6 +30,7 @@
 	<link rel="stylesheet" href="{{ secure_asset('/css/flag-icon.css') }}">
 	<link rel="stylesheet" href="{{ secure_asset('/css/font-awesome.css') }}">
 	<link rel="stylesheet" href="{{ secure_asset('/css/simple-line-icons.css') }}">
+	<link rel="stylesheet" href="{{ secure_asset('/plugins/datatables/media/css/jquery.dataTables.min.css') }}">
 
   <!-- Main styles for this application -->
 	<link rel="stylesheet" href="{{ secure_asset('/assets/css/style.css') }}">
@@ -38,6 +40,7 @@
 	<link rel="stylesheet" href="{{ asset('/css/flag-icon.css') }}">
 	<link rel="stylesheet" href="{{ asset('/css/font-awesome.css') }}">
 	<link rel="stylesheet" href="{{ asset('/css/simple-line-icons.css') }}">
+	<link rel="stylesheet" href="{{ asset('/plugins/datatables/media/css/jquery.dataTables.min.css') }}">
 
   <!-- Main styles for this application -->
 	<link rel="stylesheet" href="{{ asset('/assets/css/style.css') }}">
@@ -113,6 +116,7 @@
 
   <!-- Plugins and scripts required by all views -->
 	<script src="{{ asset('/js/chart.js/dist/Chart.min.js') }}"></script>
+	<script src="{{ asset('/plugins/datatables/media/js/jquery.dataTables.min.js') }}"></script>
 
   <!-- CoreUI main scripts -->
 	<script src="{{ asset('/assets/js/app.js') }}"></script>
@@ -125,6 +129,7 @@
 
   <!-- Plugins and scripts required by all views -->
 	<script src="{{ secure_asset('/js/chart.js/dist/Chart.min.js') }}"></script>
+	<script src="{{ secure_asset('/plugins/datatables/media/js/jquery.dataTables.min.js') }}"></script>
 
   <!-- CoreUI main scripts -->
 	<script src="{{ secure_asset('/assets/js/app.js') }}"></script>
@@ -137,6 +142,7 @@
 
   <!-- Plugins and scripts required by all views -->
 	<script src="{{ asset('/js/chart.js/dist/Chart.min.js') }}"></script>
+	<script src="{{ asset('/plugins/datatables/media/js/jquery.dataTables.min.js') }}"></script>
 
   <!-- CoreUI main scripts -->
 	<script src="{{ asset('/assets/js/app.js') }}"></script>

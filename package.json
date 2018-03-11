@@ -39,6 +39,7 @@
         "watchify": "3.7.0"
     },
     "dependencies": {
+        "datatables": "^1.10.13",
         "vuetable": "^1.5.12"
     }
 }

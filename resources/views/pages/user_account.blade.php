@@ -1,49 +1,32 @@
 <script>
-  var requireJS = [];
-  //loadJS(requireJS, "{{ asset('/assets/js/views/main.js') }}");
-  //loadJS(requireJS, "{{ asset('/js/app.js') }}");
+  $('#user-account-dt').DataTable({
+    "processing": true,
+    "serverSide": true,
+    "ajax": "/test",    
+    "columns": [
+      {data: 'id', name: 'id'},
+      {data: 'fullname', name: 'fullname'},
+      {data: 'username', name: 'username'},
+      {data: 'role', name: 'role'},
+      {data: 'created_at', name: 'created_at'},
+    ]
+  });
 </script>
 
 <div class="animated fadeIn">
   <div class="row">
     <div class="col-md-12">
       <div class="card">
-          <table class="table table-responsive-sm table-hover table-outline mb-0">
+          <table class="table table-responsive-sm table-hover table-outline mb-0" id="user-account-dt" style="width:100%">
             <thead class="thead-light">
               <tr>
-                <th class="text-center"><i class="icon-people"></i></th>
-                <th>User</th>
-                <th class="text-center">Country</th>
-                <th>Activity</th>
+                <th>ID</th>
+                <th class="text-center">Full Name</th>
+                <th>Username</th>
+                <th>Role</th>
+                <th>Joined</th>
               </tr>
             </thead>
-            <tbody>
-              @if($users)
-                @foreach($users as $user)
-                  <tr>
-                    <td class="text-center">
-                      <div class="avatar">
-                        <img src="{{ asset('/assets/img/avatars/1.jpg') }}" class="img-avatar" alt="admin@bootstrapmaster.com">
-                        <span class="avatar-status badge-success"></span>
-                      </div>
-                    </td>
-                    <td>
-                      <div>{{ $user->profile()->first()->first_name }}</div>
-                      <div class="small text-muted">
-                        <span>New</span> | Registered: Jan 1, 2015
-                      </div>
-                    </td>
-                    <td class="text-center">
-                      <i class="flag-icon flag-icon-ph h4 mb-0" title="ph" id="ph"></i>
-                    </td>
-                    <td>
-                      <div class="small text-muted">Last login</div>
-                      <strong>10 sec ago</strong>
-                    </td>
-                  </tr>
-                @endforeach
-              @endif
-            </tbody>
           </table>
         </div>
       </div>
