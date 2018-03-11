@@ -35,16 +35,7 @@
                 <th class="text-center">Address</th>
               </tr>
             </thead>
-            <tfoot class="thead-dark">
-              <tr>
-                <th class="text-center">ID</th>
-                <th class="text-center">Firstname</th>
-                <th class="text-center">Middlename</th>
-                <th class="text-center">Lastname</th>
-                <th class="text-center">Gender</th>
-                <th class="text-center">Address</th>
-              </tr>
-            </tfoot>
+           
           </table>
         </div>
       </div>
