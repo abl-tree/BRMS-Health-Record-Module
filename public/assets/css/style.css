@@ -10466,8 +10466,8 @@ base-chart.chart {
   .brand-minimized .app-header.navbar .navbar-brand {
     width: 50px;
     background-color: #fff;
-    background-image: url("../img/logo-symbol.png");
-    background-size: 24px;
+    background-image: url("../../images/logo-symbol.png");
+    background-size: 46px;
     border-bottom: 1px solid #a4b7c1; } }
 
 .progress-xs {
