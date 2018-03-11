@@ -1,8 +1,4 @@
-<script>
-  var requireJS = [];
-  loadJS(requireJS, "{{ asset('/assets/js/views/main.js') }}");
-
-</script>
+<script src="{{ asset('/assets/js/views/main.js') }}"></script>
 
 <div class="animated fadeIn">
   <div class="row">
