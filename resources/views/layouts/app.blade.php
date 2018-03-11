@@ -91,14 +91,12 @@
 		        Options
 		      </li>
 		      <li class="nav-item">
-		        <a href="household" class="nav-link"><i class="icon-home"></i> Household</a>
+		        <a href="person" class="nav-link"><i class="icon-people"></i>Persons</a>
 		      </li>
 		      <li class="nav-item">
 		        <a href="account" class="nav-link"><i class="icon-user"></i> Users</a>
 		      </li>
-			   <li class="nav-item">
-		        <a href="person" class="nav-link"><i class="icon-people"></i>Persons</a>
-		      </li>
+
 		    </ul>
 		  </nav>
 		  <button class="sidebar-minimizer brand-minimizer" type="button"></button>
