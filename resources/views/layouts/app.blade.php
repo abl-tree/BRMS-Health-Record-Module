@@ -98,9 +98,17 @@
 		      <li class="nav-item">
 		        <a href="household" class="nav-link"><i class="icon-home"></i> Household</a>
 		      </li>
-		      <li class="nav-item">
-		        <a href="report" class="nav-link"><i class="icon-home"></i> Report</a>
-		      </li>
+          <li class="nav-item nav-dropdown">
+            <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-cursor"></i> Reports</a>
+            <ul class="nav-dropdown-items">
+              <li class="nav-item">
+								<a href="report" class="nav-link"><i class="icon-cursor"></i> Monthly</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#"><i class="icon-cursor"></i> Quarterly</a>
+              </li>
+            </ul>
+          </li>
 		      <li class="nav-item">
 		        <a href="account" class="nav-link"><i class="icon-user"></i> Users</a>
 		      </li>
