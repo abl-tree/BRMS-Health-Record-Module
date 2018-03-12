@@ -28,6 +28,7 @@ Route::middleware(['auth'])->group(function() {
 Route::middleware(['ajax'])->group(function() {    
 	Route::get('/home', 'HomeController@index')->name('home');
 	Route::get('/household', 'HouseholdController@index')->name('household');
+	Route::get('/profile', 'ProfileController@profile')->name('profile');
 	Route::get('/account', 'UserAccountController@index')->name('account');
 	Route::get('/resident', 'ResidentController@index')->name('resident');
 });

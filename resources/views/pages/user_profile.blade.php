@@ -1,8 +1,8 @@
 <script>
-  $('#user-account-dt').DataTable({
+  $('#user-profile-dt').DataTable({
     "processing": true,
     "serverSide": true,
-    "ajax": "/test",    
+    "ajax": "/profile",    
     "columns": [
       {data: 'id'},
       {data: 'fullname'},
@@ -24,7 +24,7 @@
           </div>
         </div>
         <div class="card-body">
-          <table id="user-account-dt" class="table table-hover table-bordered table-responsive-sm" cellspacing="0" width="100%">
+          <table id="user-profile-dt" class="table table-hover table-bordered table-responsive-sm" cellspacing="0" width="100%">
             <thead class="thead-dark">
               <tr>
                 <th class="text-center">ID</th>

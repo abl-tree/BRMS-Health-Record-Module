@@ -8,8 +8,10 @@ use App\User;
 use App\UserProfile;
 use App\BrgyInfo;
 use App\AccountRole;
+use App\Person;
 
-class UserAccountController extends Controller
+
+class ProfileController extends Controller
 {
     protected $db_connection;
     
@@ -32,10 +34,10 @@ class UserAccountController extends Controller
     {
     	$users = User::all();
 
-        return view('pages/user_account', compact('users'));
+        return view('pages/user_profile');
     }
 
-    public function test() {
+    public function profile() {
         $users = User::all();
         $data = array();
         

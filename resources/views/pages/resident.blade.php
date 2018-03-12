@@ -13,7 +13,7 @@
      {
               "targets": [ 0 ],
               createdCell: function(td, cellData, rowData, row, col){
-                var a = $(td).find(">:first-child").find(">:first-child");
+                
                 var b = $(td).find(">:first-child").find(">:last-child");
 
           
