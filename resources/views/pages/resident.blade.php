@@ -20,7 +20,7 @@
           b.attr("data-id", cellData);
           b.attr("data-transit", rowData[2]);
           b.attr("data-arrival", rowData[3]);
-          b.attr("data-target", '.container-edit-modal');
+          b.attr("data-target", '#addProfile');
           b.attr("data-backdrop", 'static');
           b.attr("data-toggle", 'modal');
           b.attr("type", 'submit');
@@ -79,7 +79,7 @@
 </div>
 
 <!-- modals -->
-<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+<div class="modal fade" id="addProfile" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
   <div class="modal-dialog modal-info" role="document">
     <div class="modal-content">
       <div class="modal-header">

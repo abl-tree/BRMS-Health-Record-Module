@@ -2,7 +2,7 @@
   $('#user-profile-dt').DataTable({
     "processing": true,
     "serverSide": true,
-    "ajax": "/profile",    
+    "ajax": "/index",    
     "columns": [
       {data: 'id'},
       {data: 'fullname'},

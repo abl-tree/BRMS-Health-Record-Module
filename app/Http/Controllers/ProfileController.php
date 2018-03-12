@@ -34,10 +34,10 @@ class ProfileController extends Controller
     {
     	$users = User::all();
 
-        return view('pages/user_profile');
+        return view('pages/user_profile', compact('users'));
     }
 
-    public function profile() {
+    public function test() {
         $users = User::all();
         $data = array();
         
