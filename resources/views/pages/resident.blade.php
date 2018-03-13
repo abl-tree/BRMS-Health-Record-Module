@@ -1,4 +1,8 @@
 <script>
+  $('.breadcrumb').html('<li class="breadcrumb-item active">Resident</li>');
+
+  $('#birthdate').datepicker();
+  
   $('#residents-dt').DataTable({
     "processing": true,
     "serverSide": true,
@@ -31,9 +35,6 @@
             <li class="nav-item">
               <a class="nav-link" data-toggle="tab" href="#profile" role="tab" aria-controls="profile">Add Resident</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" data-toggle="tab" href="#messages" role="tab" aria-controls="messages">Messages</a>
-            </li>
           </ul>
           <div class="tab-content">
             <div class="tab-pane active" id="list" role="tabpanel">
@@ -51,44 +52,83 @@
               </table>
             </div>
             <div class="tab-pane" id="profile" role="tabpanel">
-              <div class="form-group">
-                <label for="company">Company</label>
-                <input type="text" class="form-control" id="company" placeholder="Enter your company name">
-              </div>
-
-              <div class="form-group">
-                <label for="vat">VAT</label>
-                <input type="text" class="form-control" id="vat" placeholder="PL1234567890">
-              </div>
-
-              <div class="form-group">
-                <label for="street">Street</label>
-                <input type="text" class="form-control" id="street" placeholder="Enter street name">
-              </div>
-
-              <div class="row">
-
-                <div class="form-group col-sm-8">
-                  <label for="city">City</label>
-                  <input type="text" class="form-control" id="city" placeholder="Enter your city">
+              <div class="col-sm-12 col-md-12 col-lg-5">
+                <div class="card card-accent-primary">
+                  <div class="card-header">
+                    <strong>Personal Information</strong>
+                    <small>Form</small>
+                  </div>
+                  <div class="card-body">
+                    <div class="form-group">
+                      <label for="first_name">First Name:</label>
+                      <input type="text" class="form-control" name="first_name" placeholder="Enter resident's first name">
+                    </div>
+                    <div class="form-group">
+                      <label for="middle_name">Middle Name:</label>
+                      <input type="text" class="form-control" name="middle_name" placeholder="Enter resident's middle name">
+                    </div>
+                    <div class="form-group">
+                      <label for="last_name">Last Name:</label>
+                      <input type="text" class="form-control" name="last_name" placeholder="Enter resident's last name">
+                    </div>
+                    <div class="form-group">
+                      <label for="gender">Gender:</label>
+                      <select name="gender" class="form-control">
+                        <option>Male</option>
+                        <option>Female</option>
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label for="height">Height (inches):</label>
+                      <input type="text" class="form-control" name="height" placeholder="Enter resident's height">
+                    </div>
+                    <div class="form-group">
+                      <label for="weight">Weight (pounds)</label>
+                      <input type="text" class="form-control" name="weight" placeholder="Enter resident's weight">
+                    </div>
+                    <div class="form-group">
+                      <label for="blood_type">Blood Type</label>
+                      <input type="text" class="form-control" name="blood_type" placeholder="Enter resident's blood type">
+                    </div>
+                    <div class="form-group">
+                      <label for="birthdate">Birthdate</label>
+                      <input type="text" class="form-control" name="birthdate" placeholder="MM/DD/YYYY" data-provide="datepicker" >
+                    </div>
+                    <div class="form-group">
+                      <label for="marital_status">Marital Status:</label>
+                      <select name="marital_status" class="form-control">
+                        <option>Single</option>
+                        <option>Married</option>
+                        <option>Widowed</option>
+                        <option>Separated</option>
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label for="email">Email</label>
+                      <input type="text" class="form-control" name="email" placeholder="Enter resident's email address">
+                    </div>
+                    <div class="form-group">
+                      <label for="street">Street</label>
+                      <input type="text" class="form-control" name="street" placeholder="Enter street name">
+                    </div>
+                    <div class="row">
+                      <div class="form-group col-sm-8">
+                        <label for="city">City</label>
+                        <input type="text" class="form-control" id="city" placeholder="Enter your city">
+                      </div>
+                      <div class="form-group col-sm-4">
+                        <label for="postal-code">Postal Code</label>
+                        <input type="text" class="form-control" id="postal-code" placeholder="Postal Code">
+                      </div>
+                    </div>
+                    <!--/.row-->
+                    <div class="form-group">
+                      <label for="country">Country</label>
+                      <input type="text" class="form-control" id="country" placeholder="Country name">
+                    </div>
+                  </div>
                 </div>
-
-                <div class="form-group col-sm-4">
-                  <label for="postal-code">Postal Code</label>
-                  <input type="text" class="form-control" id="postal-code" placeholder="Postal Code">
-                </div>
-
-              </div>
-              <!--/.row-->
-
-              <div class="form-group">
-                <label for="country">Country</label>
-                <input type="text" class="form-control" id="country" placeholder="Country name">
-              </div>
-            </div>
-            <div class="tab-pane" id="messages" role="tabpanel">
-              3. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-              dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+              </div> 
             </div>
           </div>
         </div>

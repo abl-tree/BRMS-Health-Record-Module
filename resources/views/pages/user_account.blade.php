@@ -1,4 +1,6 @@
 <script>
+  $('.breadcrumb').html('<li class="breadcrumb-item active">User</li>');
+  
   $('#user-account-dt').DataTable({
     "processing": true,
     "serverSide": true,

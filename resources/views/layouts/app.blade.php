@@ -25,6 +25,10 @@
 	<link rel="stylesheet" href="{{ asset('/css/simple-line-icons.css') }}">
 	<link rel="stylesheet" href="{{ asset('/plugins/dataTables.net-bs4/css/dataTables.bootstrap4.css') }}">
 
+	<!-- Bootstrap Form Helpers -->
+	<link rel="stylesheet" href="{{ asset('/plugins/bootstrap-form-helpers/css/bootstrap-formhelpers.min.css') }}" media="screen">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.standalone.min.css" media="screen">
+
   <!-- Main styles for this application -->
 	<link rel="stylesheet" href="{{ asset('/assets/css/style.css') }}">
 	@elseif(Request::server('HTTP_X_FORWARDED_PROTO') == 'https')
@@ -36,6 +40,9 @@
 	<link rel="stylesheet" href="{{ secure_asset('/css/simple-line-icons.css') }}">
 	<link rel="stylesheet" href="{{ secure_asset('/plugins/dataTables.net-bs4/css/dataTables.bootstrap4.css') }}">
 
+	<!-- Bootstrap Form Helpers -->
+	<link rel="stylesheet" href="{{ secure_asset('/plugins/bootstrap-form-helpers/css/bootstrap-formhelpers.min.css') }}" media="screen">
+
   <!-- Main styles for this application -->
 	<link rel="stylesheet" href="{{ secure_asset('/assets/css/style.css') }}">
 	@else
@@ -46,6 +53,9 @@
 	<link rel="stylesheet" href="{{ asset('/css/font-awesome.css') }}">
 	<link rel="stylesheet" href="{{ asset('/css/simple-line-icons.css') }}">
 	<link rel="stylesheet" href="{{ asset('/plugins/dataTables.net-bs4/css/dataTables.bootstrap4.css') }}">
+
+	<!-- Bootstrap Form Helpers -->
+	<link rel="stylesheet" href="{{ asset('/plugins/bootstrap-form-helpers/css/bootstrap-formhelpers.min.css') }}" media="screen">
 
   <!-- Main styles for this application -->
 	<link rel="stylesheet" href="{{ asset('/assets/css/style.css') }}">
@@ -99,13 +109,13 @@
 		        <a href="household" class="nav-link"><i class="icon-home"></i> Household</a>
 		      </li>
           <li class="nav-item nav-dropdown">
-            <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-cursor"></i> Reports</a>
+            <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-pie-chart"></i> Reports</a>
             <ul class="nav-dropdown-items">
               <li class="nav-item">
-								<a href="report" class="nav-link"><i class="icon-cursor"></i> Monthly</a>
+								<a href="monthly_report" class="nav-link"><i class="icon-pie-chart"></i> Monthly</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#"><i class="icon-cursor"></i> Quarterly</a>
+                <a href="quarterly_report" class="nav-link"><i class="icon-pie-chart"></i> Quarterly</a>
               </li>
             </ul>
           </li>
@@ -117,7 +127,14 @@
 		  <button class="sidebar-minimizer brand-minimizer" type="button"></button>
 		</div>
 
-  	@yield('content')
+		<!-- Main content -->
+		<main class="main">
+
+			<!-- Breadcrumb -->
+			<ol class="breadcrumb">
+			</ol>
+  		@yield('content')
+  	</main>
 	</div>
 
   <footer class="app-footer">
@@ -131,6 +148,10 @@
 	<script src="{{ asset('/js/popper.js/dist/umd/popper.min.js') }}" defer></script>
 	<script src="{{ asset('/js/bootstrap/dist/js/bootstrap.min.js') }}" defer></script>
 	<script src="{{ asset('/js/pace-progress/pace.min.js') }}" defer></script>
+
+	<!-- Bootstrap Form Helpers -->
+	<script src="{{ asset('/plugins/bootstrap-form-helpers/js/bootstrap-formhelpers.js') }}" defer></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.min.js" defer></script>
 
   <!-- Plugins and scripts required by all views -->
 	<script src="{{ asset('/js/chart.js/dist/Chart.min.js') }}" defer></script>
@@ -146,6 +167,9 @@
 	<script src="{{ secure_asset('/js/bootstrap/dist/js/bootstrap.min.js') }}" defer></script>
 	<script src="{{ secure_asset('/js/pace-progress/pace.min.js') }}" defer></script>
 
+	<!-- Bootstrap Form Helpers -->
+	<script src="{{ secure_asset('/plugins/bootstrap-form-helpers/js/bootstrap-formhelpers.js') }}" defer></script>
+
   <!-- Plugins and scripts required by all views -->
 	<script src="{{ secure_asset('/js/chart.js/dist/Chart.min.js') }}" defer></script>
 	<script src="{{ secure_asset('/plugins/DataTables/media/js/jquery.dataTables.min.js') }}" defer></script>
@@ -159,6 +183,9 @@
 	<script src="{{ asset('/js/popper.js/dist/umd/popper.min.js') }}" defer></script>
 	<script src="{{ asset('/js/bootstrap/dist/js/bootstrap.min.js') }}" defer></script>
 	<script src="{{ asset('/js/pace-progress/pace.min.js') }}" defer></script>
+
+	<!-- Bootstrap Form Helpers -->
+	<script src="{{ asset('/plugins/bootstrap-form-helpers/js/bootstrap-formhelpers.js') }}" defer></script>
 
   <!-- Plugins and scripts required by all views -->
 	<script src="{{ asset('/js/chart.js/dist/Chart.min.js') }}" defer></script>

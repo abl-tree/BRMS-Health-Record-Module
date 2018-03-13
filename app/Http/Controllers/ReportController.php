@@ -27,4 +27,9 @@ class ReportController extends Controller
     {
         return view('pages/report');
     }
+
+    public function quarterlyView()
+    {
+        return view('pages/quarterly');
+    }
 }
