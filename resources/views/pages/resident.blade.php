@@ -52,83 +52,116 @@
               </table>
             </div>
             <div class="tab-pane" id="profile" role="tabpanel">
-              <div class="col-sm-12 col-md-12 col-lg-5">
-                <div class="card card-accent-primary">
-                  <div class="card-header">
-                    <strong>Personal Information</strong>
-                    <small>Form</small>
-                  </div>
-                  <div class="card-body">
-                    <div class="form-group">
-                      <label for="first_name">First Name:</label>
-                      <input type="text" class="form-control" name="first_name" placeholder="Enter resident's first name">
+              <div class="row">
+                <div class="col-sm-12 col-md-12 col-lg-5">
+                  <div class="card card-accent-primary">
+                    <div class="card-header">
+                      <strong>Personal Information</strong>
+                      <small>Form</small>
                     </div>
-                    <div class="form-group">
-                      <label for="middle_name">Middle Name:</label>
-                      <input type="text" class="form-control" name="middle_name" placeholder="Enter resident's middle name">
-                    </div>
-                    <div class="form-group">
-                      <label for="last_name">Last Name:</label>
-                      <input type="text" class="form-control" name="last_name" placeholder="Enter resident's last name">
-                    </div>
-                    <div class="form-group">
-                      <label for="gender">Gender:</label>
-                      <select name="gender" class="form-control">
-                        <option>Male</option>
-                        <option>Female</option>
-                      </select>
-                    </div>
-                    <div class="form-group">
-                      <label for="height">Height (inches):</label>
-                      <input type="text" class="form-control" name="height" placeholder="Enter resident's height">
-                    </div>
-                    <div class="form-group">
-                      <label for="weight">Weight (pounds)</label>
-                      <input type="text" class="form-control" name="weight" placeholder="Enter resident's weight">
-                    </div>
-                    <div class="form-group">
-                      <label for="blood_type">Blood Type</label>
-                      <input type="text" class="form-control" name="blood_type" placeholder="Enter resident's blood type">
-                    </div>
-                    <div class="form-group">
-                      <label for="birthdate">Birthdate</label>
-                      <input type="text" class="form-control" name="birthdate" placeholder="MM/DD/YYYY" data-provide="datepicker" >
-                    </div>
-                    <div class="form-group">
-                      <label for="marital_status">Marital Status:</label>
-                      <select name="marital_status" class="form-control">
-                        <option>Single</option>
-                        <option>Married</option>
-                        <option>Widowed</option>
-                        <option>Separated</option>
-                      </select>
-                    </div>
-                    <div class="form-group">
-                      <label for="email">Email</label>
-                      <input type="text" class="form-control" name="email" placeholder="Enter resident's email address">
-                    </div>
-                    <div class="form-group">
-                      <label for="street">Street</label>
-                      <input type="text" class="form-control" name="street" placeholder="Enter street name">
-                    </div>
-                    <div class="row">
-                      <div class="form-group col-sm-8">
-                        <label for="city">City</label>
-                        <input type="text" class="form-control" id="city" placeholder="Enter your city">
+                    <div class="card-body">
+                      <div class="form-group">
+                        <label for="first_name">First Name:</label>
+                        <input type="text" class="form-control" name="first_name" placeholder="Enter first name">
                       </div>
-                      <div class="form-group col-sm-4">
-                        <label for="postal-code">Postal Code</label>
-                        <input type="text" class="form-control" id="postal-code" placeholder="Postal Code">
+                      <div class="form-group">
+                        <label for="middle_name">Middle Name:</label>
+                        <input type="text" class="form-control" name="middle_name" placeholder="Enter middle name">
                       </div>
-                    </div>
-                    <!--/.row-->
-                    <div class="form-group">
-                      <label for="country">Country</label>
-                      <input type="text" class="form-control" id="country" placeholder="Country name">
+                      <div class="form-group">
+                        <label for="last_name">Last Name:</label>
+                        <input type="text" class="form-control" name="last_name" placeholder="Enter last name">
+                      </div>
+                      <div class="form-group">
+                        <label for="gender">Gender:</label>
+                        <select name="gender" class="form-control">
+                          <option>Male</option>
+                          <option>Female</option>
+                        </select>
+                      </div>
+                      <div class="form-group">
+                        <label for="height">Height (inches):</label>
+                        <input type="text" class="form-control" name="height" placeholder="Enter height">
+                      </div>
+                      <div class="form-group">
+                        <label for="weight">Weight (pounds)</label>
+                        <input type="text" class="form-control" name="weight" placeholder="Enter weight">
+                      </div>
+                      <div class="form-group">
+                        <label for="blood_type">Blood Type</label>
+                        <input type="text" class="form-control" name="blood_type" placeholder="Enter blood type">
+                      </div>
+                      <div class="form-group">
+                        <label for="birthdate">Birthdate</label>
+                        <input type="text" class="form-control" name="birthdate" placeholder="MM/DD/YYYY" data-provide="datepicker" >
+                      </div>
+                      <div class="form-group">
+                        <label for="marital_status">Marital Status:</label>
+                        <select name="marital_status" class="form-control">
+                          <option>Single</option>
+                          <option>Married</option>
+                          <option>Widowed</option>
+                          <option>Separated</option>
+                        </select>
+                      </div>
+                      <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="text" class="form-control" name="email" placeholder="Enter email address">
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div> 
+                <div class="col-sm-12 col-md-12 col-lg-7">
+                  <div class="card card-accent-primary">
+                    <div class="card-header">
+                      <strong>In Case of Emergency</strong>
+                      <small>Form</small>
+                    </div>
+                    <div class="card-body">
+                      <div class="form-group">
+                        <label for="emergency_name">Name</label>
+                        <input type="text" class="form-control" name="emergency_name" placeholder="Enter name">
+                      </div>
+                      <div class="form-group">
+                        <label for="emergency_contact">Contact</label>
+                        <input type="text" class="form-control" name="emergency_contact" placeholder="Enter contact number">
+                      </div>
+                      <div class="form-group">
+                        <label for="emergency_relationship">Relationship</label>
+                        <input type="text" class="form-control" name="emergency_relationship" placeholder="Enter relationship">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card card-accent-primary">
+                    <div class="card-header">
+                      <strong>Address Information</strong>
+                      <small>Form</small>
+                    </div>
+                    <div class="card-body">
+                      <div class="row">
+                        <div class="form-group col-sm-4">
+                          <label for="purok">Purok</label>
+                          <input type="text" class="form-control" name="purok" placeholder="Enter city">
+                        </div>
+                        <div class="form-group col-sm-8">
+                          <label for="street">Street</label>
+                          <input type="text" class="form-control" name="street" placeholder="Enter Street">
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="form-group col-sm-4">
+                          <label for="barangay">Barangay</label>
+                          <input type="text" class="form-control" name="barangay" placeholder="Enter barangay">
+                        </div>
+                        <div class="form-group col-sm-8">
+                          <label for="city">City</label>
+                          <input type="text" class="form-control" id="city" placeholder="Enter city">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div> 
+              </div>
             </div>
           </div>
         </div>
