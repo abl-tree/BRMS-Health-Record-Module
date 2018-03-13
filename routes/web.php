@@ -23,6 +23,7 @@ Route::middleware(['auth'])->group(function() {
 	Route::get('/test', 'UserAccountController@test');
 	Route::get('/population/{option}', 'PopulationController@population');
 	Route::get('/resident_profile', 'ResidentController@profile');
+
 });
 
 Route::middleware(['ajax'])->group(function() {    
@@ -31,4 +32,5 @@ Route::middleware(['ajax'])->group(function() {
 	Route::get('/account', 'UserAccountController@index')->name('account');
 	Route::get('/resident', 'ResidentController@index')->name('resident');
 	Route::get('/report', 'ReportController@index')->name('report');
+	Route::get('/resident/{option?}','ResidentController@showPerson');
 });

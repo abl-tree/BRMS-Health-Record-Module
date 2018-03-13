@@ -57,4 +57,9 @@ class ResidentController extends Controller
 
         return \DataTables::of($data)->make(true);
     }
+    public function showPerson()
+     {
+    $data = DB::table('persons')->get();
+    return View::make("pages/resident", compact('persons'));
+     }
 }
