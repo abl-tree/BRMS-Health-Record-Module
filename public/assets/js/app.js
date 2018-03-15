@@ -181,7 +181,7 @@ function loadPage(url) {
     success : function() {
       Pace.restart();
       $('html, body').animate({ scrollTop: 0 }, 0);
-      $.breadCrumb.text($('a[href="'+ url +'"]').text());
+      // $.breadCrumb.text($('a[href="'+ url +'"]').text());
       $.mainContent.load(url, null, function (responseText) {
         window.location.hash = url;
       }).delay(250).animate({ opacity : 1 }, 0);

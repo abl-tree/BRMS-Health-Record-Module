@@ -1,3 +1,7 @@
+<script>
+  $('.breadcrumb').html('<li class="breadcrumb-item active">Household</li>');
+  
+</script>
 <div class="animated fadeIn">
   <div class="row">
     <div class="col-lg-6">

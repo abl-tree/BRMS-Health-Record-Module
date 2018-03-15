@@ -16,28 +16,28 @@
 
   @if(App::isLocal())
   <!-- Icons -->
-	<link href="{{ asset('images/tab-logo.ico') }}" rel="shortcut icon"/>
-  <link rel="stylesheet" href="{{ asset('/css/flag-icon.min.css') }}">
-  <link rel="stylesheet" href="{{ asset('/css/font-awesome.min.css') }}">
-  <link rel="stylesheet" href="{{ asset('/css/simple-line-icons.css') }}">
+  <link href="{{ asset('images/tab-logo.ico') }}" rel="shortcut icon"/>
+  
+  <!-- App CSS -->
+  <link rel="stylesheet" href="{{ asset('/css/app.css') }}">
 
   <!-- Main styles for this application -->
   <link rel="stylesheet" href="{{ asset('/assets/css/style.css') }}">
   @elseif(Request::server('HTTP_X_FORWARDED_PROTO') == 'https')
   <!-- Icons -->
 	<link href="{{ secure_asset('images/tab-logo.ico') }}" rel="shortcut icon"/>
-  <link rel="stylesheet" href="{{ secure_asset('/css/flag-icon.min.css') }}">
-  <link rel="stylesheet" href="{{ secure_asset('/css/font-awesome.min.css') }}">
-  <link rel="stylesheet" href="{{ secure_asset('/css/simple-line-icons.css') }}">
+  
+  <!-- App CSS -->
+  <link rel="stylesheet" href="{{ secure_asset('/css/app.css') }}">
 
   <!-- Main styles for this application -->
   <link rel="stylesheet" href="{{ secure_asset('/assets/css/style.css') }}">
   @else
   <!-- Icons -->
 	<link href="{{ asset('images/tab-logo.ico') }}" rel="shortcut icon"/>
-  <link rel="stylesheet" href="{{ asset('/css/flag-icon.min.css') }}">
-  <link rel="stylesheet" href="{{ asset('/css/font-awesome.min.css') }}">
-  <link rel="stylesheet" href="{{ asset('/css/simple-line-icons.css') }}">
+  
+  <!-- App CSS -->
+  <link rel="stylesheet" href="{{ asset('/css/app.css') }}">
 
   <!-- Main styles for this application -->
   <link rel="stylesheet" href="{{ asset('/assets/css/style.css') }}">
@@ -94,20 +94,14 @@
   </div>
 
 </body>
-  @if(App::isLocal())
-  <!-- Bootstrap and necessary plugins -->
-  <script src="{{ asset('/js/jquery/dist/jquery.min.js') }}"></script>
-  <script src="{{ asset('/js/popper.js/dist/umd/popper.min.js') }}"></script>
-  <script src="{{ asset('/js/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+  @if(App::isLocal())  
+  <!-- App CSS -->
+  <script src="{{ asset('/js/app.js') }}"></script>
   @elseif(Request::server('HTTP_X_FORWARDED_PROTO') == 'https')
-  <!-- Bootstrap and necessary plugins -->
-  <script src="{{ secure_asset('/js/jquery/dist/jquery.min.js') }}"></script>
-  <script src="{{ secure_asset('/js/popper.js/dist/umd/popper.min.js') }}"></script>
-  <script src="{{ secure_asset('/js/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+  <!-- App CSS -->
+  <script src="{{ secure_asset('/js/app.js') }}"></script>
   @else
-  <!-- Bootstrap and necessary plugins -->
-  <script src="{{ asset('/js/jquery/dist/jquery.min.js') }}"></script>
-  <script src="{{ asset('/js/popper.js/dist/umd/popper.min.js') }}"></script>
-  <script src="{{ asset('/js/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+  <!-- App CSS -->
+  <script src="{{ asset('/js/app.js') }}"></script>
   @endif
 </html>

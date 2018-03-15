@@ -1,5 +1,7 @@
 $(function(){
   'use strict';
+
+  $('.breadcrumb').html('<li class="breadcrumb-item active">Dashboard</li>');  
   
   $.get('/data/webapi/resident', 'json', function(data){
     var population = data.count.population;

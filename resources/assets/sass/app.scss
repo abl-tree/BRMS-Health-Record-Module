@@ -8,6 +8,13 @@
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
+//Plugin
+@import '~flag-icon-css/sass/flag-icon';
+@import '~font-awesome/scss/font-awesome';
+@import '~simple-line-icons/scss/simple-line-icons';
+@import '~bootstrap-datepicker/dist/css/bootstrap-datepicker';
+@import '~dataTables.net-bs4/css/dataTables.bootstrap4';
+
 .navbar-laravel {
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);

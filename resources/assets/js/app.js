@@ -23,33 +23,33 @@ require('./bootstrap');
 // Vue.component('vuetable', require('vuetable-2/src/components/Vuetable.vue'));
 // Vue.component('vuetable-pagination-info', require('vuetable-2/src/components/VuetablePaginationInfo.vue'));
 
-import Vue from 'vue'
-import Vuetable from 'vuetable-2/src/components/Vuetable.vue'
-import VuetablePagination from 'vuetable-2/src/components/VuetablePagination.vue'
-import VuetablePaginationDropdown from 'vuetable-2/src/components/VuetablePaginationDropdown.vue'
-import VuetablePaginationInfo from 'vuetable-2/src/components/VuetablePaginationInfo.vue'
-import axios from 'axios'
-import VuetablePaginationMixin from 'vuetable-2/src/components/VuetablePaginationMixin.vue'
-// import Promise from 'promise-polyfill' 
+// import Vue from 'vue'
+// import Vuetable from 'vuetable-2/src/components/Vuetable.vue'
+// import VuetablePagination from 'vuetable-2/src/components/VuetablePagination.vue'
+// import VuetablePaginationDropdown from 'vuetable-2/src/components/VuetablePaginationDropdown.vue'
+// import VuetablePaginationInfo from 'vuetable-2/src/components/VuetablePaginationInfo.vue'
+// import axios from 'axios'
+// import VuetablePaginationMixin from 'vuetable-2/src/components/VuetablePaginationMixin.vue'
+// // import Promise from 'promise-polyfill' 
 
-if (!window.Promise) {
-	window.Promise = Promise
-}
+// if (!window.Promise) {
+// 	window.Promise = Promise
+// }
 
-function install(Vue){
-  Vue.component("vuetable", Vuetable);
-  Vue.component("vuetable-pagination", VuetablePagination);
-  Vue.component("vuetable-pagination-dropdown", VuetablePaginationDropDown);
-  Vue.component("vuetable-pagination-info", VuetablePaginationInfo);
-}
-export {
-  Vuetable,
-  VuetablePagination,
-  VuetablePaginationDropDown,
-  VuetablePaginationInfo,
-  VuetablePaginationMixin,
-  VuetablePaginationInfoMixin,
-  install
-};
+// function install(Vue){
+//   Vue.component("vuetable", Vuetable);
+//   Vue.component("vuetable-pagination", VuetablePagination);
+//   Vue.component("vuetable-pagination-dropdown", VuetablePaginationDropDown);
+//   Vue.component("vuetable-pagination-info", VuetablePaginationInfo);
+// }
+// export {
+//   Vuetable,
+//   VuetablePagination,
+//   VuetablePaginationDropDown,
+//   VuetablePaginationInfo,
+//   VuetablePaginationMixin,
+//   VuetablePaginationInfoMixin,
+//   install
+// };
 
-export default Vuetable;
+// export default Vuetable;

@@ -11,8 +11,8 @@ let mix = require('laravel-mix');
  |
  */
 
-// mix.js('resources/assets/js/app.js', 'public/js')
-//    .sass('resources/assets/sass/app.scss', 'public/css');
+mix.js('resources/assets/js/app.js', 'public/js')
+   .sass('resources/assets/sass/app.scss', 'public/css');
 
 // mix.copy('node_modules/dataTables.net-bs4/', 'public/plugins/dataTables.net-bs4')
 //    .copy('node_modules/bootstrap/', 'public/plugins/bootstrap')
