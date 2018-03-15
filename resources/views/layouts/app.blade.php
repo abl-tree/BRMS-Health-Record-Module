@@ -25,9 +25,8 @@
 	<link rel="stylesheet" href="{{ asset('/css/simple-line-icons.css') }}">
 	<link rel="stylesheet" href="{{ asset('/plugins/dataTables.net-bs4/css/dataTables.bootstrap4.css') }}">
 
-	<!-- Bootstrap Form Helpers -->
-	<link rel="stylesheet" href="{{ asset('/plugins/bootstrap-form-helpers/css/bootstrap-formhelpers.min.css') }}" media="screen">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.standalone.min.css" media="screen">
+	<!-- Bootstrap Date Picker -->
+	<link rel="stylesheet" href="{{ asset('/plugins/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css') }}">
 
   <!-- Main styles for this application -->
 	<link rel="stylesheet" href="{{ asset('/assets/css/style.css') }}">
@@ -40,8 +39,8 @@
 	<link rel="stylesheet" href="{{ secure_asset('/css/simple-line-icons.css') }}">
 	<link rel="stylesheet" href="{{ secure_asset('/plugins/dataTables.net-bs4/css/dataTables.bootstrap4.css') }}">
 
-	<!-- Bootstrap Form Helpers -->
-	<link rel="stylesheet" href="{{ secure_asset('/plugins/bootstrap-form-helpers/css/bootstrap-formhelpers.min.css') }}" media="screen">
+	<!-- Bootstrap Date Picker -->
+	<link rel="stylesheet" href="{{ secure_asset('/plugins/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css') }}">
 
   <!-- Main styles for this application -->
 	<link rel="stylesheet" href="{{ secure_asset('/assets/css/style.css') }}">
@@ -54,8 +53,8 @@
 	<link rel="stylesheet" href="{{ asset('/css/simple-line-icons.css') }}">
 	<link rel="stylesheet" href="{{ asset('/plugins/dataTables.net-bs4/css/dataTables.bootstrap4.css') }}">
 
-	<!-- Bootstrap Form Helpers -->
-	<link rel="stylesheet" href="{{ asset('/plugins/bootstrap-form-helpers/css/bootstrap-formhelpers.min.css') }}" media="screen">
+	<!-- Bootstrap Date Picker -->
+	<link rel="stylesheet" href="{{ asset('/plugins/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css') }}">
 
   <!-- Main styles for this application -->
 	<link rel="stylesheet" href="{{ asset('/assets/css/style.css') }}">
@@ -149,9 +148,8 @@
 	<script src="{{ asset('/js/bootstrap/dist/js/bootstrap.min.js') }}" defer></script>
 	<script src="{{ asset('/js/pace-progress/pace.min.js') }}" defer></script>
 
-	<!-- Bootstrap Form Helpers -->
-	<script src="{{ asset('/plugins/bootstrap-form-helpers/js/bootstrap-formhelpers.js') }}" defer></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.min.js" defer></script>
+	<!-- Bootstrap Date Picker -->
+	<script src="{{ asset('/plugins/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js') }}" defer></script>
 
   <!-- Plugins and scripts required by all views -->
 	<script src="{{ asset('/js/chart.js/dist/Chart.min.js') }}" defer></script>
@@ -167,8 +165,8 @@
 	<script src="{{ secure_asset('/js/bootstrap/dist/js/bootstrap.min.js') }}" defer></script>
 	<script src="{{ secure_asset('/js/pace-progress/pace.min.js') }}" defer></script>
 
-	<!-- Bootstrap Form Helpers -->
-	<script src="{{ secure_asset('/plugins/bootstrap-form-helpers/js/bootstrap-formhelpers.js') }}" defer></script>
+	<!-- Bootstrap Date Picker -->
+	<script src="{{ secure_asset('/plugins/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js') }}" defer></script>
 
   <!-- Plugins and scripts required by all views -->
 	<script src="{{ secure_asset('/js/chart.js/dist/Chart.min.js') }}" defer></script>
@@ -184,8 +182,8 @@
 	<script src="{{ asset('/js/bootstrap/dist/js/bootstrap.min.js') }}" defer></script>
 	<script src="{{ asset('/js/pace-progress/pace.min.js') }}" defer></script>
 
-	<!-- Bootstrap Form Helpers -->
-	<script src="{{ asset('/plugins/bootstrap-form-helpers/js/bootstrap-formhelpers.js') }}" defer></script>
+	<!-- Bootstrap DatePicker -->
+	<script src="{{ asset('/plugins/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js') }}" defer></script>
 
   <!-- Plugins and scripts required by all views -->
 	<script src="{{ asset('/js/chart.js/dist/Chart.min.js') }}" defer></script>
