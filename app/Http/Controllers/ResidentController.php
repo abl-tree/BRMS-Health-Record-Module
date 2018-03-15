@@ -36,21 +36,21 @@ class ResidentController extends Controller
         foreach ($persons as $person) {
             if($this->db_connection === 'pgsql') {
                 $data[] = array(
-                    'id' => $person->id, 
                     'first_name' => $person->firstname, 
                     'middle_name' => $person->midname, 
                     'last_name' => $person->lastname, 
                     'gender' => $person->gender, 
                     'address' => $person->address, 
+                    'id' => $person->id, 
                 );
             } else {
                 $data[] = array(
-                    'id' => $person->id, 
                     'first_name' => $person->firstName, 
                     'middle_name' => $person->midName, 
                     'last_name' => $person->lastName, 
                     'gender' => $person->gender, 
                     'address' => $person->address, 
+                    'id' => $person->id, 
                 );
             }
         }

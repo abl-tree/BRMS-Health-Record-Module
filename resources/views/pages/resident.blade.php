@@ -6,7 +6,6 @@
     "serverSide": true,
     "ajax": "/resident_profile",    
     "columns": [
-      {data: 'id'},
       {data: 'first_name' },
       {data: 'middle_name' },
       {data: 'last_name' },
@@ -90,7 +89,6 @@
               <table id="residents-dt" class="table table-hover table-bordered table-responsive-sm datatable dataTable no-footer" cellspacing="0" width="100%">
                 <thead class="table-info">
                   <tr>
-                    <th class="text-center">ID</th>
                     <th class="text-center">Firstname</th>
                     <th class="text-center">Middlename</th>
                     <th class="text-center">Lastname</th>
