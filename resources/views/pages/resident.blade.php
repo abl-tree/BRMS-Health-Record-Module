@@ -6,23 +6,23 @@ $(document).ready(function(){
     "serverSide": true,
     "ajax": "/resident_profile",    
     "columns": [
-
       {data: 'id'},
       {data: 'first_name' },
       {data: 'middle_name' },
       {data: 'last_name' },
       {data: 'gender'},
       {data: 'address'},
-       {
-         data: 'id',
-              render: function ( data, type, row, meta ) {
+      {
+        data: 'id',
+        render: function ( data, type, row, meta ) {
           return '<div class="btn-group"><button data-target="#viewProfile" data-toggle="modal" data-id="'+data+'" data-backdrop="static" type="submit" data-tooltip="tooltip" data-trigger="hover" title="Options" class="btn btn-info fa fa-cog">Options</button>';
-          }
-            }
+        }
+      }
     ]
-    $('#viewProfile').on('shown.bs.modal', function(e) {
-      $("#addDetails input[name='userid']").val();
-    });
+  });
+
+  $('#viewProfile').on('shown.bs.modal', function(e) {
+    $("#addDetails input[name='userid']").val();
   });
 
   $("#addDetails").submit(function(e){
@@ -92,8 +92,7 @@ $(document).ready(function(){
                 <th class="text-center">Address</th>
                 <th class="text-center">Action</th>
               </tr>
-            </thead>
-           
+            </thead>           
           </table>
         </div>
       </div>
