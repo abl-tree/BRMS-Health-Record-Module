@@ -1,7 +1,5 @@
 <script>
   $('.breadcrumb').html('<li class="breadcrumb-item active">Resident</li>');
-
-  $('#birthdate').datepicker();
   
   $('#residents-dt').DataTable({
     "processing": true,

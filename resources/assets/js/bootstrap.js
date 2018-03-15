@@ -12,6 +12,12 @@ try {
     window.$ = window.jQuery = require('jquery');
 
     require('bootstrap');
+    require('pace-progress');
+    require('bootstrap-datepicker');
+    require('chart.js');
+    require('datatables');
+    require( 'datatables.net-bs4' );
+
 } catch (e) {}
 
 /**

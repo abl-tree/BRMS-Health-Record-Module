@@ -19,42 +19,27 @@
 	@if(App::isLocal())
 	<!-- Icons -->
 	<link href="{{ asset('images/tab-logo.ico') }}" rel="shortcut icon"/>
-	<link rel="stylesheet" href="{{ asset('/plugins/bootstrap/dist/css/bootstrap.css') }}">
-	<link rel="stylesheet" href="{{ asset('/css/flag-icon.css') }}">
-	<link rel="stylesheet" href="{{ asset('/css/font-awesome.css') }}">
-	<link rel="stylesheet" href="{{ asset('/css/simple-line-icons.css') }}">
-	<link rel="stylesheet" href="{{ asset('/plugins/dataTables.net-bs4/css/dataTables.bootstrap4.css') }}">
 
-	<!-- Bootstrap Date Picker -->
-	<link rel="stylesheet" href="{{ asset('/plugins/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css') }}">
+	<!-- App CSS -->
+	<link rel="stylesheet" href="{{ asset('/css/app.css') }}">
 
   <!-- Main styles for this application -->
 	<link rel="stylesheet" href="{{ asset('/assets/css/style.css') }}">
 	@elseif(Request::server('HTTP_X_FORWARDED_PROTO') == 'https')
-  <!-- Icons -->
+	<!-- Icons -->
 	<link href="{{ secure_asset('images/tab-logo.ico') }}" rel="shortcut icon"/>
-	<link rel="stylesheet" href="{{ secure_asset('/plugins/bootstrap/dist/css/bootstrap.css') }}">
-	<link rel="stylesheet" href="{{ secure_asset('/css/flag-icon.css') }}">
-	<link rel="stylesheet" href="{{ secure_asset('/css/font-awesome.css') }}">
-	<link rel="stylesheet" href="{{ secure_asset('/css/simple-line-icons.css') }}">
-	<link rel="stylesheet" href="{{ secure_asset('/plugins/dataTables.net-bs4/css/dataTables.bootstrap4.css') }}">
 
-	<!-- Bootstrap Date Picker -->
-	<link rel="stylesheet" href="{{ secure_asset('/plugins/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css') }}">
+	<!-- App CSS -->
+	<link rel="stylesheet" href="{{ secure_asset('/css/app.css') }}">
 
   <!-- Main styles for this application -->
 	<link rel="stylesheet" href="{{ secure_asset('/assets/css/style.css') }}">
 	@else
-  <!-- Icons -->
+	<!-- Icons -->
 	<link href="{{ asset('images/tab-logo.ico') }}" rel="shortcut icon"/>
-	<link rel="stylesheet" href="{{ asset('/plugins/bootstrap/dist/css/bootstrap.css') }}">
-	<link rel="stylesheet" href="{{ asset('/css/flag-icon.css') }}">
-	<link rel="stylesheet" href="{{ asset('/css/font-awesome.css') }}">
-	<link rel="stylesheet" href="{{ asset('/css/simple-line-icons.css') }}">
-	<link rel="stylesheet" href="{{ asset('/plugins/dataTables.net-bs4/css/dataTables.bootstrap4.css') }}">
 
-	<!-- Bootstrap Date Picker -->
-	<link rel="stylesheet" href="{{ asset('/plugins/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css') }}">
+	<!-- App CSS -->
+	<link rel="stylesheet" href="{{ asset('/css/app.css') }}">
 
   <!-- Main styles for this application -->
 	<link rel="stylesheet" href="{{ asset('/assets/css/style.css') }}">
@@ -142,54 +127,21 @@
   </footer>
 
 @if(App::isLocal())
-  <!-- Bootstrap and necessary plugins -->
-	<script src="{{ asset('/js/jquery/dist/jquery.min.js') }}" defer></script>
-	<script src="{{ asset('/js/popper.js/dist/umd/popper.min.js') }}" defer></script>
-	<script src="{{ asset('/js/bootstrap/dist/js/bootstrap.min.js') }}" defer></script>
-	<script src="{{ asset('/js/pace-progress/pace.min.js') }}" defer></script>
-
-	<!-- Bootstrap Date Picker -->
-	<script src="{{ asset('/plugins/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js') }}" defer></script>
-
-  <!-- Plugins and scripts required by all views -->
-	<script src="{{ asset('/js/chart.js/dist/Chart.min.js') }}" defer></script>
-	<script src="{{ asset('/plugins/DataTables/media/js/jquery.dataTables.min.js') }}" defer></script>
-	<script src="{{ asset('/plugins/dataTables.net-bs4/js/dataTables.bootstrap4.js') }}" defer></script>
-
+	<!-- App JS -->
+	<script src="{{ asset('/js/app.js') }}" defer></script>
+	
   <!-- CoreUI main scripts -->
 	<script src="{{ asset('/assets/js/app.js') }}" defer></script>
 @elseif(Request::server('HTTP_X_FORWARDED_PROTO') == 'https')
-  <!-- Bootstrap and necessary plugins -->
-	<script src="{{ secure_asset('/js/jquery/dist/jquery.min.js') }}" defer></script>
-	<script src="{{ secure_asset('/js/popper.js/dist/umd/popper.min.js') }}" defer></script>
-	<script src="{{ secure_asset('/js/bootstrap/dist/js/bootstrap.min.js') }}" defer></script>
-	<script src="{{ secure_asset('/js/pace-progress/pace.min.js') }}" defer></script>
-
-	<!-- Bootstrap Date Picker -->
-	<script src="{{ secure_asset('/plugins/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js') }}" defer></script>
-
-  <!-- Plugins and scripts required by all views -->
-	<script src="{{ secure_asset('/js/chart.js/dist/Chart.min.js') }}" defer></script>
-	<script src="{{ secure_asset('/plugins/DataTables/media/js/jquery.dataTables.min.js') }}" defer></script>
-	<script src="{{ secure_asset('/plugins/dataTables.net-bs4/js/dataTables.bootstrap4.js') }}" defer></script>
-
+	<!-- App JS -->
+	<script src="{{ secure_asset('/js/app.js') }}" defer></script>
+	
   <!-- CoreUI main scripts -->
 	<script src="{{ secure_asset('/assets/js/app.js') }}" defer></script>
 @else
-  <!-- Bootstrap and necessary plugins -->
-	<script src="{{ asset('/js/jquery/dist/jquery.min.js') }}" defer></script>
-	<script src="{{ asset('/js/popper.js/dist/umd/popper.min.js') }}" defer></script>
-	<script src="{{ asset('/js/bootstrap/dist/js/bootstrap.min.js') }}" defer></script>
-	<script src="{{ asset('/js/pace-progress/pace.min.js') }}" defer></script>
-
-	<!-- Bootstrap DatePicker -->
-	<script src="{{ asset('/plugins/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js') }}" defer></script>
-
-  <!-- Plugins and scripts required by all views -->
-	<script src="{{ asset('/js/chart.js/dist/Chart.min.js') }}" defer></script>
-	<script src="{{ asset('/plugins/DataTables/media/js/jquery.dataTables.min.js') }}" defer></script>
-	<script src="{{ asset('/plugins/dataTables.net-bs4/js/dataTables.bootstrap4.js') }}" defer></script>
-
+	<!-- App JS -->
+	<script src="{{ asset('/js/app.js') }}" defer></script>
+	
   <!-- CoreUI main scripts -->
 	<script src="{{ asset('/assets/js/app.js') }}" defer></script>
 @endif
