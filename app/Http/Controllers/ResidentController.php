@@ -32,6 +32,22 @@ class ResidentController extends Controller
     public function store(Request $request)
         {
 
+          if($request->get('button_action') == 'add'){
+            $person = new Person;
+            $person->firstName = $request->get('firstname');
+            $person->midName = $request->get('midname');
+            $person->lastName = $request->get('lastname');
+            $person->gender = $request->get('gender');
+            $person->address = $request->get('address');
+            $person->dob = $request->get('bday');
+            $person->civilStatus = $request->get('civStatus');
+            $person->height = $request->get('height');
+            $person->weight = $request->get('weight');
+            $person->bloodtype = $request->get('btype');
+            $person->contact = $request->get('contactnumber');
+            $person->email = $request->get('email');
+            $company->save();
+        }
             if($request->get('button_action') == 'update'){
                 $person = Person::find($request->get('id'));
                 $person->firstName = $request->get('firstname');
