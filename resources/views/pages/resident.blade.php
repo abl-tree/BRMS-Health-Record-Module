@@ -12,6 +12,12 @@
       {data: 'last_name' },
       {data: 'gender'},
       {data: 'address'},
+      {
+         data: 'id',
+              render: function ( data, type, row, meta ) {
+          return '<div class="btn-group"><button data-target="#viewProfile" data-toggle="modal" data-id="'+data+'" data-backdrop="static" type="submit" data-tooltip="tooltip" data-trigger="hover" title="Options" class="btn btn-info fa fa-cog">Options</button>';
+          }
+            }
     ]
   });
 </script>
@@ -45,6 +51,7 @@
                     <th class="text-center">Lastname</th>
                     <th class="text-center">Gender</th>
                     <th class="text-center">Address</th>
+                    <th class="text-center">Action</th>
                   </tr>
                 </thead>           
               </table>
