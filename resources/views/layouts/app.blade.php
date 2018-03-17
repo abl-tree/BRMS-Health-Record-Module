@@ -22,7 +22,7 @@
 
 	<!-- App CSS -->
 	<link rel="stylesheet" href="{{ asset('/css/app.css') }}">
-
+	<link rel="stylesheet" href="{{ asset('assets/css/bootstrap-datetimepicker.min.css') }}">
   <!-- Main styles for this application -->
 	<link rel="stylesheet" href="{{ asset('/assets/css/style.css') }}">
 	@elseif(Request::server('HTTP_X_FORWARDED_PROTO') == 'https')
@@ -128,20 +128,23 @@
 
 @if(App::isLocal())
 	<!-- App JS -->
+			<script src="{{ asset('assets/js/moment.min.js') }}" defer></script>
 	<script src="{{ asset('/js/app.js') }}" defer></script>
-	
+	<script src="{{ asset('assets/js/jquery.validate.min.js') }}" defer></script>
+		<script src="{{ asset('assets/js/bootstrap-datetimepicker.min.js') }}" defer></script>
+
   <!-- CoreUI main scripts -->
 	<script src="{{ asset('/assets/js/app.js') }}" defer></script>
 @elseif(Request::server('HTTP_X_FORWARDED_PROTO') == 'https')
 	<!-- App JS -->
 	<script src="{{ secure_asset('/js/app.js') }}" defer></script>
-	
+
   <!-- CoreUI main scripts -->
 	<script src="{{ secure_asset('/assets/js/app.js') }}" defer></script>
 @else
 	<!-- App JS -->
 	<script src="{{ asset('/js/app.js') }}" defer></script>
-	
+
   <!-- CoreUI main scripts -->
 	<script src="{{ asset('/assets/js/app.js') }}" defer></script>
 @endif
