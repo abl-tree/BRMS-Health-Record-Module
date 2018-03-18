@@ -42,35 +42,58 @@ $(function () {
           }
 
 
-                $(document).on('click', '.update_person', function(){
-                    var id = $(this).attr("id");
-                    $.ajax({
-                        url:"/update_resident",
-                        method: 'get',
-                        data:{id:id},
-                        dataType:'json',
-                        success:function(data){
-                            $('#button_action').val('update');
-                            $('#id').val(id);
-                            $('#firstname').val(data.firstName);
-                            $('a#profile').text(data.firstName+"'s Profile");
-                            $('#midname').val(data.midName);
-                            $('#lastname').val(data.lastName);
-                            $('#bday').val(data.dob);
-                            $('#address').val(data.address);
-                            $("#civStatus").val(data.civilStatus);
-                            $("#gender").val(data.gender);
-                            $("#height").val(data.height);
-                            $("#weight").val(data.weight);
-                            $("#btype").val(data.bloodtype);
-                            $("#contact").val(data.contactnumber);
-                            $("#email").val(data.email);
-                            console.log(data.firstName);
-                            $('#addModal').modal('show');
-                            refresh_resident_table();
-                        }
-                    })
-                });
+      $(document).on('click', '.update_person', function(){
+          var id = $(this).attr("id");
+          $.ajax({
+              url:"/update_resident",
+              method: 'get',
+              data:{id:id},
+              dataType:'json',
+              success:function(data){
+                console.log(data);
+                  $('#button_action').val('update');
+                  $('#id').val(id);
+                  $('#firstname').val(data.firstName);
+                  $('a#profile').text(data.firstName+"'s Profile");
+                  $('#midname').val(data.midName);
+                  $('#lastname').val(data.lastName);
+                  $('#bday').val(data.dob);
+                  $('#address').val(data.address);
+                  $("#civStatus").val(data.civilStatus);
+                  $("#gender").val(data.gender);
+                  $("#height").val(data.height);
+                  $("#weight").val(data.weight);
+                  $("#btype").val(data.btype);
+                  $("#contact").val(data.contact);
+                  $("#email").val(data.email);
+                  console.log(data.firstName);
+                  $('#addModal').modal('show');
+                  refresh_resident_table();
+              }
+          })
+      });
+
+    $('#EditForm').submit(function(e) {
+
+    e.preventDefault();
+    $.ajax({
+      headers: {
+      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      },
+      url: "/post_update",
+      method: 'post',
+      data: $(this).serialize(),
+      dataType: 'json',
+      success: function(data){
+         alert(data.message);
+          $('#addModal').modal('hide');
+          refresh_resident_table();
+      },
+      error: function(err) {
+              alert(err)
+      }
+    });
+  });
 </script>
 <div class="animated fadeIn">
   <div class="row">
@@ -252,7 +275,8 @@ $(function () {
                     <!-- Tab panes -->
                     <div class="tab-content">
                         <div role="tabpanel" class="tab-pane active" id="walkIn">
-                          <form id="EditForm" novalidate="novalidate" >
+                          <form id="EditForm" novalidate="novalidate" method="post" enctype="multipart/form-data" >
+                          {{ csrf_field() }}
                             <input type="hidden" name="id" id="id" value="">
                             <input type="hidden" name="button_action" id="button_action" value="">
                             <div class="row">
@@ -301,7 +325,10 @@ $(function () {
 
                                           <option value="Single">Single</option>
                                           <option value="Married">Married</option>
-                                          <option value="Widowed">Widowed</option>
+                                          <option value="Widow/er">Widow/er</option>
+                                          <option value="Live-in">Live-in</option>
+                                          <option value="Separated">Separated</option>
+                                          <option value="Divorce">Divorce</option>
 
 
                                         </select>
@@ -320,7 +347,18 @@ $(function () {
                                              </div>
                                              <div class="form-group  col-md-4">
                                                  <label class="col-form-label" for="midname">Blood Type</label>
-                                                   <input type="text" class="form-control" id="btype" value="" name="btype" placeholder="Blood Type" required>
+                                               <select class="form-control" name="btype" id="btype">
+                                                  <option value="O-">O-</option>
+                                                  <option value="O+">O+</option>
+                                                  <option value="A-">A-</option>
+                                                  <option value="A+">A+</option>
+                                                  <option value="B-">B-</option>
+                                                  <option value="B+">B+</option>
+                                                  <option value="AB-">AB-</option>
+                                                  <option value="AB+">AB+</option>
+
+
+                                        </select>
                                              </div>
                                            </div>
 

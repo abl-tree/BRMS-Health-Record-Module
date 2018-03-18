@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 use App\Person;
+use Auth;
+ 
 
 class ResidentController extends Controller
 {
@@ -29,8 +33,7 @@ class ResidentController extends Controller
         return view('pages/resident');
     }
 
-    public function store(Request $request)
-        {
+    public function store(Request $request){
 
             if($request->get('button_action') == 'update'){
                 $person = Person::find($request->get('id'));
@@ -43,14 +46,12 @@ class ResidentController extends Controller
                 $person->civilStatus = $request->get('civStatus');
                 $person->height = $request->get('height');
                 $person->weight = $request->get('weight');
-                $person->bloodtype = $request->get('btype');
-                $person->contact = $request->get('contactnumber');
+                $person->bloodtype = $request->get('blood_type');
+                $person->contact = $request->get('contact_number');
                 $person->email = $request->get('email');
                 $person->save();
             }
         }
-
-
 
     public function profile() {
         $persons = Person::all();
@@ -95,9 +96,56 @@ class ResidentController extends Controller
             'height' => $person->height,
             'weight' => $person->weight,
             'email' => $person->email,
-            'contactnumber' => $person->contactnumber,
-            'bloodtype' => $person->bloodtype,
+            'contact' => $person->contact_number,
+            'btype' => $person->blood_type,
         );
         echo json_encode($output);
     }
+
+    public function updateResident(Request $request){ 
+                $check = array();
+                $validator = Validator::make($request->all(), [
+                'id'                    => 'required',    
+                'firstname'             => 'required',
+                'midname'               => 'required',
+                'lastname'              => 'required',
+                'civStatus'             => 'required',                
+                'gender'                => 'required',
+                'address'               => 'required',
+                'bday'                  => 'required',
+                'height'                => 'required',
+                'weight'                => 'required',
+                'btype'                 => 'required',
+                'contact'               => 'required',
+                'email'                 => 'required'
+
+            ]);    
+              
+                $data = Person::where('id', $request->id)->first();
+                $data->firstName = $request->firstname;
+                $data->midName = $request->midname;
+                $data->lastName = $request->lastname;
+                $data->civilStatus = $request->civStatus;
+                $data->dob = date("Y-m-d", strtotime($request->bday));
+                $data->height = $request->height;
+                $data->gender = $request->gender;
+                $data->address = $request->address;
+                $data->weight = $request->weight;
+                $data->blood_type = $request->btype;
+                $data->contact_number = $request->contact;
+                $data->email = $request->email;
+                $residentsaved= $data->save();
+
+        if(!$residentsaved){
+            $check = array(
+                'success' => false, 
+                'message' => 'Something went wrong!');
+        } else {
+            $check = array(
+                'success' => true, 
+                'message' => 'Resident has been updated successfully.');
+        }
+
+        echo json_encode($check);
+        }
 }
