@@ -23,6 +23,7 @@
 	<!-- App CSS -->
 	<link rel="stylesheet" href="{{ asset('/css/app.css') }}">
 	<link rel="stylesheet" href="{{ asset('assets/css/bootstrap-datetimepicker.min.css') }}">
+		<link rel="stylesheet" href="{{ asset('assets/css/sweetalert.css') }}">
   <!-- Main styles for this application -->
 	<link rel="stylesheet" href="{{ asset('/assets/css/style.css') }}">
 	@elseif(Request::server('HTTP_X_FORWARDED_PROTO') == 'https')
@@ -132,7 +133,7 @@
 	<script src="{{ asset('/js/app.js') }}" defer></script>
 	<script src="{{ asset('assets/js/jquery.validate.min.js') }}" defer></script>
 		<script src="{{ asset('assets/js/bootstrap-datetimepicker.min.js') }}" defer></script>
-
+	<script src="{{ asset('assets/js/sweetalert.min.js') }}" defer></script>
   <!-- CoreUI main scripts -->
 	<script src="{{ asset('/assets/js/app.js') }}" defer></script>
 @elseif(Request::server('HTTP_X_FORWARDED_PROTO') == 'https')

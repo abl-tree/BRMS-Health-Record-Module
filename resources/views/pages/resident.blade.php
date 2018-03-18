@@ -8,10 +8,14 @@ $("#EditForm").validate({
     }
   }
 });
-$(function () {
-  $('#datetimepicker1').datetimepicker({ dateFormat: 'yyyy-mm-dd' });
+
+$('#bday').datetimepicker({
+    format: 'YYYY-MM-DD'
 });
 
+$('#birthdate').datetimepicker({
+    format: 'YYYY-MM-DD'
+});
 
 
   var resident = $('#residents-dt').DataTable({
@@ -20,11 +24,16 @@ $(function () {
     "ajax": "/resident_profile",
     "columns": [
       {data: 'id'},
+
       {data: 'first_name' },
       {data: 'middle_name' },
       {data: 'last_name' },
       {data: 'gender'},
-      {data: 'address'},
+      {data:'purok',
+   render: function(data, type, full, meta){
+      return full.purok +" "+ full.street+" "+full.barangay+", " + full.city;
+   }
+ },
       {
         data:'id',
         render: function (data, type, full, meta)
@@ -40,6 +49,52 @@ $(function () {
           {
               resident.ajax.reload(); //reload datatable ajax
           }
+
+
+          $('#AddForm').submit(function(e){
+              e.preventDefault();
+          	$.ajaxSetup({
+              headers: {
+                  'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+              }
+          });
+              $.ajax({
+                    type: "POST",
+                    url: "/add_resident",
+                    data: $(this).serialize(),
+                    success: function(data){
+                      $('#first_name').val('');
+                      $('#middle_name').val('');
+                      $('#last_name').val('');
+                      $('#gender').val('');
+                      $('#purok').val('');
+                      $('#street').val('');
+                      $('#barangay').val('');
+                      $('#city').val('');
+                      $('#birthdate').val('');
+                      $('#marital_status').val('');
+                      $('#height').val('');
+                      $('#weight').val('');
+                      $('#blood_type').val('');
+                      $('#contact_number').val('');
+                      $('#email').val('');
+                      $('#emergency_name').val('');
+                      $('#emergency_contact').val('');
+                      $('#emergency_relationship').val('');
+                      swal( "Good job!", "You added a resident!", "success", "Ok")
+                      .then((value) => {
+                    $("#AddForm").trigger('reset');
+                          refresh_resident_table();
+                      });
+
+                    },
+                    error: function(e) {
+
+                    swal( "Oh no!", "Something went wrong!", "warning", "Ok");
+                    }
+              });
+            });
+
 
 
                 $(document).on('click', '.update_person', function(){
@@ -106,6 +161,7 @@ $(function () {
               </table>
             </div>
             <div class="tab-pane" id="profile" role="tabpanel">
+                <form id="AddForm" novalidate="novalidate" >
               <div class="row">
                 <div class="col-sm-12 col-md-12 col-lg-5">
                   <div class="card card-accent-primary">
@@ -120,47 +176,65 @@ $(function () {
                       </div>
                       <div class="form-group">
                         <label for="middle_name">Middle Name:</label>
-                        <input type="text" class="form-control" name="middle_name" placeholder="Enter middle name">
+                        <input type="text" class="form-control" id="middle_name" name="middle_name" placeholder="Enter middle name">
                       </div>
                       <div class="form-group">
                         <label for="last_name">Last Name:</label>
-                        <input type="text" class="form-control" name="last_name" placeholder="Enter last name">
+                        <input type="text" class="form-control" id="last_name" name="last_name" placeholder="Enter last name">
                       </div>
                       <div class="form-group">
                         <label for="gender">Gender:</label>
-                        <select name="gender" class="form-control">
+                        <select name="gender"  id="gender"class="form-control">
                           <option>Male</option>
                           <option>Female</option>
                         </select>
                       </div>
                       <div class="form-group">
                         <label for="height">Height (inches):</label>
-                        <input type="text" class="form-control" name="height" placeholder="Enter height">
+                        <input type="text" class="form-control" id="height" name="height" placeholder="Enter height">
                       </div>
                       <div class="form-group">
                         <label for="weight">Weight (pounds)</label>
-                        <input type="text" class="form-control" name="weight" placeholder="Enter weight">
+                        <input type="text" class="form-control" id="weight" name="weight" placeholder="Enter weight">
                       </div>
                       <div class="form-group">
                         <label for="blood_type">Blood Type</label>
-                        <input type="text" class="form-control" name="blood_type" placeholder="Enter blood type">
+                        <select id="blood_type" name="blood_type" class="form-control">
+                          <option value="O+">O+</option>
+                          <option value="O-">O-</option>
+                          <option value="A+">A+</option>
+                          <option value="A-">A-</option>
+                          <option value="B+">B+</option>
+                          <option value="B-">B-</option>
+                          <option value="AB+">AB+</option>
+                          <option value="AB-">AB-</option>
+                        </select>
                       </div>
                       <div class="form-group">
-                        <label for="birthdate">Birthdate</label>
-                        <input type="text" class="form-control" name="birthdate" placeholder="MM/DD/YYYY" data-provide="datepicker" >
+                        <label class="col-form-label" for="bdate">Birthdate</label>
+                        <div class="input-group date" >
+                          <input type="text" id="birthdate" name="birthdate"   class="form-control">
+                          <div class="input-group-addon">
+                            <span class="glyphicon glyphicon-th"></span>
+                          </div>
+                        </div>
                       </div>
                       <div class="form-group">
                         <label for="marital_status">Marital Status:</label>
-                        <select name="marital_status" class="form-control">
-                          <option>Single</option>
-                          <option>Married</option>
-                          <option>Widowed</option>
-                          <option>Separated</option>
+                        <select name="marital_status" id="marital_status" class="form-control">
+                          <option value="Single">Single</option>
+                          <option value="Single">Married</option>
+                          <option value="Single">Widowed</option>
+                          <option value="Single">Separated</option>
                         </select>
                       </div>
                       <div class="form-group">
                         <label for="email">Email</label>
-                        <input type="text" class="form-control" name="email" placeholder="Enter email address">
+                        <input type="text" class="form-control"  id="email" name="email" placeholder="Enter email address">
+                      </div>
+                      <div class="form-group">
+                        <label for="contact">Contact Number</label>
+                        <input type="text" class="form-control"  id="contact_number" name="contact_number" placeholder="Enter email address">
                       </div>
                     </div>
                   </div>
@@ -174,15 +248,15 @@ $(function () {
                     <div class="card-body">
                       <div class="form-group">
                         <label for="emergency_name">Name</label>
-                        <input type="text" class="form-control" name="emergency_name" placeholder="Enter name">
+                        <input type="text" class="form-control" id="emergency_name" name="emergency_name" placeholder="Enter name">
                       </div>
                       <div class="form-group">
                         <label for="emergency_contact">Contact</label>
-                        <input type="text" class="form-control" name="emergency_contact" placeholder="Enter contact number">
+                        <input type="text" class="form-control" id="emergency_contact" name="emergency_contact" placeholder="Enter contact number">
                       </div>
                       <div class="form-group">
                         <label for="emergency_relationship">Relationship</label>
-                        <input type="text" class="form-control" name="emergency_relationship" placeholder="Enter relationship">
+                        <input type="text" class="form-control" id="emergency_relationship" name="emergency_relationship" placeholder="Enter relationship">
                       </div>
                     </div>
                   </div>
@@ -195,27 +269,57 @@ $(function () {
                       <div class="row">
                         <div class="form-group col-sm-4">
                           <label for="purok">Purok</label>
-                          <input type="text" class="form-control" name="purok" placeholder="Enter city">
+                          <select id="purok" name="purok" class="form-control">
+                            <option value="Purok 1">Purok 1</option>
+                            <option value="Purok 2">Purok 2</option>
+                            <option value="Purok 3">Purok 3</option>
+                            <option value="Purok 4">Purok 4</option>
+                            <option value="Purok 5">Purok 5</option>
+                            <option value="Purok 6">Purok 6</option>
+                            <option value="Purok 7">Purok 7</option>
+                            <option value="Purok 8">Purok 8</option>
+                            <option value="Purok 9">Purok 9</option>
+                            <option value="Purok 10">Purok 10</option>
+                            <option value="Purok 11">Purok 11</option>
+                            <option value="Purok 12">Purok 12</option>
+                            <option value="Purok 13">Purok 13</option>
+                            <option value="Purok 14">Purok 14</option>
+                            <option value="Purok 15">Purok 15</option>
+                            <option value="Purok 16">Purok 16</option>
+                            <option value="Purok 17">Purok 17</option>
+                            <option value="Purok 18">Purok 18</option>
+                            <option value="Purok 19">Purok 19</option>
+                            <option value="Purok 20">Purok 20</option>
+                            <option value="Purok 21">Purok 21</option>
+                            <option value="Purok 22">Purok 22</option>
+                          </select>
                         </div>
                         <div class="form-group col-sm-8">
                           <label for="street">Street</label>
-                          <input type="text" class="form-control" name="street" placeholder="Enter Street">
+                          <input type="text" class="form-control" id="street" name="street" placeholder="Enter Street">
                         </div>
                       </div>
                       <div class="row">
                         <div class="form-group col-sm-4">
                           <label for="barangay">Barangay</label>
-                          <input type="text" class="form-control" name="barangay" placeholder="Enter barangay">
+                          <input type="text" class="form-control" id="barangay" name="barangay" placeholder="Enter barangay">
                         </div>
                         <div class="form-group col-sm-8">
                           <label for="city">City</label>
-                          <input type="text" class="form-control" id="city" placeholder="Enter city">
+                          <input type="text" class="form-control" id="city" name="city" placeholder="Enter city">
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
+              <div class="row">
+              <div class="form-group col-sm-4 ">
+              <button type="submit" class="btn btn-primary" name="signup" value="Sign up">Save Changes</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+            </form>
             </div>
           </div>
         </div>
@@ -287,8 +391,8 @@ $(function () {
                                      </div>
                                      <div class="form-group col-md-4">
                                        <label class="col-form-label" for="bdate">Birthdate</label>
-                                       <div class="input-group date" data-provide="datepicker">
-                                         <input type="text" id="bday" name="bday" value="" class="form-control">
+                                       <div class="input-group date" >
+                                         <input type="text" id="bday" name="bday"  value="" class="form-control">
                                          <div class="input-group-addon">
                                            <span class="glyphicon glyphicon-th"></span>
                                          </div>

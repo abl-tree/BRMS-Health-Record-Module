@@ -32,22 +32,50 @@ class ResidentController extends Controller
     public function store(Request $request)
         {
 
-          if($request->get('button_action') == 'add'){
             $person = new Person;
-            $person->firstName = $request->get('firstname');
-            $person->midName = $request->get('midname');
-            $person->lastName = $request->get('lastname');
+            $person->userId = "0";
+            $person->brgyId = "0";
+            $person->address = "";
+            $person->placeOfBirth = "";
+            $person->religion = "";
+            $person->nationality = "";
+            $person->highestEducationalAttainment = "";
+
+            $person->numberOfYearsInSchool = "";
+            $person->occupationPriorToCBRAP = "";
+            $person->siblings = "";
+            $person->ordinalPosition = "";
+            $person->livingArrangements = "";
+            $person->monthlyIncome = "";
+            $person->skills = "";
+            $person->father = "";
+            $person->occupationFather = "";
+            $person->mother = "";
+            $person->occupationMother = "";
+            $person->spouse = "";
+            $person->occupationSpouse = "";
+            $person->spouseAddress = "";
+            $person->numberOfChildren = "";
+            $person->firstName = $request->get('first_name');
+            $person->midName = $request->get('middle_name');
+            $person->lastName = $request->get('last_name');
             $person->gender = $request->get('gender');
-            $person->address = $request->get('address');
-            $person->dob = $request->get('bday');
-            $person->civilStatus = $request->get('civStatus');
+            $person->purok = $request->get('purok');
+            $person->street = $request->get('street');
+            $person->barangay = $request->get('barangay');
+            $person->city = $request->get('city');
+            $person->dob = $request->get('birthdate');
+            $person->civilStatus = $request->get('marital_status');
             $person->height = $request->get('height');
             $person->weight = $request->get('weight');
-            $person->bloodtype = $request->get('btype');
-            $person->contact = $request->get('contactnumber');
+            $person->bloodtype = $request->get('blood_type');
+            $person->contactnumber = $request->get('contact_number');
             $person->email = $request->get('email');
-            $company->save();
-        }
+            $person->inname = $request->get('emergency_name');
+            $person->contact = $request->get('emergency_contact');
+            $person->relationship = $request->get('emergency_relationship');
+            $person->save();
+
             if($request->get('button_action') == 'update'){
                 $person = Person::find($request->get('id'));
                 $person->firstName = $request->get('firstname');
@@ -80,7 +108,10 @@ class ResidentController extends Controller
                     'middle_name' => $person->midname,
                     'last_name' => $person->lastname,
                     'gender' => $person->gender,
-                    'address' => $person->address,
+                    'purok' => $person->purok,
+                    'barangay' => $person->barangay,
+                    'street' => $person->street,
+                    'city' => $person->city,
                 );
             } else {
                 $data[] = array(
@@ -89,7 +120,10 @@ class ResidentController extends Controller
                     'middle_name' => $person->midName,
                     'last_name' => $person->lastName,
                     'gender' => $person->gender,
-                    'address' => $person->address,
+                    'purok' => $person->purok,
+                    'barangay' => $person->barangay,
+                    'street' => $person->street,
+                    'city' => $person->city,
                 );
             }
         }
@@ -112,6 +146,7 @@ class ResidentController extends Controller
             'weight' => $person->weight,
             'email' => $person->email,
             'contactnumber' => $person->contactnumber,
+
             'bloodtype' => $person->bloodtype,
         );
         echo json_encode($output);
