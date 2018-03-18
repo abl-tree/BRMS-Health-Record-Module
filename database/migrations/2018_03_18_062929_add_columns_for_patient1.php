@@ -17,6 +17,7 @@ class AddColumnsForPatient1 extends Migration
             $table->string('inname');
 		   $table->string('contact');
 		   $table->string('relationship');
+           $table->timestamps();
         });
     }
 

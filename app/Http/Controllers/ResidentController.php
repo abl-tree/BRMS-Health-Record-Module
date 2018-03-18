@@ -68,8 +68,8 @@ class ResidentController extends Controller
             $person->civilStatus = $request->get('marital_status');
             $person->height = $request->get('height');
             $person->weight = $request->get('weight');
-            $person->bloodtype = $request->get('blood_type');
-            $person->contactnumber = $request->get('contact_number');
+            $person->blood_type = $request->get('blood_type');
+            $person->contact_number = $request->get('contact_number');
             $person->email = $request->get('email');
             $person->inname = $request->get('emergency_name');
             $person->contact = $request->get('emergency_contact');
@@ -87,7 +87,7 @@ class ResidentController extends Controller
                 $person->civilStatus = $request->get('civStatus');
                 $person->height = $request->get('height');
                 $person->weight = $request->get('weight');
-                $person->bloodtype = $request->get('btype');
+                $person->blood_type = $request->get('btype');
                 $person->contact = $request->get('contactnumber');
                 $person->email = $request->get('email');
                 $person->save();
@@ -145,9 +145,9 @@ class ResidentController extends Controller
             'height' => $person->height,
             'weight' => $person->weight,
             'email' => $person->email,
-            'contactnumber' => $person->contactnumber,
+            'contactnumber' => $person->contact_number,
 
-            'bloodtype' => $person->bloodtype,
+            'bloodtype' => $person->blood_type,
         );
         echo json_encode($output);
     }

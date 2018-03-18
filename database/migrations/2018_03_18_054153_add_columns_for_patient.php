@@ -16,7 +16,6 @@ class AddColumnsForPatient extends Migration
         Schema::table('persons', function (Blueprint $table) {
            $table->string('street');
 		   $table->string('purok');
-		   $table->string('baranggay');
 		   $table->string('barangay');
 		   $table->string('city');
 		   
