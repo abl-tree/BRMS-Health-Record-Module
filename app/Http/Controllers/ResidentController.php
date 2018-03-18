@@ -68,8 +68,8 @@ class ResidentController extends Controller
             $person->civilStatus = $request->get('marital_status');
             $person->height = $request->get('height');
             $person->weight = $request->get('weight');
-            $person->bloodtype = $request->get('blood_type');
-            $person->contactnumber = $request->get('contact_number');
+            $person->blood_type = $request->get('blood_type');
+            $person->contact_number = $request->get('contact_number');
             $person->email = $request->get('email');
             $person->inname = $request->get('emergency_name');
             $person->contact = $request->get('emergency_contact');
