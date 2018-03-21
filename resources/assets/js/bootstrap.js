@@ -17,6 +17,8 @@ try {
     require('chart.js');
     require('datatables');
     require( 'datatables.net-bs4' );
+    require( 'datatables.net-responsive' );
+    require( 'smartwizard' );
 
 } catch (e) {}
 

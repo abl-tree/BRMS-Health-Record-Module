@@ -1,4 +1,5 @@
 <?php
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,12 +18,17 @@ Route::middleware(['auth'])->group(function() {
     Route::get('/', function(){
         return redirect('/index');
     });
-	Route::get('/index', function(){
+	Route::get('/index', function(Request $request){
+		if ($page = $request->page){
+			dd($page);
+		}
         return view('index');		
 	});
 	Route::get('/test', 'UserAccountController@test');
 	Route::get('/population/{option}', 'PopulationController@population');
 	Route::get('/resident_profile', 'ResidentController@profile');
+	Route::post('/household/member/{option}', 'HouseholdController@member')->name('household_member');
+	Route::get('/household/get/{option}', 'HouseholdController@get')->name('member_queue');
 });
 
 Route::middleware(['ajax'])->group(function() {    

@@ -128,22 +128,25 @@
 
 @if(App::isLocal())
 	<!-- App JS -->
-	<script src="{{ asset('/js/app.js') }}" defer></script>
+	<script src="{{ asset('/js/app.js') }}"></script>
 	
   <!-- CoreUI main scripts -->
-	<script src="{{ asset('/assets/js/app.js') }}" defer></script>
+	<script src="{{ asset('/assets/js/app.js') }}"></script>
+	<script src="{{ asset('/assets/js/views/tooltips.js') }}"></script>
 @elseif(Request::server('HTTP_X_FORWARDED_PROTO') == 'https')
 	<!-- App JS -->
 	<script src="{{ secure_asset('/js/app.js') }}" defer></script>
 	
   <!-- CoreUI main scripts -->
 	<script src="{{ secure_asset('/assets/js/app.js') }}" defer></script>
+	<script src="{{ asset('/assets/js/views/tooltips.js') }}" defer></script>
 @else
 	<!-- App JS -->
 	<script src="{{ asset('/js/app.js') }}" defer></script>
 	
   <!-- CoreUI main scripts -->
 	<script src="{{ asset('/assets/js/app.js') }}" defer></script>
+	<script src="{{ asset('/assets/js/views/tooltips.js') }}" defer></script>
 @endif
 </body>
 </html>
