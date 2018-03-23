@@ -85,7 +85,7 @@ $(function () {
       data: $(this).serialize(),
       dataType: 'json',
       success: function(data){
-         alert(data.message);
+        alert(data.message);
           $('#addModal').modal('hide');
           refresh_resident_table();
       },
