@@ -23,13 +23,14 @@ Route::middleware(['auth'])->group(function() {
 	Route::get('/test', 'UserAccountController@test');
 	Route::get('/population/{option}', 'PopulationController@population');
 	Route::get('/resident_profile', 'ResidentController@profile');
+	Route::post('/post_update', 'ResidentController@updateResident');
 
 });
 
 Route::middleware(['ajax'])->group(function() {
 	Route::get('/home', 'HomeController@index')->name('home');
-  Route::post('/add_resident', 'residentController@store');
-  Route::get('/update_resident', 'ResidentController@updatedata');
+  	Route::post('/add_resident', 'residentController@store');
+  	Route::get('/update_resident', 'ResidentController@updatedata');
 	Route::get('/household', 'HouseholdController@index')->name('household');
 	Route::get('/account', 'UserAccountController@index')->name('account');
 	Route::get('/resident', 'ResidentController@index')->name('resident');
