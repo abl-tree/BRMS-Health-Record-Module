@@ -78,23 +78,6 @@ class ResidentController extends Controller
             $person->contact = $request->get('emergency_contact');
             $person->relationship = $request->get('emergency_relationship');
             $person->save();
-
-            if($request->get('button_action') == 'update'){
-                $person = Person::find($request->get('id'));
-                $person->firstName = $request->get('firstname');
-                $person->midName = $request->get('midname');
-                $person->lastName = $request->get('lastname');
-                $person->gender = $request->get('gender');
-                $person->address = $request->get('address');
-                $person->dob = $request->get('bday');
-                $person->civilStatus = $request->get('civStatus');
-                $person->height = $request->get('height');
-                $person->weight = $request->get('weight');
-                $person->bloodtype = $request->get('blood_type');
-                $person->contact = $request->get('contact_number');
-                $person->email = $request->get('email');
-                $person->save();
-            }
         }
 
     public function profile() {
@@ -105,9 +88,12 @@ class ResidentController extends Controller
             if($this->db_connection === 'pgsql') {
                 $data[] = array(
                     'id' => $person->id,
-                    'first_name' => $person->firstname,
-                    'middle_name' => $person->midname,
-                    'last_name' => $person->lastname,
+                    'first_name' => $person->firstName,
+                    'middle_name' => $person->midName,
+                    'last_name' => $person->lastName,
+                    'email' => $person->email,
+                    'weight' => $person->weight,
+                    'height' => $person->height,
                     'gender' => $person->gender,
                     'purok' => $person->purok,
                     'barangay' => $person->barangay,
@@ -120,6 +106,9 @@ class ResidentController extends Controller
                     'first_name' => $person->firstName,
                     'middle_name' => $person->midName,
                     'last_name' => $person->lastName,
+                    'email' => $person->email,
+                    'weight' => $person->weight,
+                    'height' => $person->height,
                     'gender' => $person->gender,
                     'purok' => $person->purok,
                     'barangay' => $person->barangay,
@@ -167,11 +156,15 @@ class ResidentController extends Controller
                 'weight'                => 'required',
                 'btype'                 => 'required',
                 'contact'               => 'required',
-                'email'                 => 'required'
-
+                'email'                 => 'required',
             ]);    
-              
+              if($validator->fails()){
+                 $check = array(
+                    'success' => false, 
+                    'message' => $validator->errors());
+             }else{
                 $data = Person::where('id', $request->id)->first();
+                if($data){
                 $data->firstName = $request->firstname;
                 $data->midName = $request->midname;
                 $data->lastName = $request->lastname;
@@ -185,17 +178,11 @@ class ResidentController extends Controller
                 $data->contact_number = $request->contact;
                 $data->email = $request->email;
                 $residentsaved= $data->save();
-
-        if(!$residentsaved){
-            $check = array(
-                'success' => false, 
-                'message' => 'Something went wrong!');
-        } else {
-            $check = array(
+            }
+                $check = array(
                 'success' => true, 
                 'message' => 'Resident has been updated successfully.');
-        }
-
+            }
         echo json_encode($check);
         }
 }

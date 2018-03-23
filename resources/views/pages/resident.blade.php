@@ -82,7 +82,7 @@ $('#birthdate').datetimepicker({
                       $('#emergency_name').val('');
                       $('#emergency_contact').val('');
                       $('#emergency_relationship').val('');
-                      swal( "Good job!", "You added a resident!", "success", "Ok")
+                      swal( "Success!", "You added a resident!", "success", "Ok")
                       .then((value) => {
                     $("#AddForm").trigger('reset');
                           refresh_resident_table();
@@ -94,40 +94,7 @@ $('#birthdate').datetimepicker({
                     swal( "Oh no!", "Something went wrong!", "warning", "Ok");
                     }
               });
-            });
-
-
-
-                // $(document).on('click', '.update_person', function(){
-                //     var id = $(this).attr("id");
-                //     $.ajax({
-                //         url:"/update_resident",
-                //         method: 'get',
-                //         data:{id:id},
-                //         dataType:'json',
-                //         success:function(data){
-                //             $('#button_action').val('update');
-                //             $('#id').val(id);
-                //             $('#firstname').val(data.firstName);
-                //             $('a#profile').text(data.firstName+"'s Profile");
-                //             $('#midname').val(data.midName);
-                //             $('#lastname').val(data.lastName);
-                //             $('#bday').val(data.dob);
-                //             $('#address').val(data.address);
-                //             $("#civStatus").val(data.civilStatus);
-                //             $("#gender").val(data.gender);
-                //             $("#height").val(data.height);
-                //             $("#weight").val(data.weight);
-                //             $("#btype").val(data.bloodtype);
-                //             $("#contact").val(data.contactnumber);
-                //             $("#email").val(data.email);
-                //             console.log(data.firstName);
-                //             $('#addModal').modal('show');
-                //             refresh_resident_table();
-                //         }
-                //     })
-                // });
-
+            });               
       $(document).on('click', '.update_person', function(){
           var id = $(this).attr("id");
           $.ajax({
@@ -136,23 +103,21 @@ $('#birthdate').datetimepicker({
               data:{id:id},
               dataType:'json',
               success:function(data){
-                console.log(data);
                   $('#button_action').val('update');
                   $('#id').val(id);
-                  $('#firstname').val(data.firstName);
+                  $('#firstname_update').val(data.firstName);
                   $('a#profile').text(data.firstName+"'s Profile");
-                  $('#midname').val(data.midName);
-                  $('#lastname').val(data.lastName);
-                  $('#bday').val(data.dob);
-                  $('#address').val(data.address);
-                  $("#civStatus").val(data.civilStatus);
-                  $("#gender").val(data.gender);
-                  $("#height").val(data.height);
-                  $("#weight").val(data.weight);
-                  $("#btype").val(data.btype);
-                  $("#contact").val(data.contact);
-                  $("#email").val(data.email);
-                  console.log(data.firstName);
+                  $('#midname_update').val(data.midName);
+                  $('#lastname_update').val(data.lastName);
+                  $('#bday_update').val(data.dob);
+                  $('#address_update').val(data.address);
+                  $("#civStatus_update").val(data.civilStatus);
+                  $("#gender_update").val(data.gender);
+                  $("#height_update").val(data.height);
+                  $("#weight_update").val(data.weight);
+                  $("#btype_update").val(data.btype);
+                  $("#contact_update").val(data.contact);
+                  $("#email_update").val(data.email);
                   $('#addModal').modal('show');
                   refresh_resident_table();
               }
@@ -171,12 +136,20 @@ $('#birthdate').datetimepicker({
       data: $(this).serialize(),
       dataType: 'json',
       success: function(data){
-        alert(data.message);
+        if(data.success==true){
           $('#addModal').modal('hide');
-          refresh_resident_table();
+           swal( "Success!", "You updated a resident!", "success", "Ok")
+                      .then((value) => {
+                    $("#addModal").trigger('reset');
+                          refresh_resident_table();
+                      });    
+                      }else{
+                         swal( "Error!", "Fill Up Every Field!", "warning", "Ok")
+                      }   
       },
+
       error: function(err) {
-              alert(err)
+             swal( "Error!", "Fill Up Very Field!", "warning", "Ok");
       }
     });
   });
@@ -418,17 +391,17 @@ $('#birthdate').datetimepicker({
                             <div class="row">
                               <div class="form-group col-md-4">
                                 <label class="col-form-label" for="firstname">First name</label>
-                                  <input type="text" class="form-control" id="firstname" name="firstname"  placeholder="First name" value="">
+                                  <input type="text" class="form-control" id="firstname_update" name="firstname"  placeholder="First name" value="">
                               </div>
 
                                     <div class="form-group  col-md-4">
                                         <label class="col-form-label" for="midname">Middle Name</label>
-                                          <input type="text" class="form-control" id="midname" name="midname" placeholder="Middle Name" required>
+                                          <input type="text" class="form-control" id="midname_update" name="midname" placeholder="Middle Name" required>
                                     </div>
 
                                     <div class="form-group col-md-4">
                                       <label class="col-form-label" for="lastname">Last name</label>
-                                      <input type="text" class="form-control" id="lastname" name="lastname" placeholder="Last name" required>
+                                      <input type="text" class="form-control" id="lastname_update" name="lastname" placeholder="Last name" required>
                                     </div>
                                   </div>
                                   <div class="row">
@@ -437,7 +410,7 @@ $('#birthdate').datetimepicker({
                                     <div class="form-group col-md-2">
                                       <label class="col-form-label" for="gender">Gender</label>
                                       <br>
-                                      <select class="form-control" name="gender" id="gender">
+                                      <select class="form-control" name="gender" id="gender_update">
 
                                         <option value="male">Male</option>
                                         <option value="female">Female</option>
@@ -448,7 +421,7 @@ $('#birthdate').datetimepicker({
                                      <div class="form-group col-md-4">
                                        <label class="col-form-label" for="bdate">Birthdate</label>
                                        <div class="input-group date" >
-                                         <input type="text" id="bday" name="bday"  value="" class="form-control">
+                                         <input type="text" id="bday_update" name="bday"  value="" class="form-control">
                                          <div class="input-group-addon">
                                            <span class="glyphicon glyphicon-th"></span>
                                          </div>
@@ -457,7 +430,7 @@ $('#birthdate').datetimepicker({
                                       <div class="form-group col-md-6">
                                         <label class="col-form-label" for="civStatus">Marital Status</label>
                                         <br>
-                                        <select class="form-control" name="civStatus" id="civStatus">
+                                        <select class="form-control" name="civStatus" id="civStatus_update">
 
                                           <option value="Single">Single</option>
                                           <option value="Married">Married</option>
@@ -474,16 +447,16 @@ $('#birthdate').datetimepicker({
                                      <div class="row">
                                        <div class="form-group col-md-4">
                                          <label class="col-form-label" for="firstname">Height(inches)</label>
-                                           <input type="text" class="form-control" id="height" value="" name="height" placeholder="Height" required>
+                                           <input type="text" class="form-control" id="height_update" value="" name="height" placeholder="Height" required>
                                        </div>
 
                                              <div class="form-group  col-md-4">
                                                  <label class="col-form-label" for="midname">Weight(pounds)</label>
-                                                   <input type="text" class="form-control" id="weight" value="" name="weight" placeholder="Weight" required>
+                                                   <input type="text" class="form-control" id="weight_update" value="" name="weight" placeholder="Weight" required>
                                              </div>
                                              <div class="form-group  col-md-4">
                                                  <label class="col-form-label" for="midname">Blood Type</label>
-                                               <select class="form-control" name="btype" id="btype">
+                                               <select class="form-control" name="btype" id="btype_update">
                                                   <option value="O-">O-</option>
                                                   <option value="O+">O+</option>
                                                   <option value="A-">A-</option>
@@ -501,16 +474,16 @@ $('#birthdate').datetimepicker({
 
                                                       <div class="form-group">
                                                           <label class="col-form-label" for="email">Full Address</label>
-                                                            <input type="text" class="form-control" id="address" value="" name="address" placeholder="Address" required>
+                                                            <input type="text" class="form-control" id="address_update" value="" name="address" placeholder="Address" required="required">
                                                       </div>
                                                               <div class="row">
                                                                 <div class="form-group col-md-6">
                                                                   <label class="col-form-label" for="password">Contact Number</label>
-                                                                    <input type="text" class="form-control" value="" id="contact" name="contact" placeholder="Contact Number" required>
+                                                                    <input type="text" class="form-control" value="" id="contact_update" name="contact" placeholder="Contact Number" required>
                                                                 </div>
                                                                       <div class="form-group col-md-6">
                                                                         <label class="col-form-label" for="email">Email Address</label>
-                                                                          <input type="text" class="form-control" value="" id="email" name="email" placeholder="Email Address" required >
+                                                                          <input type="text" class="form-control" value="" id="email_update" name="email" placeholder="Email Address" required >
                                                                       </div>
                                                               </div>
 
