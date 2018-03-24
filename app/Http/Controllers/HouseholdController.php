@@ -112,4 +112,8 @@ class HouseholdController extends Controller
             return datatables()::of($data)->make(true);
         }
     }
+
+    public function getApi(Request $request) {
+        
+    }
 }

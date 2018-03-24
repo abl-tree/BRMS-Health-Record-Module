@@ -25,6 +25,7 @@
 
   <!-- Main styles for this application -->
 	<link rel="stylesheet" href="{{ asset('/assets/css/style.css') }}">
+	<link rel="stylesheet" href="https://www.jqueryscript.net/demo/Bootstrap-4-Dropdown-Select-Plugin-jQuery/dist/css/bootstrap-select.css">
 	@elseif(Request::server('HTTP_X_FORWARDED_PROTO') == 'https')
 	<!-- Icons -->
 	<link href="{{ secure_asset('images/tab-logo.ico') }}" rel="shortcut icon"/>
@@ -34,6 +35,7 @@
 
   <!-- Main styles for this application -->
 	<link rel="stylesheet" href="{{ secure_asset('/assets/css/style.css') }}">
+	<link rel="stylesheet" href="{{ secure_asset('/plugins/bootstrap-select-1.13.0-beta/css/bootstrap-select.min.css') }}">
 	@else
 	<!-- Icons -->
 	<link href="{{ asset('images/tab-logo.ico') }}" rel="shortcut icon"/>
@@ -43,6 +45,7 @@
 
   <!-- Main styles for this application -->
 	<link rel="stylesheet" href="{{ asset('/assets/css/style.css') }}">
+	<link rel="stylesheet" href="{{ asset('/plugins/bootstrap-select-1.13.0-beta/css/bootstrap-select.min.css') }}">
 	@endif
 
 </head>
@@ -133,13 +136,15 @@
   <!-- CoreUI main scripts -->
 	<script src="{{ asset('/assets/js/app.js') }}"></script>
 	<script src="{{ asset('/assets/js/views/tooltips.js') }}"></script>
+	<script src="https://www.jqueryscript.net/demo/Bootstrap-4-Dropdown-Select-Plugin-jQuery/dist/js/bootstrap-select.js"></script>
 @elseif(Request::server('HTTP_X_FORWARDED_PROTO') == 'https')
 	<!-- App JS -->
 	<script src="{{ secure_asset('/js/app.js') }}" defer></script>
-	
+		
   <!-- CoreUI main scripts -->
 	<script src="{{ secure_asset('/assets/js/app.js') }}" defer></script>
-	<script src="{{ asset('/assets/js/views/tooltips.js') }}" defer></script>
+	<script src="{{ secure_asset('/assets/js/views/tooltips.js') }}" defer></script>
+	<script src="{{ secure_asset('/plugins/bootstrap-select-1.13.0-beta/js/bootstrap-select.min.js') }}"></script>
 @else
 	<!-- App JS -->
 	<script src="{{ asset('/js/app.js') }}" defer></script>
@@ -147,6 +152,7 @@
   <!-- CoreUI main scripts -->
 	<script src="{{ asset('/assets/js/app.js') }}" defer></script>
 	<script src="{{ asset('/assets/js/views/tooltips.js') }}" defer></script>
+	<script src="{{ asset('/plugins/bootstrap-select-1.13.0-beta/js/bootstrap-select.min.js') }}"></script>
 @endif
 </body>
 </html>

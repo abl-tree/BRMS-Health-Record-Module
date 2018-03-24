@@ -10,75 +10,139 @@
 @endif
 
 <script>
-  $('.breadcrumb').html('<li class="breadcrumb-item active">Household</li>');
-
-  // Toolbar extra buttons
-  var btnFinish = $('<button></button>').text('Finish')
-                                    .addClass('btn btn-success sw-finish-btn')
-                                    .attr('disabled', true)
-                                    .on('click', function(){ alert('Finish Clicked'); });
-  var btnCancel = $('<button></button>').text('Cancel')
-                                    .addClass('btn btn-danger sw-reset-btn')
-                                    .on('click', function(){ $('#smartwizard').smartWizard("reset"); });
-  
-  $('#smartwizard').smartWizard({
-    theme: 'circles',
-    transitionEffect:'fade',
-    showStepURLhash: false,
-    autoAdjustHeight: true,
-    toolbarSettings: {
-      toolbarPosition: 'both',
-      toolbarButtonPosition: 'end',
-      toolbarExtraButtons: [btnFinish, btnCancel]
-    }
-  });
-
-  $("#smartwizard").on("showStep", function(e, anchorObject, stepNumber, stepDirection, stepPosition) {
-    if(stepPosition === "final") {
-      $('.sw-finish-btn').removeAttr('disabled');
-    } else {
-      $('.sw-finish-btn').attr('disabled', true);
-    }
-  });
-  
-  $('#household').DataTable({
-    // "processing": true,
-    "serverSide": true,
-    "ajax": "{{ route('member_queue', 'member') }}",
-    "columns": [
-      {data: 'last_name' },
-      {data: 'first_name' },
-      {data: 'middle_name' },
-      {data: 'relationship' },
-      {
-        data: 'id',
-        render: function( data, type, row, meta ){
-          return '<a href="'+data+'">Download</a>';
-        }
-      },
-      // {data: 'age' },
-      // {data: 'birth_place' },
-      // {data: 'sex' },
-      // {data: 'civil_status' },
-      // {data: 'educ_attainment' },
-      // {data: 'occupation' },
-    ]
-  });
-
-  $('.add-household-member').submit(function(e) {
-    e.preventDefault();
-
-    $.ajax({
-      method: 'POST',
-      url: "{{ route('household_member', 'add') }}",
-      data: $(this).serialize(),
-      dataType: 'json',
-      success: function(data) {
-        console.log(data);
+  $(document).ready(function() {
+    $('.breadcrumb').html('<li class="breadcrumb-item active">Household</li>');
+    
+    // Toolbar extra buttons
+    var btnFinish = $('<button></button>').text('Finish')
+                                      .addClass('btn btn-success sw-finish-btn')
+                                      .attr('disabled', true)
+                                      .on('click', function(){ alert('Finish Clicked'); });
+    var btnCancel = $('<button></button>').text('Cancel')
+                                      .addClass('btn btn-danger sw-reset-btn')
+                                      .on('click', function(){ $('#smartwizard').smartWizard("reset"); });
+    
+    $('#smartwizard').smartWizard({
+      theme: 'circles',
+      transitionEffect:'fade',
+      showStepURLhash: false,
+      autoAdjustHeight: true,
+      toolbarSettings: {
+        toolbarPosition: 'both',
+        toolbarButtonPosition: 'end',
+        toolbarExtraButtons: [btnFinish, btnCancel]
       }
     });
-  });
 
+    $("#smartwizard").on("showStep", function(e, anchorObject, stepNumber, stepDirection, stepPosition) {
+      if(stepPosition === "final") {
+        $('.sw-finish-btn').removeAttr('disabled');
+      } else {
+        $('.sw-finish-btn').attr('disabled', true);
+      }
+    });
+    
+    $('#household').DataTable({
+      // "processing": true,
+      "serverSide": true,
+      "ajax": "{{ route('member_queue', 'member') }}",
+      "columns": [
+        {data: 'last_name' },
+        {data: 'first_name' },
+        {data: 'middle_name' },
+        {data: 'relationship' },
+        {
+          data: 'id',
+          render: function( data, type, row, meta ){
+            return '<a href="'+data+'">Download</a>';
+          }
+        },
+        // {data: 'age' },
+        // {data: 'birth_place' },
+        // {data: 'sex' },
+        // {data: 'civil_status' },
+        // {data: 'educ_attainment' },
+        // {data: 'occupation' },
+      ]
+    });
+
+    $('.add-household-member').submit(function(e) {
+      e.preventDefault();
+
+      $.ajax({
+        method: 'POST',
+        url: "{{ route('household_member', 'add') }}",
+        data: $(this).serialize(),
+        dataType: 'json',
+        success: function(data) {
+          console.log(data);
+        }
+      });
+    });
+
+    var typingTimer;                //timer identifier
+    var doneTypingInterval = 500;  //time in ms, 5 second for example
+    var $input = $('#myInput');
+    var select_picker = $('select').selectpicker({
+    // live search options
+    liveSearch: true,
+    liveSearchPlaceholder: 'Search here',
+    liveSearchNormalize: false,
+    liveSearchStyle: 'contains',
+    });
+
+    select_picker.selectpicker().siblings('div.dropdown-menu.open').find('input').on('keyup keydown input', function(e) {
+      var elem = $(this);
+      
+      // get keycode of current keypress event
+      var code = (e.keyCode || e.which);
+
+      // do nothing if it's an arrow key
+      if(code == 37 || code == 38 || code == 39 || code == 40) {
+          return;
+      }
+      
+      if(e.type === 'keyup') {
+        clearTimeout(typingTimer);
+        typingTimer = setTimeout(function() {
+            doneTyping(elem.val(), elem);
+          }, 
+          doneTypingInterval);
+      } else if(e.type === 'keydown') {
+        clearTimeout(typingTimer);
+      } else if(e.type === 'input') {
+        elem.parent().siblings('div.dropdown-menu.inner').html('<li class="no-results text-center"> Searching <i class="fa fa-spinner fa-spin"></i></li>');
+      }
+    });
+
+    function doneTyping(value, element) {
+      var sp = element.parent().parent().siblings('select');
+      var url = sp.data('api-url');
+
+      if(!value) {
+        sp.find('option').remove().end();
+        sp.selectpicker('refresh');
+
+        return;
+      }
+
+      $.ajax({
+        url: url,
+        data: {q: value},
+        dataType: 'json',
+        success: function(data) {
+          sp.find('option').remove().end();
+          sp.selectpicker('refresh');
+
+          $.each(data.data, function(key, value) {     
+            console.log(key, value);
+            sp.append('<option value="'+value.id+'">'+value.name+'</option>');
+            sp.selectpicker('refresh');
+          });
+        }
+      });
+    }
+  });
 </script>
 <div class="animated fadeIn">
   <div class="row">
@@ -113,13 +177,23 @@
                     <div class="col-sm-12 col-md-6">
                       <div class="form-group">
                         <label for="barangay">Barangay</label>
-                        <input type="text" class="form-control" name="barangay" placeholder="Enter barangay">
+                        <!-- <input type="text" class="form-control" name="barangay" placeholder="Enter barangay" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> -->
+                        <div class="controls">
+                          <div class="input-group">
+                            <select class="selectpicker show-tick form-control" name="barangay" size=5 title="Barangay" data-api-url="/data/webapi/barangay"></select>
+                          </div> 
+                        </div>
                       </div>
                     </div>
                     <div class="col-sm-12 col-md-6">
-                      <div class="form-group">
+                      <div class="form-group search">
                         <label for="brgy_chairman">Barangay Chairman</label>
-                        <input type="text" class="form-control" name="brgy_chairman" placeholder="Enter brgy. chairman">
+                        <!-- <input type="text" class="form-control" name="brgy_chairman" placeholder="Enter brgy. chairman" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> -->
+                        <div class="controls">
+                          <div class="input-group">
+                            <select class="selectpicker show-tick form-control" name="brgy_chairman" size=5 title="Brgy. chairman" data-api-url="/data/webapi/worker"></select>
+                          </div> 
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -133,7 +207,12 @@
                     <div class="col-sm-12 col-md-6">
                       <div class="form-group">
                         <label for="midwife_assign">Midwife/NDP Assigned</label>
-                        <input type="text" class="form-control" name="midwife_assign" placeholder="Enter Midwife/NDP assigned">
+                        <!-- <input type="text" class="form-control" name="midwife_assign" placeholder="Enter Midwife/NDP assigned" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> -->
+                        <div class="controls">
+                          <div class="input-group">
+                            <select class="selectpicker show-tick form-control" name="midwife_assign" size=5 title="Midwife/NDP assigned" data-api-url="/data/webapi/worker"></select>
+                          </div> 
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -141,7 +220,12 @@
                     <div class="col-sm-12 col-md-6">
                       <div class="form-group">
                         <label for="purok">Purok</label>
-                        <input type="text" class="form-control" name="purok" placeholder="Enter purok">
+                        <!-- <input type="text" class="form-control" name="purok" placeholder="Enter purok"> -->
+                        <div class="controls">
+                          <div class="input-group">
+                            <select class="selectpicker show-tick form-control" name="purok" size=5 title="Purok"></select>
+                          </div> 
+                        </div>
                       </div>
                     </div>
                     <div class="col-sm-12 col-md-6">
@@ -153,7 +237,12 @@
                   </div>
                   <div class="form-group">
                     <label for="interviewer">Profiled/Interviewed By</label>
-                    <input type="text" class="form-control" name="interviewer" placeholder="Enter interviewer or profiler">
+                    <!-- <input type="text" class="form-control" name="interviewer" placeholder="Enter interviewer or profiler" aria-haspopup="true" aria-expanded="false"> -->
+                    <div class="controls">
+                      <div class="input-group">
+                        <select class="selectpicker show-tick form-control" name="interviewer" size=5 title="Interviewer or profiler" data-api-url="/data/webapi/worker"></select>
+                      </div> 
+                    </div>
                   </div>
                   <div class="row">
                     <div class="col-sm-12 col-md-6">

@@ -16,9 +16,10 @@ try {
     require('bootstrap-datepicker');
     require('chart.js');
     require('datatables');
-    require( 'datatables.net-bs4' );
-    require( 'datatables.net-responsive' );
-    require( 'smartwizard' );
+    require('datatables.net-bs4');
+    require('datatables.net-responsive');
+    require('smartwizard');
+    // require('https://www.jqueryscript.net/demo/Bootstrap-4-Dropdown-Select-Plugin-jQuery/dist/js/bootstrap-select.js');
 
 } catch (e) {}
 
