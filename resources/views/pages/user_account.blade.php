@@ -4,7 +4,7 @@
   $('#user-account-dt').DataTable({
     "processing": true,
     "serverSide": true,
-    "ajax": "/test",    
+    "ajax": "/users",    
     "columns": [
       {data: 'id'},
       {data: 'fullname'},

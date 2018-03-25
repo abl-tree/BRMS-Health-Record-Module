@@ -35,7 +35,7 @@ class UserAccountController extends Controller
         return view('pages/user_account', compact('users'));
     }
 
-    public function test() {
+    public function get() {
         $users = User::all();
         $data = array();
         

@@ -40,7 +40,7 @@ Route::get('/barangay', function(Request $request) {
 Route::get('/worker', function(Request $request) {
     if($q = $request->q) {
         $q = '%'.$q.'%';
-        $query = BrgyWorkers::select(DB::raw('CONCAT(firstname, " ", lastname) as name'), 'type')
+        $query = BrgyWorkers::select(DB::raw('CONCAT(firstname, " ", lastname) as name'), 'type', 'id')
                     ->where(DB::raw('CONCAT_WS(" ", firstname, lastname)'), 'like', $q)
                     ->get();
     } else {

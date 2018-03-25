@@ -24,7 +24,7 @@ Route::middleware(['auth'])->group(function() {
 		}
         return view('index');		
 	});
-	Route::get('/test', 'UserAccountController@test');
+	Route::get('/test', 'HouseholdController@test');
 	Route::get('/population/{option}', 'PopulationController@population');
 	Route::get('/resident_profile', 'ResidentController@profile');
 	Route::post('/household/member/{option}', 'HouseholdController@member')->name('household_member');
@@ -38,4 +38,5 @@ Route::middleware(['ajax'])->group(function() {
 	Route::get('/resident', 'ResidentController@index')->name('resident');
 	Route::get('/monthly_report', 'ReportController@index')->name('monthly_report');
 	Route::get('/quarterly_report', 'ReportController@quarterlyView')->name('quarterly_report');
+	Route::get('/users', 'UserAccountController@get');
 });

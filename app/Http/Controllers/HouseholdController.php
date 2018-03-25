@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\SanitationTypes;
+use App\SanitationOption;
 
 class HouseholdController extends Controller
 {
@@ -25,7 +27,9 @@ class HouseholdController extends Controller
      */
     public function index()
     {
-        return view('pages/household');
+        $sanitations = SanitationTypes::all();
+
+        return view('pages/household', compact('sanitations'));
     }
 
     public function member(Request $request, $option = null) 
@@ -115,5 +119,12 @@ class HouseholdController extends Controller
 
     public function getApi(Request $request) {
         
+    }
+
+    public function test() {
+        $sanitations = SanitationTypes::all();
+
+        // echo json_encode($sanitations[0]->description);
+        return view('pages/household', compact('sanitations'));
     }
 }
