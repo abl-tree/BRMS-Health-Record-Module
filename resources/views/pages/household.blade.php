@@ -106,15 +106,34 @@
     var typingTimer;                //timer identifier
     var doneTypingInterval = 500;  //time in ms, 5 second for example
     var $input = $('#myInput');
-    var select_picker = $('select').selectpicker({
-    // live search options
-    liveSearch: true,
-    liveSearchPlaceholder: 'Search here',
-    liveSearchNormalize: false,
-    liveSearchStyle: 'contains',
+
+    var select_picker = $('#form-step-0 select, select[name="existing_member"]').selectpicker({
+      // live search options
+      liveSearch: true,
+      liveSearchPlaceholder: 'Search here',
+      liveSearchNormalize: false,
+      liveSearchStyle: 'contains',
     });
 
-    select_picker.selectpicker().siblings('div.dropdown-menu.open').find('input').on('keyup keydown input', function(e) {
+    $('select[name="barangay"]').on('change', function(){
+      var selected = $(this).find("option:selected").val();
+
+      if(selected) {
+        $.get('/data/webapi/purok/' + selected, 'json', function(data) {
+          $('select[name="purok"]').prop('disabled', false);
+          $('select[name="purok"]').find('option').remove().end();
+          $('select[name="purok"]').selectpicker('refresh');
+
+          $.each(data.data, function(key, value) {
+            $('select[name="purok"]').append('<option value="'+value.id+'"> Purok '+value.name+'</option>');
+            $('select[name="purok"]').selectpicker('refresh');
+          });
+          
+        });
+      }
+    });
+
+    select_picker.selectpicker().not('select[name="purok"], select[name="barangay"]').siblings('div.dropdown-menu.open').find('input').on('keyup keydown input', function(e) {
       var elem = $(this);
       
       // get keycode of current keypress event
@@ -174,6 +193,7 @@
         <div class="card-header">
           <i class="fa fa-align-justify"></i> Household Profile
         </div>
+        <form class="household-form" method="POST">
         <div class="card-body">
           <div id="smartwizard">
             <ul>
@@ -205,19 +225,25 @@
                           <!-- <input type="text" class="form-control" name="barangay" placeholder="Enter barangay" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> -->
                           <div class="controls">
                             <div class="input-group">
-                              <select class="selectpicker show-tick form-control" name="barangay" size=5 title="Barangay" data-api-url="/data/webapi/barangay"></select>
+                              <select class="selectpicker show-tick form-control" name="barangay" size=5 title="Barangay" required="true">
+                              @if($barangays)
+                                @foreach($barangays as $barangay)
+                                <option value="{{$barangay->id}}">{{$barangay->brgy_name}}</option>
+                                @endforeach
+                              @endif
+                              </select>
                             </div> 
                           </div>
                           <!-- <div class="help-block with-errors invalid-feedback">Please fill out this field.</div> -->
                         </div>
                       </div>
                       <div class="col-sm-12 col-md-6">
-                        <div class="form-group search">
-                          <label for="brgy_chairman">Barangay Chairman</label>
-                          <!-- <input type="text" class="form-control" name="brgy_chairman" placeholder="Enter brgy. chairman" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> -->
+                        <div class="form-group">
+                          <label for="purok">Purok</label>
+                          <!-- <input type="text" class="form-control" name="purok" placeholder="Enter purok"> -->
                           <div class="controls">
                             <div class="input-group">
-                              <select class="selectpicker show-tick form-control" name="brgy_chairman" size=5 title="Brgy. chairman" data-api-url="/data/webapi/worker"></select>
+                              <select class="selectpicker show-tick form-control" name="purok" title="Purok" disabled></select>
                             </div> 
                           </div>
                         </div>
@@ -244,12 +270,12 @@
                     </div>
                     <div class="row">
                       <div class="col-sm-12 col-md-6">
-                        <div class="form-group">
-                          <label for="purok">Purok</label>
-                          <!-- <input type="text" class="form-control" name="purok" placeholder="Enter purok"> -->
+                        <div class="form-group search">
+                          <label for="brgy_chairman">Barangay Chairman</label>
+                          <!-- <input type="text" class="form-control" name="brgy_chairman" placeholder="Enter brgy. chairman" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> -->
                           <div class="controls">
                             <div class="input-group">
-                              <select class="selectpicker show-tick form-control" name="purok" size=5 title="Purok"></select>
+                              <select class="selectpicker show-tick form-control" name="brgy_chairman" size=5 title="Brgy. chairman" data-api-url="/data/webapi/worker"></select>
                             </div> 
                           </div>
                         </div>
@@ -374,13 +400,13 @@
                             @foreach($sanitation->option as $option)
                               @if($sanitation->id === 3)
                               <div class="form-check form-check-inline mr-1">
-                                <input class="form-check-input" id="option{{$option->id}}" value="option1" name="inline-radios" type="radio">
-                                <label class="form-check-label" for="option{{$option->id}}">{{$option->option}}</label>
+                                <input class="form-check-input" value="{{$option->id}}" name="sanitation{{$sanitation->id}}" type="radio">
+                                <label class="form-check-label" for="sanitation{{$option->id}}">{{$option->option}}</label>
                               </div>
                               @else
                               <div class="form-check checkbox">
-                                <input class="form-check-input" value="" id="option{{$option->id}}" type="checkbox">
-                                <label class="form-check-label" for="option{{$option->id}}">
+                                <input class="form-check-input" value="{{$option->id}}" name="sanitation{{$sanitation->id}}" type="checkbox">
+                                <label class="form-check-label" for="sanitation{{$option->id}}">
                                   {{$option->option}}
                                 </label>
                               </div>
@@ -397,6 +423,7 @@
           </div>
         </div>
       </div>
+      </form>
     </div>
     <!--/.col-->
   </div>
@@ -416,6 +443,18 @@
           </button>
         </div>
         <div class="modal-body">
+          <div class="row">
+            <div class="col-sm-12 col-md-12">
+              <div class="form-group">
+                <label for="purok">Search for an existing member: </label>
+                <div class="controls">
+                  <div class="input-group">
+                    <select class="selectpicker show-tick form-control" name="existing_member" title="Search here"></select>
+                  </div> 
+                </div>
+              </div>
+            </div>
+          </div>
           <div class="row">
             <div class="form-group col-sm-12 col-md-4">
               <label for="member_lastname">Last Name</label>

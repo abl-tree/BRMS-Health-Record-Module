@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\SanitationTypes;
 use App\SanitationOption;
+use App\BrgyInfo;
 
 class HouseholdController extends Controller
 {
@@ -28,8 +29,9 @@ class HouseholdController extends Controller
     public function index()
     {
         $sanitations = SanitationTypes::all();
+        $barangays = BrgyInfo::all();
 
-        return view('pages/household', compact('sanitations'));
+        return view('pages/household', compact('sanitations', 'barangays'));
     }
 
     public function member(Request $request, $option = null) 

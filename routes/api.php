@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use App\Person;
 use App\BrgyInfo;
 use App\BrgyWorkers;
+use App\Purok;
 use App\Http\Resources\ResidentCollection;
 use App\Http\Resources\BarangayCollection;
 
@@ -29,9 +30,21 @@ Route::get('/resident', function() {
 
 Route::get('/barangay', function(Request $request) {
     if($q = $request->q) {
-        $query = BrgyInfo::where('brgy_name', 'like', '%'.$q.'%')->get(['brgy_name as name', 'barangay_info.*']);
+        $query = BrgyInfo::where('brgy_name', 'like', '%'.$q.'%')->with('purok')->get(['brgy_name as name', 'barangay_info.*']);
+        
+        return new BarangayCollection($query);
     } else {
         $query = BrgyInfo::all();
+    }
+
+    return new BarangayCollection($query->get());
+});
+
+Route::get('/purok/{brgy_id?}', function(Request $request, $brgy_id = null) {
+    if($brgy_id) {
+        $query = BrgyInfo::find($brgy_id)->purok()->get();
+    } else {
+        $query = Purok::all();
     }
 
     return new BarangayCollection($query);
