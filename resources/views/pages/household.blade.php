@@ -133,6 +133,58 @@
       }
     });
 
+    $('select[name="existing_member"]').on('change', function(){
+      var selected = $(this).find("option:selected").val();
+
+      if(selected) {
+        $.ajax({
+          url: $(this).data('api-url'),
+          data: {id: selected},
+          method: 'GET',
+          dataType: 'json',
+          beforeSend: function() {
+            if(!$('.member_profile').is(':hidden')) {
+              $('.member_profile').slideUp();
+              $('.add-household-member')[0].reset();
+            }
+
+            if($('.info_retrieve').is(':hidden')) {
+              $('.info_retrieve').show();
+            }
+          },
+          success: function(result) {
+            var data = result.data[0];
+            if($('.member_profile').is(':hidden')) {
+              $('form.add-household-member input[name="member_lastname"]').val(data.lastName);
+              $('form.add-household-member input[name="member_firstname"]').val(data.firstName);
+              $('form.add-household-member input[name="member_middlename"]').val(data.midName);
+              $('form.add-household-member input[name="date_of_birth"]').val(data.dob);
+              $('form.add-household-member input[name="place_of_birth"]').val(data.placeOfBirth);
+              $('form.add-household-member input[name="sex"]').val(data.gender);
+              $('form.add-household-member input[name="civil_status"]').val(data.civilStatus);
+              $('form.add-household-member input[name="educ_attainment"]').val(data.highestEducationAttainment);
+              
+              $('.member_profile').slideDown();
+            }
+            
+            if(!$('.info_retrieve').is(':hidden')) {
+              $('.info_retrieve').hide();
+            }
+          },
+          error: function(error) {
+            if(!$('.info_retrieve').is(':hidden')) {
+              $('.info_retrieve').hide();
+            }
+            
+            if(!$('.member_profile').is(':hidden')) {
+              $('.member_profile').slideUp();
+              $('.add-household-member')[0].reset();
+            }
+          }
+        })
+      }
+    });
+
     select_picker.selectpicker().not('select[name="purok"], select[name="barangay"]').siblings('div.dropdown-menu.open').find('input').on('keyup keydown input', function(e) {
       var elem = $(this);
       
@@ -150,7 +202,11 @@
             doneTyping(elem.val(), elem);
           }, 
           doneTypingInterval);
-      } else if(e.type === 'keydown') {
+      } else if(e.type === 'keydown') {        
+        if(!$('.member_profile').is(':hidden')) {
+          $('.member_profile').slideUp();
+        }
+
         clearTimeout(typingTimer);
       } else if(e.type === 'input') {
         elem.parent().siblings('div.dropdown-menu.inner').html('<li class="no-results text-center"> Searching <i class="fa fa-spinner fa-spin"></i></li>');
@@ -170,17 +226,22 @@
 
       $.ajax({
         url: url,
+        async: true,
         data: {q: value},
         dataType: 'json',
+        beforeSend: function() {
+          sp.find('option').remove().end();      
+        },
         success: function(data) {
-          sp.find('option').remove().end();
-          sp.selectpicker('refresh');
-
+          var option = "";
+          var token = value;
           $.each(data.data, function(key, value) {     
-            console.log(key, value);
-            sp.append('<option value="'+value.id+'">'+value.name+'</option>');
-            sp.selectpicker('refresh');
+            option += '<option value="'+value.id+'" data-tokens="'+token+'">'+value.name+'</option>';
           });
+
+          sp.html(option);
+
+          sp.selectpicker('refresh');
         }
       });
     }
@@ -446,96 +507,103 @@
           <div class="row">
             <div class="col-sm-12 col-md-12">
               <div class="form-group">
-                <label for="purok">Search for an existing member: </label>
+                <label for="existing_member">Search for an existing member: </label>
                 <div class="controls">
                   <div class="input-group">
-                    <select class="selectpicker show-tick form-control" name="existing_member" title="Search here"></select>
+                    <select class="selectpicker show-tick form-control" name="existing_member" title="Search here" data-api-url="/data/resident"></select>
                   </div> 
                 </div>
               </div>
             </div>
           </div>
-          <div class="row">
-            <div class="form-group col-sm-12 col-md-4">
-              <label for="member_lastname">Last Name</label>
-              <input type="text" class="form-control" name="member_lastname" placeholder="Enter last name">
-            </div>
-            <div class="form-group col-sm-12 col-md-4">
-              <label for="member_firstname">First Name</label>
-              <input type="text" class="form-control" name="member_firstname" placeholder="Enter first name">
-            </div>
-            <div class="form-group col-sm-12 col-md-4">
-              <label for="member_middlename">Middle Name</label>
-              <input type="text" class="form-control" name="member_middlename" placeholder="Enter middle name">
+          <div class="row info_retrieve" style="display: none;">
+            <div class="col-sm-12 col-md-12 col-lg-12">
+              <i class="fa fa-refresh fa-spin fa-lg mt-4"></i> Retrieving...
             </div>
           </div>
-          <div class="form-group">
-            <label for="relationship_head">Relationship to the Head of the Family</label>
-            <input type="text" class="form-control" name="relationship_head" placeholder="Enter relationship">
-          </div>
-          <div class="form-group">
-            <label for="date_of_birth">Date of Birth</label>
-            <input type="text" class="form-control" name="date_of_birth" placeholder="Enter birthdate">
-          </div>
-          <div class="form-group">
-            <label for="age">Age</label>
-            <input type="text" class="form-control" name="age" placeholder="Enter age">
-          </div>
-          <div class="form-group">
-            <label for="place_of_birth">Place of Birth</label>
-            <input type="text" class="form-control" name="place_of_birth" placeholder="Enter place of birth">
-          </div>
-          <div class="form-group">
-            <label for="sex">Sex</label>
-            <input type="text" class="form-control" name="sex" placeholder="Enter gender">
-          </div>
-          <div class="form-group">
-            <label for="civil_status">Civil Status</label>
-            <input type="text" class="form-control" name="civil_status" placeholder="Enter civil status">
-          </div>
-          <div class="form-group">
-            <label for="educ_attainment">Educational Attainment</label>
-            <input type="text" class="form-control" name="educ_attainment" placeholder="Enter educational attainment">
-          </div>
-          <div class="form-group">
-            <label for="occupation">Occupation</label>
-            <input type="text" class="form-control" name="occupation" placeholder="Enter occupation">
-          </div>
-          <div class="form-group">
-            <label for="philihealth_no">Philhealth ID Number</label>
-            <input type="text" class="form-control" name="philihealth_no" placeholder="Enter Philhealth ID number">
-          </div>
-          <div class="form-group">
-            <label for="expiration_date">Date of Expiration</label>
-            <input type="text" class="form-control" name="expiration_date" placeholder="Enter date of expiration">
-          </div>
-          <div class="form-group">
-            <label for="fp_method">Current User-FP Method</label>
-            <input type="text" class="form-control" name="fp_method" placeholder="Enter user-fp method">
-          </div>
-          <div class="form-group">
-            <label for="pregnant">Pregnant</label>
-            <input type="text" class="form-control" name="pregnant" placeholder="Enter information">
-          </div>
-          <div class="form-group">
-            <label for="nut_status">Nutritional Status</label>
-            <input type="text" class="form-control" name="nut_status" placeholder="Enter nutritional status">
-          </div>
-          <div class="form-group">
-            <label for="height">Height</label>
-            <input type="text" class="form-control" name="height" placeholder="Enter height">
-          </div>
-          <div class="form-group">
-            <label for="weight">Weight</label>
-            <input type="text" class="form-control" name="weight" placeholder="Enter weight">
-          </div>
-          <div class="form-group">
-            <label for="fic">FIC</label>
-            <input type="text" class="form-control" name="fic" placeholder="Enter information">
-          </div>
-          <div class="form-group">
-            <label for="training">Trained on Basic Life Support/First Aid</label>
-            <input type="text" class="form-control" name="training" placeholder="Enter training">
+          <div class="member_profile" style="display: none;">
+            <div class="row">
+              <div class="form-group col-sm-12 col-md-4">
+                <label for="member_lastname">Last Name</label>
+                <input type="text" class="form-control" name="member_lastname" placeholder="Enter last name">
+              </div>
+              <div class="form-group col-sm-12 col-md-4">
+                <label for="member_firstname">First Name</label>
+                <input type="text" class="form-control" name="member_firstname" placeholder="Enter first name">
+              </div>
+              <div class="form-group col-sm-12 col-md-4">
+                <label for="member_middlename">Middle Name</label>
+                <input type="text" class="form-control" name="member_middlename" placeholder="Enter middle name">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="relationship_head">Relationship to the Head of the Family</label>
+              <input type="text" class="form-control" name="relationship_head" placeholder="Enter relationship">
+            </div>
+            <div class="form-group">
+              <label for="date_of_birth">Date of Birth</label>
+              <input type="text" class="form-control" name="date_of_birth" placeholder="Enter birthdate">
+            </div>
+            <div class="form-group">
+              <label for="age">Age</label>
+              <input type="text" class="form-control" name="age" placeholder="Enter age">
+            </div>
+            <div class="form-group">
+              <label for="place_of_birth">Place of Birth</label>
+              <input type="text" class="form-control" name="place_of_birth" placeholder="Enter place of birth">
+            </div>
+            <div class="form-group">
+              <label for="sex">Sex</label>
+              <input type="text" class="form-control" name="sex" placeholder="Enter gender">
+            </div>
+            <div class="form-group">
+              <label for="civil_status">Civil Status</label>
+              <input type="text" class="form-control" name="civil_status" placeholder="Enter civil status">
+            </div>
+            <div class="form-group">
+              <label for="educ_attainment">Educational Attainment</label>
+              <input type="text" class="form-control" name="educ_attainment" placeholder="Enter educational attainment">
+            </div>
+            <div class="form-group">
+              <label for="occupation">Occupation</label>
+              <input type="text" class="form-control" name="occupation" placeholder="Enter occupation">
+            </div>
+            <div class="form-group">
+              <label for="philihealth_no">Philhealth ID Number</label>
+              <input type="text" class="form-control" name="philihealth_no" placeholder="Enter Philhealth ID number">
+            </div>
+            <div class="form-group">
+              <label for="expiration_date">Date of Expiration</label>
+              <input type="text" class="form-control" name="expiration_date" placeholder="Enter date of expiration">
+            </div>
+            <div class="form-group">
+              <label for="fp_method">Current User-FP Method</label>
+              <input type="text" class="form-control" name="fp_method" placeholder="Enter user-fp method">
+            </div>
+            <div class="form-group">
+              <label for="pregnant">Pregnant</label>
+              <input type="text" class="form-control" name="pregnant" placeholder="Enter information">
+            </div>
+            <div class="form-group">
+              <label for="nut_status">Nutritional Status</label>
+              <input type="text" class="form-control" name="nut_status" placeholder="Enter nutritional status">
+            </div>
+            <div class="form-group">
+              <label for="height">Height</label>
+              <input type="text" class="form-control" name="height" placeholder="Enter height">
+            </div>
+            <div class="form-group">
+              <label for="weight">Weight</label>
+              <input type="text" class="form-control" name="weight" placeholder="Enter weight">
+            </div>
+            <div class="form-group">
+              <label for="fic">FIC</label>
+              <input type="text" class="form-control" name="fic" placeholder="Enter information">
+            </div>
+            <div class="form-group">
+              <label for="training">Trained on Basic Life Support/First Aid</label>
+              <input type="text" class="form-control" name="training" placeholder="Enter training">
+            </div>
           </div>
         </div>
         <div class="modal-footer">

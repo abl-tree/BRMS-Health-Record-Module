@@ -32,7 +32,7 @@
                   <span class="value male-population-rate">0%</span>
                   <div class="bars">
                     <div class="progress progress-xs">
-                      <div class="progress-bar bg-warning male-population-rate" role="progressbar" style="width: 43%" aria-valuenow="43" aria-valuemin="0" aria-valuemax="100"></div>
+                      <div class="progress-bar bg-warning male-population-rate" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
                   </div>
                 </li>
@@ -42,7 +42,7 @@
                   <span class="value female-population-rate">0%</span>
                   <div class="bars">
                     <div class="progress progress-xs">
-                      <div class="progress-bar bg-warning female-population-rate" role="progressbar" style="width: 37%" aria-valuenow="37" aria-valuemin="0" aria-valuemax="100"></div>
+                      <div class="progress-bar bg-warning female-population-rate" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
                   </div>
                 </li>
@@ -52,7 +52,7 @@
                   <span class="value undefined-population-rate">0%</span>
                   <div class="bars">
                     <div class="progress progress-xs">
-                      <div class="progress-bar bg-warning undefined-population-rate" role="progressbar" style="width: 37%" aria-valuenow="37" aria-valuemin="0" aria-valuemax="100"></div>
+                      <div class="progress-bar bg-warning undefined-population-rate" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
                   </div>
                 </li>

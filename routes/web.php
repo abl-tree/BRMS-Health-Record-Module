@@ -1,5 +1,11 @@
 <?php
 use Illuminate\Http\Request;
+use App\Person;
+use App\BrgyInfo;
+use App\BrgyWorkers;
+use App\Purok;
+use App\Http\Resources\ResidentCollection;
+use App\Http\Resources\BarangayCollection;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,6 +35,25 @@ Route::middleware(['auth'])->group(function() {
 	Route::get('/resident_profile', 'ResidentController@profile');
 	Route::post('/household/member/{option}', 'HouseholdController@member')->name('household_member');
 	Route::get('/household/get/{option}', 'HouseholdController@get')->name('member_queue');
+	
+	Route::get('data/resident', function(Request $request) {
+		if($q = $request->q) {
+			$query = Person::select(DB::raw('CONCAT(firstName, " ", midName, " ", lastName) as name'), 'id')
+						->where(DB::raw('CONCAT_WS(" ", firstName, midName, lastName)'), 'like', '%'.$q.'%')
+						->Orwhere(DB::raw('CONCAT_WS(" ", firstName, lastName)'), 'like', '%'.$q.'%')
+						->Orwhere(DB::raw('CONCAT_WS(" ", midName, lastName)'), 'like', '%'.$q.'%')
+						->limit(10)
+						->get();
+		} else if($id = $request->id) {
+			$query = Person::where('id', $id)
+						->limit(1)
+						->get();
+		}else {
+			$query = Person::all();
+		}
+	
+		return new ResidentCollection($query);
+	});
 });
 
 Route::middleware(['ajax'])->group(function() {    

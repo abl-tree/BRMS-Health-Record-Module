@@ -24,10 +24,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/resident', function() {
-    return new ResidentCollection(Person::all());
-});
-
 Route::get('/barangay', function(Request $request) {
     if($q = $request->q) {
         $query = BrgyInfo::where('brgy_name', 'like', '%'.$q.'%')->with('purok')->get(['brgy_name as name', 'barangay_info.*']);
@@ -37,7 +33,7 @@ Route::get('/barangay', function(Request $request) {
         $query = BrgyInfo::all();
     }
 
-    return new BarangayCollection($query->get());
+    return new BarangayCollection($query);
 });
 
 Route::get('/purok/{brgy_id?}', function(Request $request, $brgy_id = null) {
