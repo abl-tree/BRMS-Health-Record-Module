@@ -5,7 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\SanitationTypes;
 use App\SanitationOption;
+use App\SanitationStatus;
 use App\BrgyInfo;
+use App\household_infos;
+use App\Household;
+use Carbon\Carbon;
 
 class HouseholdController extends Controller
 {
@@ -83,10 +87,6 @@ class HouseholdController extends Controller
         if($option === 'member') {
             if ($request->session()->has('member')) {
                 $sessions = $request->session()->get('member');
-
-                // unset($sessions[0]);
-                // dd($sessions);
-                // return;
                 
                 foreach ($sessions as $session) {
                     $data[] = array(
@@ -119,7 +119,62 @@ class HouseholdController extends Controller
         }
     }
 
-    public function getApi(Request $request) {
+    public function set(Request $request, $option = null) {
+        $data = array();
+        $user_id = $request->user();
+
+        if($option === 'household') {
+            $data = array(
+                'family_serial_no' => 'default',
+                'brgy_id' => $request->barangay,
+                'purok_id' => $request->purok,
+                'committee' => $request->committee,
+                'midwife_ndp_assigned' => $request->midwife_assign,
+                'brgy_chairman_id' => $request->brgy_chairman,
+                'date_profiled' => Carbon::now()->toDateString(),
+                'interviewed_by' => $request->interviewer,
+                'tribe' => $request->tribe,
+                'philhealth_no' => $request->philhealth_no,
+                'nhts' => $request->nhts_opt,
+                'non_nhts' => $request->non_nhts_opt,
+                'nhts_no' => $request->nhts_no,
+                'ip' => $request->ip_opt,
+                'ip_no' => $request->ip_no,
+            );
+            
+            $data = new household_infos($data);
+            $household_info = $data->save();
+
+            if($household_info) {
+                $data = array(
+                    'district' => $request->district,
+                    'province' => $request->province,
+                    'encoder' => $user_id->id,
+                    'household_info_id' => $data->id,
+                );
+
+                $data = new Household($data);
+                $household = $data->save();
+
+                if($household) {
+                    $household_id = $data->id;
+                    $data = array();
+
+                    foreach ($request->sanitation as $sanitation) {
+                        $data[] = array(
+                            'sanitation_opt_id' => $sanitation, 
+                            'score' => 1, 
+                            'household_id' => $household_id,
+                        );
+                    }
+
+                    $san_status = SanitationStatus::insert($data);
+
+                    echo json_encode($san_status);
+                }
+            }
+            
+        }
         
     }
 

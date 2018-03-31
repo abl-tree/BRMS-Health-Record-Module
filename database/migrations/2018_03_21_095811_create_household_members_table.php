@@ -28,8 +28,8 @@ class CreateHouseholdMembersTable extends Migration
             $table->string('first_name');
             $table->string('middle_name');
             $table->string('last_name');
-            $table->string('relationship');
-            $table->enum('family_head', [1, 0]);
+            $table->string('relationship')->default('yes');
+            $table->enum('family_head', [1, 0])->nullable();
             $table->string('civil_status');
             $table->string('educ_attainment');
             $table->string('occupation');

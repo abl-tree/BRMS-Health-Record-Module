@@ -15,7 +15,6 @@ class CreateHouseholdInfosTable extends Migration
     {
         Schema::create('household_infos', function (Blueprint $table) {          
             $table->increments('id');
-            $table->string('family_serial_no');
             $table->integer('brgy_id');
             $table->foreign('brgy_id')
                     ->references('id')
@@ -26,8 +25,12 @@ class CreateHouseholdInfosTable extends Migration
                     ->references('id')
                     ->on('barangay_workers')
                     ->onDelete('cascade');
-            $table->string('committee');
-            $table->string('midwife_ndp_assigned');
+            $table->string('committee')->nullable();
+            $table->integer('midwife_ndp_assigned');
+            $table->foreign('midwife_ndp_assigned')
+                    ->references('id')
+                    ->on('barangay_workers')
+                    ->onDelete('cascade');
             $table->integer('purok_id');
             $table->foreign('purok_id')
                     ->references('id')
@@ -39,14 +42,14 @@ class CreateHouseholdInfosTable extends Migration
                     ->references('id')
                     ->on('barangay_workers')
                     ->onDelete('cascade');
-            $table->enum('nhts',['yes', 'no']);
-            $table->string('nhts_no');
-            $table->enum('ip',['yes', 'no']);
-            $table->enum('cct',['yes', 'no']);
-            $table->enum('non_nhts',['yes', 'no']);
-            $table->string('tribe');
-            $table->string('philhealth_no');
-            $table->string('ip_no');            
+            $table->enum('nhts',['yes', 'no'])->default('yes');
+            $table->string('nhts_no')->nullable();
+            $table->enum('ip',['yes', 'no'])->default('yes');
+            $table->enum('cct',['yes', 'no'])->default('yes');
+            $table->enum('non_nhts',['yes', 'no'])->default('yes');
+            $table->string('tribe')->nullable();
+            $table->string('philhealth_no')->nullable();
+            $table->string('ip_no')->nullable();
         });
     }
 

@@ -21,7 +21,7 @@ class CreateSanitationStatusesTable extends Migration
                     ->on('sanitation_options')
                     ->onDelete('cascade');
             $table->enum('score', [1, 0]);
-            $table->string('others');
+            $table->string('others')->nullable();
             $table->integer('household_id')->unsigned();
             $table->foreign('household_id')
                     ->references('id')

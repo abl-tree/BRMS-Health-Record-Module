@@ -19,7 +19,19 @@
     var btnFinish = $('<button></button>').text('Finish')
                                       .addClass('btn btn-success sw-finish-btn')
                                       .attr('disabled', true)
-                                      .on('click', function(){ alert('Finish Clicked'); });
+                                      .attr('type', 'button')
+                                      .on('click', function(){
+                                        console.log($('.household-form').serialize());
+                                        $.ajax({
+                                          url: "{{ route('set_household', 'household') }}",
+                                          method: "POST",
+                                          data: $('.household-form').serialize(),
+                                          dataType: 'json',
+                                          success: function(result) {
+                                            console.log(result);
+                                          }
+                                        })
+                                      });
     var btnCancel = $('<button></button>').text('Cancel')
                                       .addClass('btn btn-danger sw-reset-btn')
                                       .on('click', function(){ $('#smartwizard').smartWizard("reset"); });
@@ -65,8 +77,8 @@
         return true;
     });
     
-    $('#household').DataTable({
-      // "processing": true,
+    var householdDt = $('#household').DataTable({
+      "processing": true,
       "serverSide": true,
       "ajax": "{{ route('member_queue', 'member') }}",
       "columns": [
@@ -98,7 +110,11 @@
         data: $(this).serialize(),
         dataType: 'json',
         success: function(data) {
-          console.log(data);
+          householdDt.ajax.reload();
+
+          $('select[name="existing_member"]').find('option').remove().end();
+          $('select[name="existing_member"]').selectpicker('refresh');
+          $('select[name="existing_member"]').change();
         }
       });
     });
@@ -182,6 +198,11 @@
             }
           }
         })
+      } else {
+        if(!$('.member_profile').is(':hidden')) {
+          $('.member_profile').slideUp();
+          $('.add-household-member')[0].reset();
+        }
       }
     });
 
@@ -267,6 +288,7 @@
               <div id="step-1" class="card border-info">
                 <div class="card-body">
                   <div id="form-step-0" role="form" data-toggle="validator">
+                    {{ csrf_field() }}
                     <div class="row">
                       <div class="form-group col-sm-12 col-md-6">
                         <label for="district">Municipality/City/District</label>
@@ -283,7 +305,6 @@
                       <div class="col-sm-12 col-md-6">
                         <div class="form-group">
                           <label for="barangay">Barangay</label>
-                          <!-- <input type="text" class="form-control" name="barangay" placeholder="Enter barangay" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> -->
                           <div class="controls">
                             <div class="input-group">
                               <select class="selectpicker show-tick form-control" name="barangay" size=5 title="Barangay" required="true">
@@ -295,13 +316,11 @@
                               </select>
                             </div> 
                           </div>
-                          <!-- <div class="help-block with-errors invalid-feedback">Please fill out this field.</div> -->
                         </div>
                       </div>
                       <div class="col-sm-12 col-md-6">
                         <div class="form-group">
                           <label for="purok">Purok</label>
-                          <!-- <input type="text" class="form-control" name="purok" placeholder="Enter purok"> -->
                           <div class="controls">
                             <div class="input-group">
                               <select class="selectpicker show-tick form-control" name="purok" title="Purok" disabled></select>
@@ -314,13 +333,13 @@
                       <div class="col-sm-12 col-md-6">
                         <div class="form-group">
                           <label for="committee">Committee on Health</label>
-                          <input type="text" class="form-control" name="committee" placeholder="Enter committee on health">
+                          <input type="text" class="form-control" name="committee" placeholder="Enter committee on health" required>
+                          <div class="help-block with-errors invalid-feedback"></div>
                         </div>
                       </div>
                       <div class="col-sm-12 col-md-6">
                         <div class="form-group">
                           <label for="midwife_assign">Midwife/NDP Assigned</label>
-                          <!-- <input type="text" class="form-control" name="midwife_assign" placeholder="Enter Midwife/NDP assigned" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> -->
                           <div class="controls">
                             <div class="input-group">
                               <select class="selectpicker show-tick form-control required" name="midwife_assign" size=5 title="Midwife/NDP assigned" data-api-url="/data/webapi/worker"></select>
@@ -333,7 +352,6 @@
                       <div class="col-sm-12 col-md-6">
                         <div class="form-group search">
                           <label for="brgy_chairman">Barangay Chairman</label>
-                          <!-- <input type="text" class="form-control" name="brgy_chairman" placeholder="Enter brgy. chairman" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> -->
                           <div class="controls">
                             <div class="input-group">
                               <select class="selectpicker show-tick form-control" name="brgy_chairman" size=5 title="Brgy. chairman" data-api-url="/data/webapi/worker"></select>
@@ -344,13 +362,13 @@
                       <div class="col-sm-12 col-md-6">
                         <div class="form-group">
                           <label for="date_profiled">Date Profiled <small>(MM/DD/YYYY)</small></label>
-                          <input type="text" class="form-control" name="date_profiled" placeholder="MM/DD/YYYY" data-provide="datepicker">
+                          <input type="text" class="form-control" name="date_profiled" placeholder="MM/DD/YYYY" data-provide="datepicker" required>
+                          <div class="help-block with-errors invalid-feedback"></div>
                         </div>
                       </div>
                     </div>
                     <div class="form-group">
                       <label for="interviewer">Profiled/Interviewed By</label>
-                      <!-- <input type="text" class="form-control" name="interviewer" placeholder="Enter interviewer or profiler" aria-haspopup="true" aria-expanded="false"> -->
                       <div class="controls">
                         <div class="input-group">
                           <select class="selectpicker show-tick form-control" name="interviewer" size=5 title="Interviewer or profiler" data-api-url="/data/webapi/worker"></select>
@@ -361,7 +379,8 @@
                       <div class="col-sm-12 col-md-6">
                         <div class="form-group">
                           <label for="tribe">Tribe</label>
-                          <input type="text" class="form-control" name="tribe" placeholder="Enter tribe">
+                          <input type="text" class="form-control" name="tribe" placeholder="Enter tribe" required>
+                          <div class="help-block with-errors invalid-feedback"></div>
                         </div>
                       </div>
                       <div class="col-sm-12 col-md-6">
@@ -461,12 +480,12 @@
                             @foreach($sanitation->option as $option)
                               @if($sanitation->id === 3)
                               <div class="form-check form-check-inline mr-1">
-                                <input class="form-check-input" value="{{$option->id}}" name="sanitation{{$sanitation->id}}" type="radio">
+                                <input class="form-check-input" id="sanitation{{$option->id}}" value="{{$option->id}}" name="sanitation[]" type="radio">
                                 <label class="form-check-label" for="sanitation{{$option->id}}">{{$option->option}}</label>
                               </div>
                               @else
                               <div class="form-check checkbox">
-                                <input class="form-check-input" value="{{$option->id}}" name="sanitation{{$sanitation->id}}" type="checkbox">
+                                <input class="form-check-input" id="sanitation{{$option->id}}" value="{{$option->id}}" name="sanitation[]" type="checkbox">
                                 <label class="form-check-label" for="sanitation{{$option->id}}">
                                   {{$option->option}}
                                 </label>

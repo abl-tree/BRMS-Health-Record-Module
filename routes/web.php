@@ -33,7 +33,8 @@ Route::middleware(['auth'])->group(function() {
 	Route::get('/test', 'HouseholdController@test');
 	Route::get('/population/{option}', 'PopulationController@population');
 	Route::get('/resident_profile', 'ResidentController@profile');
-	Route::post('/household/member/{option}', 'HouseholdController@member')->name('household_member');
+	Route::post('/household/member/{option}', 'HouseholdController@set')->name('set_household');
+	Route::post('/household/set/{option}', 'HouseholdController@member')->name('household_member');
 	Route::get('/household/get/{option}', 'HouseholdController@get')->name('member_queue');
 	
 	Route::get('data/resident', function(Request $request) {

@@ -15,7 +15,12 @@ class CreateHouseholdsTable extends Migration
     {
         Schema::create('households', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('encoder');
+            $table->string('district');
+            $table->string('province');
+            $table->integer('encoder');
+            $table->foreign('encoder')
+                    ->references('id')
+                    ->on('account');
             $table->integer('household_info_id')->unsigned();
             $table->foreign('household_info_id')
                     ->references('id')
