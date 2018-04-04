@@ -14,6 +14,6 @@ class Person extends Model
      * @var array
      */
     protected $fillable = [
-        'firstName', 'midName', 'lastName',
+        'firstName', 'midName', 'lastName','height','weight','blood_type','email'
     ];
 }

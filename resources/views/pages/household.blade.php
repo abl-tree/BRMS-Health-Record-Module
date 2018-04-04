@@ -434,7 +434,19 @@
                                           data: $('.household-form').serialize(),
                                           dataType: 'json',
                                           success: function(result) {
+                                            new PNotify({
+                                              title: 'Saved!',
+                                              text: 'Household profile.',
+                                              type: 'success'
+                                            });
                                             btnCancel.click();
+                                          },
+                                          error: function(err) {
+                                            new PNotify({
+                                              title: 'Error!',
+                                              text: 'Household profile.',
+                                              type: 'error'
+                                            });
                                           }
                                         })
                                       });

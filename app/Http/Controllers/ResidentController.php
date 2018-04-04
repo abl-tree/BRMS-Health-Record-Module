@@ -3,19 +3,23 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 use App\Person;
+use Auth;
+ 
 
 class ResidentController extends Controller
 {
     protected $db_connection;
-    
+
     /**
      * Create a new controller instance.
      *
      * @return void
      */
     public function __construct()
-    {        
+    {
         $this->db_connection = config('database.default');
     }
 
@@ -29,32 +33,156 @@ class ResidentController extends Controller
         return view('pages/resident');
     }
 
-    public function profile() {        
+    public function store(Request $request){
+
+            $person = new Person;
+            $person->userId = "0";
+            $person->brgyId = "0";
+            $person->address = "";
+            $person->placeOfBirth = "";
+            $person->religion = "";
+            $person->nationality = "";
+            $person->highestEducationalAttainment = "";
+
+            $person->numberOfYearsInSchool = "";
+            $person->occupationPriorToCBRAP = "";
+            $person->siblings = "";
+            $person->ordinalPosition = "";
+            $person->livingArrangements = "";
+            $person->monthlyIncome = "";
+            $person->skills = "";
+            $person->father = "";
+            $person->occupationFather = "";
+            $person->mother = "";
+            $person->occupationMother = "";
+            $person->spouse = "";
+            $person->occupationSpouse = "";
+            $person->spouseAddress = "";
+            $person->numberOfChildren = "";
+            $person->firstName = $request->get('first_name');
+            $person->midName = $request->get('middle_name');
+            $person->lastName = $request->get('last_name');
+            $person->gender = $request->get('gender');
+            $person->purok = $request->get('purok');
+            $person->street = $request->get('street');
+            $person->barangay = $request->get('barangay');
+            $person->city = $request->get('city');
+            $person->dob = $request->get('birthdate');
+            $person->civilStatus = $request->get('marital_status');
+            $person->height = $request->get('height');
+            $person->weight = $request->get('weight');
+            $person->blood_type = $request->get('blood_type');
+            $person->contact_number = $request->get('contact_number');
+            $person->email = $request->get('email');
+            $person->inname = $request->get('emergency_name');
+            $person->contact = $request->get('emergency_contact');
+            $person->relationship = $request->get('emergency_relationship');
+            $person->save();
+        }
+
+    public function profile() {
         $persons = Person::all();
         $data = array();
-        
+
         foreach ($persons as $person) {
             if($this->db_connection === 'pgsql') {
                 $data[] = array(
-                    'id' => $person->id, 
-                    'first_name' => $person->firstname, 
-                    'middle_name' => $person->midname, 
-                    'last_name' => $person->lastname, 
-                    'gender' => $person->gender, 
-                    'address' => $person->address, 
+                    'id' => $person->id,
+                    'first_name' => $person->firstName,
+                    'middle_name' => $person->midName,
+                    'last_name' => $person->lastName,
+                    'email' => $person->email,
+                    'weight' => $person->weight,
+                    'height' => $person->height,
+                    'gender' => $person->gender,
+                    'purok' => $person->purok,
+                    'barangay' => $person->barangay,
+                    'street' => $person->street,
+                    'city' => $person->city,
                 );
             } else {
                 $data[] = array(
-                    'id' => $person->id, 
-                    'first_name' => $person->firstName, 
-                    'middle_name' => $person->midName, 
-                    'last_name' => $person->lastName, 
-                    'gender' => $person->gender, 
-                    'address' => $person->address, 
+                    'id' => $person->id,
+                    'first_name' => $person->firstName,
+                    'middle_name' => $person->midName,
+                    'last_name' => $person->lastName,
+                    'email' => $person->email,
+                    'weight' => $person->weight,
+                    'height' => $person->height,
+                    'gender' => $person->gender,
+                    'purok' => $person->purok,
+                    'barangay' => $person->barangay,
+                    'street' => $person->street,
+                    'city' => $person->city,
                 );
             }
         }
 
         return \DataTables::of($data)->make(true);
     }
+
+    function updatedata(Request $request){
+        $id = $request->input('id');
+        $person = Person::find($id);
+        $output = array(
+            'firstName' => $person->firstName,
+            'midName' => $person->midName,
+            'lastName' => $person->lastName,
+            'gender' => $person->gender,
+            'address' => $person->address,
+            'dob' => $person->dob,
+            'civilStatus' => $person->civilStatus,
+            'height' => $person->height,
+            'weight' => $person->weight,
+            'email' => $person->email,
+            'contact' => $person->contact_number,
+            'btype' => $person->blood_type,
+        );
+        echo json_encode($output);
+    }
+
+    public function updateResident(Request $request){ 
+                $check = array();
+                $validator = Validator::make($request->all(), [
+                'id'                    => 'required',    
+                'firstname'             => 'required',
+                'midname'               => 'required',
+                'lastname'              => 'required',
+                'civStatus'             => 'required',                
+                'gender'                => 'required',
+                'address'               => 'required',
+                'bday'                  => 'required',
+                'height'                => 'required',
+                'weight'                => 'required',
+                'btype'                 => 'required',
+                'contact'               => 'required',
+                'email'                 => 'required',
+            ]);    
+              if($validator->fails()){
+                 $check = array(
+                    'success' => false, 
+                    'message' => $validator->errors());
+             }else{
+                $data = Person::where('id', $request->id)->first();
+                if($data){
+                $data->firstName = $request->firstname;
+                $data->midName = $request->midname;
+                $data->lastName = $request->lastname;
+                $data->civilStatus = $request->civStatus;
+                $data->dob = date("Y-m-d", strtotime($request->bday));
+                $data->height = $request->height;
+                $data->gender = $request->gender;
+                $data->address = $request->address;
+                $data->weight = $request->weight;
+                $data->blood_type = $request->btype;
+                $data->contact_number = $request->contact;
+                $data->email = $request->email;
+                $residentsaved= $data->save();
+            }
+                $check = array(
+                'success' => true, 
+                'message' => 'Resident has been updated successfully.');
+            }
+        echo json_encode($check);
+        }
 }
