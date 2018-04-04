@@ -1,273 +1,3 @@
-@if(App::isLocal())
-  <!-- CoreUI main scripts -->
-	<script src="{{ asset('/assets/js/views/tooltips.js') }}"></script>
-@elseif(Request::server('HTTP_X_FORWARDED_PROTO') == 'https')
-  <!-- CoreUI main scripts -->
-	<script src="{{ asset('/assets/js/views/tooltips.js') }}"></script>
-@else
-  <!-- CoreUI main scripts -->
-	<script src="{{ asset('/assets/js/views/tooltips.js') }}"></script>
-@endif
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.5/validator.min.js"></script>
-
-<script>
-  $(document).ready(function() {
-    $('.breadcrumb').html('<li class="breadcrumb-item active">Household</li>');
-    
-    // Toolbar extra buttons
-    var btnFinish = $('<button></button>').text('Finish')
-                                      .addClass('btn btn-success sw-finish-btn')
-                                      .attr('disabled', true)
-                                      .attr('type', 'button')
-                                      .on('click', function(){
-                                        console.log($('.household-form').serialize());
-                                        $.ajax({
-                                          url: "{{ route('set_household', 'household') }}",
-                                          method: "POST",
-                                          data: $('.household-form').serialize(),
-                                          dataType: 'json',
-                                          success: function(result) {
-                                            console.log(result);
-                                          }
-                                        })
-                                      });
-    var btnCancel = $('<button></button>').text('Cancel')
-                                      .addClass('btn btn-danger sw-reset-btn')
-                                      .on('click', function(){ $('#smartwizard').smartWizard("reset"); });
-    
-    $('#smartwizard').smartWizard({
-      theme: 'circles',
-      transitionEffect:'fade',
-      showStepURLhash: false,
-      autoAdjustHeight: false,
-      toolbarSettings: {
-        toolbarPosition: 'both',
-        toolbarButtonPosition: 'end',
-        toolbarExtraButtons: [btnFinish, btnCancel]
-      }
-    });
-
-    $("#smartwizard").on("showStep", function(e, anchorObject, stepNumber, stepDirection, stepPosition) {
-      if(stepPosition === "final") {
-        $('.sw-finish-btn').removeAttr('disabled');
-      } else {
-        $('.sw-finish-btn').attr('disabled', true);
-      }
-    });
-
-    $("#smartwizard").on("leaveStep", function(e, anchorObject, stepNumber, stepDirection) {
-        var elmForm = $("#form-step-" + stepNumber);
-        // stepDirection === 'forward' :- this condition allows to do the form validation
-        // only on forward navigation, that makes easy navigation on backwards still do the validation when going next
-        if(stepDirection === 'forward' && elmForm){
-            elmForm.validator('validate');
-            elmForm.addClass('was-validated');
-            var elmErr = elmForm.find('.has-error');
-
-            // $('#form-step-0 select').map(function(){
-            //   if(this.value) { return $('#form-step-0 select').not(this); }
-            // }).get()
-
-            if(elmErr && elmErr.length > 0){
-                // Form validation failed
-                return false;
-            }
-        }
-        return true;
-    });
-    
-    var householdDt = $('#household').DataTable({
-      "processing": true,
-      "serverSide": true,
-      "ajax": "{{ route('member_queue', 'member') }}",
-      "columns": [
-        {data: 'last_name' },
-        {data: 'first_name' },
-        {data: 'middle_name' },
-        {data: 'relationship' },
-        {
-          data: 'id',
-          render: function( data, type, row, meta ){
-            return '<a href="'+data+'">Download</a>';
-          }
-        },
-        // {data: 'age' },
-        // {data: 'birth_place' },
-        // {data: 'sex' },
-        // {data: 'civil_status' },
-        // {data: 'educ_attainment' },
-        // {data: 'occupation' },
-      ]
-    });
-
-    $('.add-household-member').submit(function(e) {
-      e.preventDefault();
-
-      $.ajax({
-        method: 'POST',
-        url: "{{ route('household_member', 'add') }}",
-        data: $(this).serialize(),
-        dataType: 'json',
-        success: function(data) {
-          householdDt.ajax.reload();
-
-          $('select[name="existing_member"]').find('option').remove().end();
-          $('select[name="existing_member"]').selectpicker('refresh');
-          $('select[name="existing_member"]').change();
-        }
-      });
-    });
-
-    var typingTimer;                //timer identifier
-    var doneTypingInterval = 500;  //time in ms, 5 second for example
-    var $input = $('#myInput');
-
-    var select_picker = $('#form-step-0 select, select[name="existing_member"]').selectpicker({
-      // live search options
-      liveSearch: true,
-      liveSearchPlaceholder: 'Search here',
-      liveSearchNormalize: false,
-      liveSearchStyle: 'contains',
-    });
-
-    $('select[name="barangay"]').on('change', function(){
-      var selected = $(this).find("option:selected").val();
-
-      if(selected) {
-        $.get('/data/webapi/purok/' + selected, 'json', function(data) {
-          $('select[name="purok"]').prop('disabled', false);
-          $('select[name="purok"]').find('option').remove().end();
-          $('select[name="purok"]').selectpicker('refresh');
-
-          $.each(data.data, function(key, value) {
-            $('select[name="purok"]').append('<option value="'+value.id+'"> Purok '+value.name+'</option>');
-            $('select[name="purok"]').selectpicker('refresh');
-          });
-          
-        });
-      }
-    });
-
-    $('select[name="existing_member"]').on('change', function(){
-      var selected = $(this).find("option:selected").val();
-
-      if(selected) {
-        $.ajax({
-          url: $(this).data('api-url'),
-          data: {id: selected},
-          method: 'GET',
-          dataType: 'json',
-          beforeSend: function() {
-            if(!$('.member_profile').is(':hidden')) {
-              $('.member_profile').slideUp();
-              $('.add-household-member')[0].reset();
-            }
-
-            if($('.info_retrieve').is(':hidden')) {
-              $('.info_retrieve').show();
-            }
-          },
-          success: function(result) {
-            var data = result.data[0];
-            if($('.member_profile').is(':hidden')) {
-              $('form.add-household-member input[name="member_lastname"]').val(data.lastName);
-              $('form.add-household-member input[name="member_firstname"]').val(data.firstName);
-              $('form.add-household-member input[name="member_middlename"]').val(data.midName);
-              $('form.add-household-member input[name="date_of_birth"]').val(data.dob);
-              $('form.add-household-member input[name="place_of_birth"]').val(data.placeOfBirth);
-              $('form.add-household-member input[name="sex"]').val(data.gender);
-              $('form.add-household-member input[name="civil_status"]').val(data.civilStatus);
-              $('form.add-household-member input[name="educ_attainment"]').val(data.highestEducationAttainment);
-              
-              $('.member_profile').slideDown();
-            }
-            
-            if(!$('.info_retrieve').is(':hidden')) {
-              $('.info_retrieve').hide();
-            }
-          },
-          error: function(error) {
-            if(!$('.info_retrieve').is(':hidden')) {
-              $('.info_retrieve').hide();
-            }
-            
-            if(!$('.member_profile').is(':hidden')) {
-              $('.member_profile').slideUp();
-              $('.add-household-member')[0].reset();
-            }
-          }
-        })
-      } else {
-        if(!$('.member_profile').is(':hidden')) {
-          $('.member_profile').slideUp();
-          $('.add-household-member')[0].reset();
-        }
-      }
-    });
-
-    select_picker.selectpicker().not('select[name="purok"], select[name="barangay"]').siblings('div.dropdown-menu.open').find('input').on('keyup keydown input', function(e) {
-      var elem = $(this);
-      
-      // get keycode of current keypress event
-      var code = (e.keyCode || e.which);
-
-      // do nothing if it's an arrow key
-      if(code == 37 || code == 38 || code == 39 || code == 40) {
-          return;
-      }
-      
-      if(e.type === 'keyup') {
-        clearTimeout(typingTimer);
-        typingTimer = setTimeout(function() {
-            doneTyping(elem.val(), elem);
-          }, 
-          doneTypingInterval);
-      } else if(e.type === 'keydown') {        
-        if(!$('.member_profile').is(':hidden')) {
-          $('.member_profile').slideUp();
-        }
-
-        clearTimeout(typingTimer);
-      } else if(e.type === 'input') {
-        elem.parent().siblings('div.dropdown-menu.inner').html('<li class="no-results text-center"> Searching <i class="fa fa-spinner fa-spin"></i></li>');
-      }
-    });
-
-    function doneTyping(value, element) {
-      var sp = element.parent().parent().siblings('select');
-      var url = sp.data('api-url');
-
-      if(!value) {
-        sp.find('option').remove().end();
-        sp.selectpicker('refresh');
-
-        return;
-      }
-
-      $.ajax({
-        url: url,
-        async: true,
-        data: {q: value},
-        dataType: 'json',
-        beforeSend: function() {
-          sp.find('option').remove().end();      
-        },
-        success: function(data) {
-          var option = "";
-          var token = value;
-          $.each(data.data, function(key, value) {     
-            option += '<option value="'+value.id+'" data-tokens="'+token+'">'+value.name+'</option>';
-          });
-
-          sp.html(option);
-
-          sp.selectpicker('refresh');
-        }
-      });
-    }
-  });
-</script>
 <div class="animated fadeIn">
   <div class="row">
     <div class="col-lg-12">
@@ -314,7 +44,8 @@
                                 @endforeach
                               @endif
                               </select>
-                            </div> 
+                            </div>
+                            <div class="help-block with-errors invalid-feedback"><ul class="list-unstyled"><li>Please fill out this field.</li></ul></div>
                           </div>
                         </div>
                       </div>
@@ -324,7 +55,8 @@
                           <div class="controls">
                             <div class="input-group">
                               <select class="selectpicker show-tick form-control" name="purok" title="Purok" disabled></select>
-                            </div> 
+                            </div>
+                            <div class="help-block with-errors invalid-feedback"><ul class="list-unstyled"><li>Please fill out this field.</li></ul></div>
                           </div>
                         </div>
                       </div>
@@ -344,6 +76,7 @@
                             <div class="input-group">
                               <select class="selectpicker show-tick form-control required" name="midwife_assign" size=5 title="Midwife/NDP assigned" data-api-url="/data/webapi/worker"></select>
                             </div> 
+                            <div class="help-block with-errors invalid-feedback"><ul class="list-unstyled"><li>Please fill out this field.</li></ul></div>
                           </div>
                         </div>
                       </div>
@@ -361,8 +94,8 @@
                       </div>
                       <div class="col-sm-12 col-md-6">
                         <div class="form-group">
-                          <label for="date_profiled">Date Profiled <small>(MM/DD/YYYY)</small></label>
-                          <input type="text" class="form-control" name="date_profiled" placeholder="MM/DD/YYYY" data-provide="datepicker" required>
+                          <label for="date_profiled">Date Profiled <small>(YYYY/MM/DD)</small></label>
+                          <input type="text" class="form-control" name="date_profiled" placeholder="YYYY/MM/DD" data-provide="datepicker" data-date-end-date="0d" required>
                           <div class="help-block with-errors invalid-feedback"></div>
                         </div>
                       </div>
@@ -395,7 +128,7 @@
                         <div class="form-group">
                           <label for="emergency_relationship">NHTS: </label>                        
                           <div class="form-check form-check-inline mr-1">
-                            <input class="form-check-input" id="nhts-radio1" value="1" name="nhts_opt" type="radio">
+                            <input class="form-check-input" id="nhts-radio1" value="1" name="nhts_opt" type="radio" checked>
                             <label class="form-check-label" for="nhts-radio1">Yes</label>
                           </div>
                           <div class="form-check form-check-inline mr-1">
@@ -406,7 +139,7 @@
                         <div class="form-group">
                           <label for="emergency_relationship">NON NHTS: </label>
                           <div class="form-check form-check-inline mr-1">
-                            <input class="form-check-input" id="non-nhts-radio1" value="1" name="non_nhts_opt" type="radio">
+                            <input class="form-check-input" id="non-nhts-radio1" value="1" name="non_nhts_opt" type="radio" checked>
                             <label class="form-check-label" for="non-nhts-radio1">Yes</label>
                           </div>
                           <div class="form-check form-check-inline mr-1">
@@ -427,7 +160,7 @@
                         <div class="form-group">
                           <label for="emergency_relationship">IP's: </label>
                           <div class="form-check form-check-inline mr-1">
-                            <input class="form-check-input" id="ip-radio1" value="1" name="ip_opt" type="radio">
+                            <input class="form-check-input" id="ip-radio1" value="1" name="ip_opt" type="radio" checked>
                             <label class="form-check-label" for="ip-radio1">Yes</label>
                           </div>
                           <div class="form-check form-check-inline mr-1">
@@ -541,43 +274,40 @@
             </div>
           </div>
           <div class="member_profile" style="display: none;">
+            <input type="hidden" class="form-control" name="member_id" required>
             <div class="row">
               <div class="form-group col-sm-12 col-md-4">
                 <label for="member_lastname">Last Name</label>
-                <input type="text" class="form-control" name="member_lastname" placeholder="Enter last name">
+                <input type="text" class="form-control" name="member_lastname" placeholder="Enter last name" required>
               </div>
               <div class="form-group col-sm-12 col-md-4">
                 <label for="member_firstname">First Name</label>
-                <input type="text" class="form-control" name="member_firstname" placeholder="Enter first name">
+                <input type="text" class="form-control" name="member_firstname" placeholder="Enter first name" required>
               </div>
               <div class="form-group col-sm-12 col-md-4">
                 <label for="member_middlename">Middle Name</label>
-                <input type="text" class="form-control" name="member_middlename" placeholder="Enter middle name">
+                <input type="text" class="form-control" name="member_middlename" placeholder="Enter middle name" required>
               </div>
             </div>
             <div class="form-group">
               <label for="relationship_head">Relationship to the Head of the Family</label>
-              <input type="text" class="form-control" name="relationship_head" placeholder="Enter relationship">
+              <input type="text" class="form-control" name="relationship_head" placeholder="Enter relationship" required>
             </div>
             <div class="form-group">
-              <label for="date_of_birth">Date of Birth</label>
-              <input type="text" class="form-control" name="date_of_birth" placeholder="Enter birthdate">
-            </div>
-            <div class="form-group">
-              <label for="age">Age</label>
-              <input type="text" class="form-control" name="age" placeholder="Enter age">
+              <label for="date_of_birth">Date of Birth <small>(YYYY/MM/DD)</small></label>
+              <input type="text" class="form-control" name="date_of_birth" data-provide="datepicker" data-date-end-date="0d" placeholder="Enter birthdate" required>
             </div>
             <div class="form-group">
               <label for="place_of_birth">Place of Birth</label>
-              <input type="text" class="form-control" name="place_of_birth" placeholder="Enter place of birth">
+              <input type="text" class="form-control" name="place_of_birth" placeholder="Enter place of birth" required>
             </div>
             <div class="form-group">
               <label for="sex">Sex</label>
-              <input type="text" class="form-control" name="sex" placeholder="Enter gender">
+              <input type="text" class="form-control" name="sex" placeholder="Enter gender" required>
             </div>
             <div class="form-group">
               <label for="civil_status">Civil Status</label>
-              <input type="text" class="form-control" name="civil_status" placeholder="Enter civil status">
+              <input type="text" class="form-control" name="civil_status" placeholder="Enter civil status" required>
             </div>
             <div class="form-group">
               <label for="educ_attainment">Educational Attainment</label>
@@ -594,6 +324,10 @@
             <div class="form-group">
               <label for="expiration_date">Date of Expiration</label>
               <input type="text" class="form-control" name="expiration_date" placeholder="Enter date of expiration">
+            </div>
+            <div class="form-group">
+              <label for="health_status">Health Status</label>
+              <input type="text" class="form-control" name="health_status" placeholder="Enter health status">
             </div>
             <div class="form-group">
               <label for="fp_method">Current User-FP Method</label>
@@ -634,3 +368,293 @@
   </div>	
 </div> 
 <!-- end modals -->
+
+@if(App::isLocal())
+  <!-- CoreUI main scripts -->
+	<script src="{{ asset('/assets/js/views/tooltips.js') }}"></script>
+@elseif(Request::server('HTTP_X_FORWARDED_PROTO') == 'https')
+  <!-- CoreUI main scripts -->
+	<script src="{{ asset('/assets/js/views/tooltips.js') }}"></script>
+@else
+  <!-- CoreUI main scripts -->
+	<script src="{{ asset('/assets/js/views/tooltips.js') }}"></script>
+@endif
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.5/validator.min.js"></script>
+
+<script>
+  $(document).ready(function() {
+    $('.breadcrumb').html('<li class="breadcrumb-item active">Household</li>');
+    $.fn.datepicker.defaults.format = "yyyy/mm/dd";
+    
+    var householdDt = $('#household').DataTable({
+      "processing": true,
+      "serverSide": true,
+      "ajax": "{{ route('member_queue', 'member') }}",
+      "columns": [
+        {data: 'last_name' },
+        {data: 'first_name' },
+        {data: 'middle_name' },
+        {data: 'relationship' },
+        {
+          data: 'id',
+          render: function( data, type, row, meta ){
+            return '<a href="'+data+'">Download</a>';
+          }
+        },
+      ]
+    });
+
+    var select_picker = $('#form-step-0 select, select[name="existing_member"]').selectpicker({
+      // live search options
+      liveSearch: true,
+      liveSearchPlaceholder: 'Search here',
+      liveSearchNormalize: false,
+      liveSearchStyle: 'contains',
+    });
+    
+    // Toolbar extra buttons                                      
+    var btnCancel = $('<button></button>').text('Cancel')
+                                      .addClass('btn btn-danger sw-reset-btn')
+                                      .on('click', function(){ 
+                                        $('#smartwizard').smartWizard("reset"); 
+                                        select_picker.selectpicker('refresh');
+                                        $('form.household-form')[0].reset();
+                                        householdDt.ajax.reload();
+                                      });
+
+    var btnFinish = $('<button></button>').text('Finish')
+                                      .addClass('btn btn-success sw-finish-btn')
+                                      .attr('disabled', true)
+                                      .attr('type', 'button')
+                                      .on('click', function(){
+                                        $.ajax({
+                                          url: "{{ route('set_household', 'household') }}",
+                                          method: "POST",
+                                          data: $('.household-form').serialize(),
+                                          dataType: 'json',
+                                          success: function(result) {
+                                            btnCancel.click();
+                                          }
+                                        })
+                                      });
+    
+    $('#smartwizard').smartWizard({
+      theme: 'circles',
+      transitionEffect:'fade',
+      showStepURLhash: false,
+      autoAdjustHeight: false,
+      toolbarSettings: {
+        toolbarPosition: 'both',
+        toolbarButtonPosition: 'end',
+        toolbarExtraButtons: [btnFinish, btnCancel]
+      }
+    });
+
+    $("#smartwizard").on("showStep", function(e, anchorObject, stepNumber, stepDirection, stepPosition) {
+      if(stepPosition === "final") {
+        $('.sw-finish-btn').removeAttr('disabled');
+      } else {
+        $('.sw-finish-btn').attr('disabled', true);
+      }
+    });
+
+    $("#smartwizard").on("leaveStep", function(e, anchorObject, stepNumber, stepDirection) {
+        var elmForm = $("#form-step-" + stepNumber);
+        // stepDirection === 'forward' :- this condition allows to do the form validation
+        // only on forward navigation, that makes easy navigation on backwards still do the validation when going next
+        if(stepDirection === 'forward' && elmForm){
+            elmForm.validator('validate');
+            elmForm.addClass('was-validated');
+            var elmErr = elmForm.find('.has-error');
+            var exclude = [];
+
+            $('#form-step-0 select').map(function(){
+              if(this.value) { 
+                var selector = "select[name='"+$(this).attr('name')+"']";
+                exclude.push(selector);
+              }
+            }).get()
+
+            $('#form-step-0 select').not(exclude.join(',')).parent().parent().siblings('.with-errors').show();
+            if(!$('#form-step-0 select').not(exclude.join(',')).parent().parent().hasClass('has-error has-danger')) {
+              $('#form-step-0 select').not(exclude.join(',')).parent().parent().toggleClass('has-error has-danger');
+            }
+
+            if(elmErr && elmErr.length > 0){
+                // Form validation failed
+                return false;
+            }
+        }
+        return true;
+    });
+
+    $('.add-household-member').submit(function(e) {
+      e.preventDefault();
+
+      $.ajax({
+        method: 'POST',
+        url: "{{ route('household_member', 'add') }}",
+        data: $(this).serialize(),
+        dataType: 'json',
+        success: function(data) {
+          householdDt.ajax.reload();
+
+          $('select[name="existing_member"]').find('option').remove().end();
+          $('select[name="existing_member"]').selectpicker('refresh');
+          $('select[name="existing_member"]').change();
+        }
+      });
+    });
+
+    var typingTimer;                //timer identifier
+    var doneTypingInterval = 500;  //time in ms, 5 second for example
+    var $input = $('#myInput');
+
+    select_picker.on('change', function(e) {
+      $(this).parent().parent().siblings('.with-errors').hide();
+
+      if($(this).parent().parent().hasClass('has-error')) {
+        $(this).parent().parent().toggleClass('has-error has-danger');
+      }
+    });
+
+    $('select[name="barangay"]').on('change', function(){
+      var selected = $(this).find("option:selected").val();
+
+      if(selected) {
+        $.get('/data/webapi/purok/' + selected, 'json', function(data) {
+          $('select[name="purok"]').prop('disabled', false);
+          $('select[name="purok"]').find('option').remove().end();
+          $('select[name="purok"]').selectpicker('refresh');
+
+          $.each(data.data, function(key, value) {
+            $('select[name="purok"]').append('<option value="'+value.id+'"> Purok '+value.name+'</option>');
+            $('select[name="purok"]').selectpicker('refresh');
+          });
+          
+        });
+      }
+    });
+
+    $('select[name="existing_member"]').on('change', function(){
+      var selected = $(this).find("option:selected").val();
+
+      if(selected) {
+        $.ajax({
+          url: $(this).data('api-url'),
+          data: {id: selected},
+          method: 'GET',
+          dataType: 'json',
+          beforeSend: function() {
+            if(!$('.member_profile').is(':hidden')) {
+              $('.member_profile').slideUp();
+              $('.add-household-member')[0].reset();
+            }
+
+            if($('.info_retrieve').is(':hidden')) {
+              $('.info_retrieve').show();
+            }
+          },
+          success: function(result) {
+            var data = result.data[0];
+            if($('.member_profile').is(':hidden')) {
+              $('form.add-household-member input[name="member_id"]').val(data.id);
+              $('form.add-household-member input[name="member_lastname"]').val(data.lastName);
+              $('form.add-household-member input[name="member_firstname"]').val(data.firstName);
+              $('form.add-household-member input[name="member_middlename"]').val(data.midName);
+              $('form.add-household-member input[name="date_of_birth"]').val(data.dob);
+              $('form.add-household-member input[name="place_of_birth"]').val(data.placeOfBirth);
+              $('form.add-household-member input[name="sex"]').val(data.gender);
+              $('form.add-household-member input[name="civil_status"]').val(data.civilStatus);
+              $('form.add-household-member input[name="educ_attainment"]').val(data.highestEducationAttainment);
+              $('form.add-household-member input[name="occupation"]').val(data.occupationPriorToCBRAP);
+              
+              $('.member_profile').slideDown();
+            }
+            
+            if(!$('.info_retrieve').is(':hidden')) {
+              $('.info_retrieve').hide();
+            }
+          },
+          error: function(error) {
+            if(!$('.info_retrieve').is(':hidden')) {
+              $('.info_retrieve').hide();
+            }
+            
+            if(!$('.member_profile').is(':hidden')) {
+              $('.member_profile').slideUp();
+              $('.add-household-member')[0].reset();
+            }
+          }
+        })
+      } else {
+        if(!$('.member_profile').is(':hidden')) {
+          $('.member_profile').slideUp();
+          $('.add-household-member')[0].reset();
+        }
+      }
+    });
+
+    select_picker.selectpicker().not('select[name="purok"], select[name="barangay"]').siblings('div.dropdown-menu.open').find('input').on('keyup keydown input', function(e) {
+      var elem = $(this);
+      
+      // get keycode of current keypress event
+      var code = (e.keyCode || e.which);
+
+      // do nothing if it's an arrow key
+      if(code == 37 || code == 38 || code == 39 || code == 40) {
+          return;
+      }
+      
+      if(e.type === 'keyup') {
+        clearTimeout(typingTimer);
+        typingTimer = setTimeout(function() {
+            doneTyping(elem.val(), elem);
+          }, 
+          doneTypingInterval);
+      } else if(e.type === 'keydown') {        
+        if(!$('.member_profile').is(':hidden')) {
+          $('.member_profile').slideUp();
+        }
+
+        clearTimeout(typingTimer);
+      } else if(e.type === 'input') {
+        elem.parent().siblings('div.dropdown-menu.inner').html('<li class="no-results text-center"> Searching <i class="fa fa-spinner fa-spin"></i></li>');
+      }
+    });
+
+    function doneTyping(value, element) {
+      var sp = element.parent().parent().siblings('select');
+      var url = sp.data('api-url');
+
+      if(!value) {
+        sp.find('option').remove().end();
+        sp.selectpicker('refresh');
+
+        return;
+      }
+
+      $.ajax({
+        url: url,
+        async: true,
+        data: {q: value},
+        dataType: 'json',
+        beforeSend: function() {
+          sp.find('option').remove().end();      
+        },
+        success: function(data) {
+          var option = "";
+          var token = value;
+          $.each(data.data, function(key, value) {     
+            option += '<option value="'+value.id+'" data-tokens="'+token+'">'+value.name+'</option>';
+          });
+
+          sp.html(option);
+
+          sp.selectpicker('refresh');
+        }
+      });
+    }
+  });
+</script>

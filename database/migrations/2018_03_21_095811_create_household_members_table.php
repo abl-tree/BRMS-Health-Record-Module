@@ -26,23 +26,27 @@ class CreateHouseholdMembersTable extends Migration
                     ->on('households')
                     ->onDelete('cascade');
             $table->string('first_name');
-            $table->string('middle_name');
+            $table->string('middle_name')->nullable();
             $table->string('last_name');
+            $table->string('age');
+            $table->date('birthdate');
+            $table->enum('sex', ['male', 'female']);
+            $table->string('birthplace')->nullable();
             $table->string('relationship')->default('yes');
             $table->enum('family_head', [1, 0])->nullable();
-            $table->string('civil_status');
-            $table->string('educ_attainment');
-            $table->string('occupation');
-            $table->string('philhealth_no');
-            $table->string('philhealth_expiration');
-            $table->string('health_status');
-            $table->string('fp_method');
-            $table->string('pregnant');
-            $table->string('nut_status');
-            $table->string('height');
-            $table->string('weight');
-            $table->string('fic');
-            $table->string('training');
+            $table->string('civil_status')->nullable();
+            $table->string('educ_attainment')->nullable();
+            $table->string('occupation')->nullable();
+            $table->string('philhealth_no')->nullable();
+            $table->string('philhealth_expiration')->nullable();
+            $table->string('health_status')->nullable();
+            $table->string('fp_method')->nullable();
+            $table->string('pregnant')->nullable();
+            $table->string('nut_status')->nullable();
+            $table->string('height')->nullable();
+            $table->string('weight')->nullable();
+            $table->string('fic')->nullable();
+            $table->string('training')->nullable();
         });
     }
 
