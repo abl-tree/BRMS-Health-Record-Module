@@ -3,11 +3,11 @@ $(function(){
 
   $('.breadcrumb').html('<li class="breadcrumb-item active">Dashboard</li>');  
   
-  $.get('/data/webapi/resident', 'json', function(result){
-    var population = result.data.count.population;
-    var male = result.data.count.male;
-    var female = result.data.count.female;
-    var undefinedPop = result.data.count.undefined;
+  $.get('/data/resident', 'json', function(result){
+    var population = result.count.population;
+    var male = result.count.male;
+    var female = result.count.female;
+    var undefinedPop = result.count.undefined;
 
     $('.population-count').text(population);
     $('span.male-population-rate').text((male/population*100).toFixed(2) + '%');
