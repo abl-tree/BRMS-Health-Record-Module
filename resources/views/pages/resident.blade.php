@@ -206,10 +206,10 @@
                       .then((value) => {
                     $("#addModal").trigger('reset');
                           refresh_resident_table();
-                      });    
+                      });
                       }else{
                          swal( "Error!", "Fill Up Every Field!", "warning", "Ok")
-                      }   
+                      }
       },
 
       error: function(err) {
@@ -541,8 +541,8 @@
                                            </div>
 
 
-                                                      
-                    
+
+
                     <div class="card-body">
                       <div class="row">
                         <div class="form-group col-sm-4">
@@ -588,9 +588,9 @@
                         </div>
                       </div>
                     </div>
-                 
-                
-              
+
+
+
                                                               <div class="row">
                                                                 <div class="form-group col-md-6">
                                                                   <label class="col-form-label" for="password">Contact Number</label>
@@ -608,7 +608,7 @@
                                </div>
                               </form>
                          </div>
-                         </div>
+
 
                          <div role="tabpanel" class="tab-pane active" id="mch">
                              <form id="mchForm" novalidate="novalidate" method="post" >
@@ -759,13 +759,12 @@
                          </div>
                          </form>
                        </div>
+                  </div>
+                  </div>
+                  </div>
                     </div>
                 </div>
             </div>
-
-        </div>
-    </div>
-</div>
 
 
 
