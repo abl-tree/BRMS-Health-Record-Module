@@ -166,7 +166,7 @@
                   $('#button_action').val('update');
                   $('#id').val(id);
                   $('#firstname_update').val(data.firstName);
-                  $('a#profile').text(data.firstName+"'s Profile");
+                  $('a#profile1').text(data.firstName+"'s Profile");
                   $('#midname_update').val(data.midName);
                   $('#lastname_update').val(data.lastName);
                   $('#bday_update').val(data.dob);
