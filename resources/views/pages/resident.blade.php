@@ -170,7 +170,10 @@
                   $('#midname_update').val(data.midName);
                   $('#lastname_update').val(data.lastName);
                   $('#bday_update').val(data.dob);
-                  $('#address_update').val(data.address);
+                  $('#purok_update').val(data.purok);
+                  $('#barangay_update').val(data.barangay);
+                  $('#city_update').val(data.city);
+                  $('#street_update').val(data.street);
                   $("#civStatus_update").val(data.civilStatus);
                   $("#gender_update").val(data.gender);
                   $("#height_update").val(data.height);
@@ -184,35 +187,36 @@
           })
       });
 
-                    $('#EditForm').submit(function(e) {
+    $('#EditForm').submit(function(e) {
 
-                         e.preventDefault();
-                         $.ajax({
-                              headers: {
-                                   'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                              },
-                              url: "/post_update",
-                              method: 'post',
-                              data: $(this).serialize(),
-                              dataType: 'json',
-                              success: function(data){
-                                   if(data.success==true){
-                                        $('#addModal').modal('hide');
-                                        swal( "Success!", "You updated a resident!", "success", "Ok")
-                                        .then((value) => {
-                                             $("#addModal").trigger('reset');
-                                             refresh_resident_table();
-                                        });
-                                  }else{
-                                       swal( "Error!", "Fill Up Every Field!", "warning", "Ok")
-                                 }
-                           },
+    e.preventDefault();
+    $.ajax({
+      headers: {
+      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      },
+      url: "/post_update",
+      method: 'post',
+      data: $(this).serialize(),
+      dataType: 'json',
+      success: function(data){
+        if(data.success==true){
+          $('#addModal').modal('hide');
+          refresh_resident_table();
+           swal( "Success!", "You updated a resident!", "success", "Ok")
+                      .then((value) => {
+                    $("#addModal").trigger('reset');
+                          refresh_resident_table();
+                      });    
+                      }else{
+                         swal( "Error!", "Fill Up Every Field!", "warning", "Ok")
+                      }   
+      },
 
-                           error: function(err) {
-                                swal( "Error!", "Fill Up Very Field!", "warning", "Ok");
-                           }
-                      });
-                 });
+      error: function(err) {
+             swal( "Error!", "Fill Up Very Field!", "warning", "Ok");
+      }
+    });
+  });
 
 </script>
 <div class="animated fadeIn">
@@ -534,11 +538,60 @@
                                                   </select>
                                              </div>
                                              </div>
-                                                      <div class="form-group">
-                                                          <label class="col-form-label" for="email">Full Address</label>
-                                                            <input type="text" class="form-control" id="address_update" value="" name="address" placeholder="Address" required="required">
-                                                      </div>
-                                                         <div class="row">
+                                           </div>
+
+
+                                                      
+                    
+                    <div class="card-body">
+                      <div class="row">
+                        <div class="form-group col-sm-4">
+                          <label for="purok">Purok</label>
+                          <select id="purok_update" name="purok" class="form-control">
+                            <option value="Purok 1">Purok 1</option>
+                            <option value="Purok 2">Purok 2</option>
+                            <option value="Purok 3">Purok 3</option>
+                            <option value="Purok 4">Purok 4</option>
+                            <option value="Purok 5">Purok 5</option>
+                            <option value="Purok 6">Purok 6</option>
+                            <option value="Purok 7">Purok 7</option>
+                            <option value="Purok 8">Purok 8</option>
+                            <option value="Purok 9">Purok 9</option>
+                            <option value="Purok 10">Purok 10</option>
+                            <option value="Purok 11">Purok 11</option>
+                            <option value="Purok 12">Purok 12</option>
+                            <option value="Purok 13">Purok 13</option>
+                            <option value="Purok 14">Purok 14</option>
+                            <option value="Purok 15">Purok 15</option>
+                            <option value="Purok 16">Purok 16</option>
+                            <option value="Purok 17">Purok 17</option>
+                            <option value="Purok 18">Purok 18</option>
+                            <option value="Purok 19">Purok 19</option>
+                            <option value="Purok 20">Purok 20</option>
+                            <option value="Purok 21">Purok 21</option>
+                            <option value="Purok 22">Purok 22</option>
+                          </select>
+                        </div>
+                        <div class="form-group col-sm-8">
+                          <label for="street">Street</label>
+                          <input type="text" class="form-control" id="street_update" name="street" placeholder="Enter Street">
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="form-group col-sm-4">
+                          <label for="barangay">Barangay</label>
+                          <input type="text" class="form-control" id="barangay_update" name="barangay" placeholder="Enter barangay">
+                        </div>
+                        <div class="form-group col-sm-8">
+                          <label for="city">City</label>
+                          <input type="text" class="form-control" id="city_update" name="city" placeholder="Enter city">
+                        </div>
+                      </div>
+                    </div>
+                 
+                
+              
+                                                              <div class="row">
                                                                 <div class="form-group col-md-6">
                                                                   <label class="col-form-label" for="password">Contact Number</label>
                                                                     <input type="text" class="form-control" value="" id="contact_update" name="contact" placeholder="Contact Number" required>
