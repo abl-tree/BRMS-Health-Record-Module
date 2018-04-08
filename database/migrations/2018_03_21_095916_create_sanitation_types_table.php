@@ -13,10 +13,10 @@ class CreateSanitationTypesTable extends Migration
      */
     public function up()
     {
-        Schema::create('sanitation_types', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('description');
-        });
+        // Schema::create('sanitation_types', function (Blueprint $table) {
+        //     $table->increments('id');
+        //     $table->string('description');
+        // });
     }
 
     /**
@@ -26,6 +26,6 @@ class CreateSanitationTypesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('sanitation_types');
+        // Schema::dropIfExists('sanitation_types');
     }
 }

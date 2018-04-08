@@ -12,16 +12,16 @@ class CreateCountryTable extends Migration
      */
     public function up()
     {
-        Schema::create('countries', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('name');
-            $table->string('iso');
-            $table->string('iso3')->nullable();
-            $table->integer('numcode')->nullable();
-            $table->integer('phonecode');
-            $table->integer('status');
-            $table->timestamps();
-        });
+        // Schema::create('countries', function (Blueprint $table) {
+        //     $table->increments('id');
+        //     $table->string('name');
+        //     $table->string('iso');
+        //     $table->string('iso3')->nullable();
+        //     $table->integer('numcode')->nullable();
+        //     $table->integer('phonecode');
+        //     $table->integer('status');
+        //     $table->timestamps();
+        // });
     }
 
     /**
@@ -31,6 +31,6 @@ class CreateCountryTable extends Migration
      */
     public function down()
     {
-        Schema::drop('countries');
+        // Schema::drop('countries');
     }
 }

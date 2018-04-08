@@ -13,10 +13,10 @@ class AddTypeToAccount extends Migration
      */
     public function up()
     {
-        if(Schema::hasTable('account'))
-        Schema::table('account', function($table) {
-            $table->rememberToken();
-        });
+        // if(Schema::hasTable('account'))
+        // Schema::table('account', function($table) {
+        //     $table->rememberToken();
+        // });
     }
 
     /**
@@ -26,9 +26,9 @@ class AddTypeToAccount extends Migration
      */
     public function down()
     {
-        Schema::table('account', function($table) {
-            $table->dropColumn('remember_token');
-        });
+        // Schema::table('account', function($table) {
+        //     $table->dropColumn('remember_token');
+        // });
 
     }
 }

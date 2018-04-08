@@ -165,6 +165,8 @@
               success:function(data){
                   $('#button_action').val('update');
                   $('#id').val(id);
+                  $('#id_mch').val(id);
+                  $('#id_pp').val(id);
                   $('#firstname_update').val(data.firstName);
                   $('a#profile1').text(data.firstName+"'s Profile");
                   $('#midname_update').val(data.midName);
@@ -217,6 +219,85 @@
       }
     });
   });
+
+   $('#mchForm').submit(function(e){
+                         e.preventDefault();
+                         var val = $('#id_mch').val();
+          	              $.ajaxSetup({
+                                  headers: {
+                                      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                                 }
+                            });
+                            console.log(val);
+              $.ajax({
+                    type: "POST",
+                    url: "/add_mch",
+                    data: $(this).serialize(),
+                    success: function(data){
+                      $('#age_mch').val('');
+                      $('#g_mch').val('');
+                      $('#last_name').val('');
+                      $('#p_mch').val('');
+                      $('#lmp_mch').val('');
+                      $('#edc_mch').val('');
+                      $('#rcode_mch').val('');
+                      $('#city').val('');
+                      $('#level_mch').val('');
+                      $('#range_mch').val('');
+                      $('#remarks_mch').val('');
+                      swal( "Success!", "You added a resident!", "success", "Ok")
+                      .then((value) => {
+                    $("#mchForm").trigger('reset');
+                          refresh_resident_table();
+                      });
+
+                    },
+                    error: function(e) {
+
+                    swal( "Oh no!", "Something went wrong!", "warning", "Ok");
+                    }
+              });
+            });
+
+    $('#ppForm').submit(function(e){
+                         e.preventDefault();
+                         var val = $('#id_pp').val();
+          	              $.ajaxSetup({
+                                  headers: {
+                                      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                                 }
+                            });
+                            console.log(val);
+              $.ajax({
+                    type: "POST",
+                    url: "/add_pp",
+                    data: $(this).serialize(),
+                    success: function(data){
+                      $('#age_pp').val('');
+                      $('#delivery').val('');
+                      $('#POdelivery').val('');
+                      $('#attendee').val('');
+                      $('#gender_pp').val('');
+                      $('#fdg').val('');
+                      $('#weight_pp').val('');
+                      $('#vita').val('');
+                      $('#date').val('');
+                      $('#f_pp').val('');
+                      
+                      swal( "Success!", "You added a resident!", "success", "Ok")
+                      .then((value) => {
+                    $("#ppForm").trigger('reset');
+                          refresh_resident_table();
+                      });
+
+                    },
+                    error: function(e) {
+
+                    swal( "Oh no!", "Something went wrong!", "warning", "Ok");
+                    }
+              });
+            });
+
 
 </script>
 <div class="animated fadeIn">
@@ -612,21 +693,21 @@
                          <div role="tabpanel" class="tab-pane active" id="mch">
                              <form id="mchForm" novalidate="novalidate" method="post" >
                                  {{ csrf_field() }}
-                              <input type="hidden" name="id" id="id" value="">
+                              <input type="hidden" name="id_mch" id="id_mch" value="">
                               <input type="hidden" name="button_action" id="button_action" value="">
 
                                    <div class="row">
                                         <div class="form-group col-md-4">
                                              <label class="col-form-label" for="firstname">Age</label>
-                                             <input type="number" class="form-control" id="age" value="" name="age" placeholder="Age" required>
+                                             <input type="number" class="form-control" id="age_mch" value="" name="age" placeholder="Age" required>
                                         </div>
                                         <div class="form-group col-md-4">
                                              <label class="col-form-label" for="firstname">G</label>
-                                             <input type="text" class="form-control" id="g" value="" name="g" placeholder="G" required>
+                                             <input type="text" class="form-control" id="g_mch" value="" name="g" placeholder="G" required>
                                         </div>
                                         <div class="form-group col-md-4">
                                              <label class="col-form-label" for="firstname">P</label>
-                                             <input type="text" class="form-control" id="p" value="" name="p" placeholder="P" required>
+                                             <input type="text" class="form-control" id="p_mch" value="" name="p" placeholder="P" required>
                                         </div>
 
                                   </div>
@@ -653,26 +734,26 @@
                                    </div>
                              <div class="form-group">
                                       <label class="col-form-label" for="email">R(Code #)</label>
-                                      <input type="text" class="form-control" id="rcode" value="" name="rcode" placeholder="R Code Number" required="required">
+                                      <input type="text" class="form-control" id="rcode_mch" value="" name="rcode" placeholder="R Code Number" required="required">
                               </div>
                                         <div class="row">
                                              <div class="form-group  col-md-6">
-                                               <select class="form-control" name="btype" id="nrisk">
+                                               <select class="form-control" name="level" id="level_mch">
                                                   <option value="Normal">Normal</option>
                                                   <option value="Risk">Risk</option>
                                                 </select>
                                              </div>
                                              <div class="form-group col-md-6">
-                                                  <select class="form-control" name="btype" id="range">
-                                                     <option value="1">1-3</option>
-                                                     <option value="4">4-6</option>
-                                                     <option value="7">7-9</option>
+                                                  <select class="form-control" name="range" id="range_mch">
+                                                     <option value="1-3">1-3</option>
+                                                     <option value="4-6">4-6</option>
+                                                     <option value="7-9">7-9</option>
                                                    </select>
                                               </div>
                                         </div>
                               <div class="form-group">
                                         <label class="col-form-label" for="remarks">Remarks</label>
-                                        <textarea class="form-control" id="remarks" value="" name="remarks" placeholder="Remarks" required="required"></textarea>
+                                        <textarea class="form-control" id="remarks_mch" value="" name="remarks" placeholder="Remarks" required="required"></textarea>
                               </div>
                           <div class="form-group pull-right">
                                <button type="submit" class="btn btn-primary">Save Changes</button>
@@ -684,17 +765,17 @@
                         <div role="tabpanel" class="tab-pane active" id="ppdiv">
                             <form id="ppForm" novalidate="novalidate" method="post" >
                                {{ csrf_field() }}
-                             <input type="hidden" name="id" id="id" value="">
+                             <input type="hidden" name="id_pp" id="id_pp" value="">
                              <input type="hidden" name="button_action" id="button_action" value="">
                                     <div class="row">
                                          <div class="form-group col-md-6">
                                              <label class="col-form-label" for="firstname">Age</label>
-                                             <input type="number" class="form-control" id="age" value="" name="age" placeholder="Age" required>
+                                             <input type="number" class="form-control" id="age_pp" value="" name="age" placeholder="Age" required>
                                         </div>
                                          <div class="form-group col-md-6">
                                          <label class="col-form-label" for="bdate">Date of Delivery</label>
                                          <div class="input-group date" >
-                                            <input type="text" id="delivery" name="delivery" placeholder="YYY-MM-DD"   class="form-control">
+                                            <input type="text" id="delivery" name="DOdelivery" placeholder="YYY-MM-DD"   class="form-control">
                                             <div class="input-group-addon">
                                               <span class="glyphicon glyphicon-th"></span>
                                             </div>
@@ -704,7 +785,7 @@
                                          </div>
                             <div class="form-group">
                                      <label class="col-form-label" for="email">Place of Delivery</label>
-                                     <input type="text" class="form-control" id="delivery" value="" name="delivery" placeholder="Place of Delivery" required="required">
+                                     <input type="text" class="form-control" id="POdelivery" value="" name="POdelivery" placeholder="Place of Delivery" required="required">
                              </div>
                              <div class="form-group">
                                      <label class="col-form-label" for="email">Attended By</label>
@@ -713,7 +794,7 @@
                                        <div class="row">
                                             <div class="form-group col col-md-4">
                                                <label class="col-form-label" for="email">Gender</label>
-                                              <select class="form-control" name="gender" id="gender">
+                                              <select class="form-control" name="gender" id="gender_pp">
                                                  <option value="M">Male</option>
                                                  <option value="F">Female</option>
                                               </select>
@@ -724,7 +805,7 @@
                                             </div>
                                             <div class="form-group col col-md-4">
                                                     <label class="col-form-label" for="email">Weight</label>
-                                                    <input type="number" class="form-control" id="weightpp" value="" name="weightpp" placeholder="Weight" required="required">
+                                                    <input type="number" class="form-control" id="weight_pp" value="" name="weight" placeholder="Weight" required="required">
                                             </div>
                                        </div>
                                        <div class="row">
@@ -740,7 +821,7 @@
                                          <div class="form-group col-md-6">
                                          <label class="col-form-label" for="bdate">Date of PP</label>
                                          <div class="input-group date" >
-                                            <input type="text" id="datepp" name="datepp" placeholder="YYY-MM-DD"    class="form-control">
+                                            <input type="text" id="datepp" name="date" placeholder="YYY-MM-DD"    class="form-control">
                                             <div class="input-group-addon">
                                               <span class="glyphicon glyphicon-th"></span>
                                             </div>
@@ -750,7 +831,7 @@
 
                                     <div class="form-group">
                                         <label class="col-form-label" for="remarks">F</label>
-                                        <input type="text" class="form-control" id="f" value="" name="f" placeholder="F" required="required">
+                                        <input type="text" class="form-control" id="f_pp" value="" name="f" placeholder="F" required="required">
                                    </div>
                          <div class="form-group pull-right">
                               <button type="submit" class="btn btn-primary">Save Changes</button>

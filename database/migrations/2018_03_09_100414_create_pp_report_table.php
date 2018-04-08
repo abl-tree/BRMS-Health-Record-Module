@@ -15,6 +15,21 @@ class CreatePpReportTable extends Migration
     {
         Schema::create('pp_report', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('pp_id')->unsigned();
+            $table->foreign('pp_id')
+                    ->references('id')
+                    ->on('persons')
+                    ->onDelete('cascade');
+            $table->integer('age');
+            $table->string('PlaceofDelivery',100);
+            $table->string('attended_by',100);
+            $table->string('gender',100);
+            $table->string('fdg',100);
+            $table->decimal('weight', 8,2);
+            $table->date('date_of_pp');
+            $table->date('vitamina');
+            $table->date('dod');
+            $table->string('F',100);
             $table->timestamps();
         });
     }
