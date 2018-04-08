@@ -538,12 +538,12 @@
                                                   </select>
                                              </div>
                                              </div>
-                                           </div>
 
 
 
 
-                    <div class="card-body">
+
+
                       <div class="row">
                         <div class="form-group col-sm-4">
                           <label for="purok">Purok</label>
@@ -587,11 +587,9 @@
                           <input type="text" class="form-control" id="city_update" name="city" placeholder="Enter city">
                         </div>
                       </div>
-                    </div>
 
 
-
-                                                              <div class="row">
+                                                       <div class="row">
                                                                 <div class="form-group col-md-6">
                                                                   <label class="col-form-label" for="password">Contact Number</label>
                                                                     <input type="text" class="form-control" value="" id="contact_update" name="contact" placeholder="Contact Number" required>
