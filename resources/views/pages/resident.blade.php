@@ -1,64 +1,124 @@
 <script>
-  $('.breadcrumb').html('<li class="breadcrumb-item active">Resident</li>');
-$("#EditForm").validate({
-  rules: {
-    email: {
-      required: true,
-      email: true
-    }
-  }
-});
-
-$('#bday').datetimepicker({
-    format: 'YYYY-MM-DD'
-});
-
-$('#birthdate').datetimepicker({
-    format: 'YYYY-MM-DD'
-});
+          $('.breadcrumb').html('<li class="breadcrumb-item active">Resident</li>');
+          $("#EditForm").validate({
+               rules: {
+                    email: {
+                         required: true,
+                         email: true
+                    }
+               }
+          });
 
 
-  var resident = $('#residents-dt').DataTable({
-    "processing": true,
-    "serverSide": true,
-    "ajax": "/resident_profile",
-    "columns": [
-      {data: 'id'},
-
-      {data: 'first_name' },
-      {data: 'middle_name' },
-      {data: 'last_name' },
-      {data: 'gender'},
-      {data:'purok',
-   render: function(data, type, full, meta){
-      return full.purok +" "+ full.street+" "+full.barangay+", " + full.city;
-   }
- },
-      {
-        data:'id',
-        render: function (data, type, full, meta)
-        {
-          return '<button type="button" id="'+data+'" class="btn btn-outline-info update_person"><i class="icon-settings"></i>&nbsp; Add Info</button>';
-        }
-      },
-    ]
-  });
-
-
-  function refresh_resident_table()
+          if($( '#profile1' ).hasClass( "nav-link active" ))
           {
-              resident.ajax.reload(); //reload datatable ajax
+               //alert('maoni')
+               $("#mch").hide();
+               $("#ppdiv").hide();
+          }
+          if($( '#emsiech' ).hasClass( "nav-link active" ))
+          {
+               //alert('maoni')
+               $("#mch").show();
+          }
+          if($( '#pp' ).hasClass( "nav-link active" ))
+          {
+               //alert('maoni')
+               $("ppdiv").show();
           }
 
 
-
-          $('#AddForm').submit(function(e){
-              e.preventDefault();
-          	$.ajaxSetup({
-              headers: {
-                  'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-              }
+          $('#bday_update').datetimepicker({
+               format: 'YYYY-MM-DD'
           });
+
+          $('#delivery').datetimepicker({
+               format: 'YYYY-MM-DD'
+          });
+
+          $('#edc').datetimepicker({
+               format: 'YYYY-MM-DD'
+          });
+
+          $('#birthdate').datetimepicker({
+               format: 'YYYY-MM-DD'
+          });
+
+          $('#lmp').datetimepicker({
+               format: 'YYYY-MM-DD'
+          });
+          $('#vita').datetimepicker({
+               format: 'YYYY-MM-DD'
+          });
+          $('#datepp').datetimepicker({
+               format: 'YYYY-MM-DD'
+          });
+
+          var resident = $('#residents-dt').DataTable({
+               "processing": true,
+               "serverSide": true,
+               "ajax": "/resident_profile",
+               "columns": [
+                    {data: 'id'},
+
+                    {data: 'first_name' },
+                    {data: 'middle_name' },
+                    {data: 'last_name' },
+                    {data: 'gender'},
+                    {data:'purok',
+                    render: function(data, type, full, meta){
+                         return full.purok +" "+ full.street+" "+full.barangay+", " + full.city;
+                    }
+               },
+               {
+                    data:'id',
+                    render: function (data, type, full, meta)
+                    {
+                         return '<button type="button" id="'+data+'" class="btn btn-outline-info update_person"><i class="icon-settings"></i>&nbsp; Add Info</button>';
+                    }
+               },
+          ]
+     });
+     function unhide()
+               {
+                    //alert('mao ni');
+                    $("#mch").show();
+                    $("#walkin").hide();
+                    $("#ppdiv").hide();
+               }
+     function unhide1()
+               {
+                    $("#walkin").show();
+               //     alert('mao ni');
+                    $("#mch").hide();
+                    $("#ppdiv").hide();
+               }
+     function unhide2()
+              {
+                    //alert('mao ni');
+
+                    $("#ppdiv").show();
+                    $("#mch").hide();
+                   $("#walkin").hide();
+                   $('#walkin').addClass('tab-pane').removeClass('tab-pane active');
+               }
+
+
+
+          function refresh_resident_table()
+                    {
+                         resident.ajax.reload(); //reload datatable ajax
+                    }
+
+
+
+                    $('#AddForm').submit(function(e){
+                         e.preventDefault();
+          	              $.ajaxSetup({
+                                  headers: {
+                                      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                                 }
+                            });
               $.ajax({
                     type: "POST",
                     url: "/add_resident",
@@ -94,7 +154,7 @@ $('#birthdate').datetimepicker({
                     swal( "Oh no!", "Something went wrong!", "warning", "Ok");
                     }
               });
-            });               
+            });
       $(document).on('click', '.update_person', function(){
           var id = $(this).attr("id");
           $.ajax({
@@ -124,35 +184,35 @@ $('#birthdate').datetimepicker({
           })
       });
 
-    $('#EditForm').submit(function(e) {
+                    $('#EditForm').submit(function(e) {
 
-    e.preventDefault();
-    $.ajax({
-      headers: {
-      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-      },
-      url: "/post_update",
-      method: 'post',
-      data: $(this).serialize(),
-      dataType: 'json',
-      success: function(data){
-        if(data.success==true){
-          $('#addModal').modal('hide');
-           swal( "Success!", "You updated a resident!", "success", "Ok")
-                      .then((value) => {
-                    $("#addModal").trigger('reset');
-                          refresh_resident_table();
-                      });    
-                      }else{
-                         swal( "Error!", "Fill Up Every Field!", "warning", "Ok")
-                      }   
-      },
+                         e.preventDefault();
+                         $.ajax({
+                              headers: {
+                                   'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                              },
+                              url: "/post_update",
+                              method: 'post',
+                              data: $(this).serialize(),
+                              dataType: 'json',
+                              success: function(data){
+                                   if(data.success==true){
+                                        $('#addModal').modal('hide');
+                                        swal( "Success!", "You updated a resident!", "success", "Ok")
+                                        .then((value) => {
+                                             $("#addModal").trigger('reset');
+                                             refresh_resident_table();
+                                        });
+                                  }else{
+                                       swal( "Error!", "Fill Up Every Field!", "warning", "Ok")
+                                 }
+                           },
 
-      error: function(err) {
-             swal( "Error!", "Fill Up Very Field!", "warning", "Ok");
-      }
-    });
-  });
+                           error: function(err) {
+                                swal( "Error!", "Fill Up Very Field!", "warning", "Ok");
+                           }
+                      });
+                 });
 
 </script>
 <div class="animated fadeIn">
@@ -166,7 +226,7 @@ $('#birthdate').datetimepicker({
         <div class="card-body">
           <ul class="nav nav-tabs" role="tablist">
             <li class="nav-item">
-              <a class="nav-link active" data-toggle="tab" href="#list" role="tab" aria-controls="list">List of Residents</a>
+              <a class="nav-link active"  data-toggle="tab" href="#list" role="tab" aria-controls="list">List of Residents</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" data-toggle="tab" href="#profile" role="tab" aria-controls="profile">Add Resident</a>
@@ -373,17 +433,23 @@ $('#birthdate').datetimepicker({
                     <!-- Nav tabs -->
                     <ul class="nav nav-tabs" role="tablist">
                       <li class="nav-item">
-                        <a class="nav-link active" id="profile" data-toggle="tab" href="#walkIn" role="tab" aria-controls="walkIn">Walk-In</a>
+                        <a class="nav-link active" id="profile1" data-toggle="tab" onclick="return unhide1();" href="#walkIn" role="tab" aria-controls="walkIn">Walk-In</a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link" data-toggle="tab" href="#mch" role="tab" aria-controls="mch">MCH</a>
+                        <a class="nav-link" id="emsiech" data-toggle="tab" onclick="return unhide();" href="#mch" role="tab" aria-controls="mch">MCH</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" id="pp" data-toggle="tab" onclick="return unhide2();" href="#pp" role="tab" aria-controls="pp">PP</a>
                       </li>
                     </ul>
 
 
                     <!-- Tab panes -->
-                    <div class="tab-content">
+
+                    <div class="tab-content" >
+                         <div id="walkin">
                         <div role="tabpanel" class="tab-pane active" id="walkIn">
+
                           <form id="EditForm" novalidate="novalidate" method="post" enctype="multipart/form-data" >
                           {{ csrf_field() }}
                             <input type="hidden" name="id" id="id" value="">
@@ -456,27 +522,23 @@ $('#birthdate').datetimepicker({
                                              </div>
                                              <div class="form-group  col-md-4">
                                                  <label class="col-form-label" for="midname">Blood Type</label>
-                                               <select class="form-control" name="btype" id="btype_update">
-                                                  <option value="O-">O-</option>
-                                                  <option value="O+">O+</option>
-                                                  <option value="A-">A-</option>
-                                                  <option value="A+">A+</option>
-                                                  <option value="B-">B-</option>
-                                                  <option value="B+">B+</option>
-                                                  <option value="AB-">AB-</option>
-                                                  <option value="AB+">AB+</option>
-
-
-                                        </select>
+                                                  <select class="form-control" name="btype" id="btype_update">
+                                                       <option value="O-">O-</option>
+                                                       <option value="O+">O+</option>
+                                                       <option value="A-">A-</option>
+                                                       <option value="A+">A+</option>
+                                                       <option value="B-">B-</option>
+                                                       <option value="B+">B+</option>
+                                                       <option value="AB-">AB-</option>
+                                                       <option value="AB+">AB+</option>
+                                                  </select>
                                              </div>
-                                           </div>
-
-
+                                             </div>
                                                       <div class="form-group">
                                                           <label class="col-form-label" for="email">Full Address</label>
                                                             <input type="text" class="form-control" id="address_update" value="" name="address" placeholder="Address" required="required">
                                                       </div>
-                                                              <div class="row">
+                                                         <div class="row">
                                                                 <div class="form-group col-md-6">
                                                                   <label class="col-form-label" for="password">Contact Number</label>
                                                                     <input type="text" class="form-control" value="" id="contact_update" name="contact" placeholder="Contact Number" required>
@@ -487,13 +549,163 @@ $('#birthdate').datetimepicker({
                                                                       </div>
                                                               </div>
 
+                               <div class="form-group pull-right">
+                                    <button type="submit" class="btn btn-primary" name="signup" value="Sign up">Save Changes</button>
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                               </div>
+                              </form>
+                         </div>
+                         </div>
+
+                         <div role="tabpanel" class="tab-pane active" id="mch">
+                             <form id="mchForm" novalidate="novalidate" method="post" >
+                                 {{ csrf_field() }}
+                              <input type="hidden" name="id" id="id" value="">
+                              <input type="hidden" name="button_action" id="button_action" value="">
+
+                                   <div class="row">
+                                        <div class="form-group col-md-4">
+                                             <label class="col-form-label" for="firstname">Age</label>
+                                             <input type="number" class="form-control" id="age" value="" name="age" placeholder="Age" required>
+                                        </div>
+                                        <div class="form-group col-md-4">
+                                             <label class="col-form-label" for="firstname">G</label>
+                                             <input type="text" class="form-control" id="g" value="" name="g" placeholder="G" required>
+                                        </div>
+                                        <div class="form-group col-md-4">
+                                             <label class="col-form-label" for="firstname">P</label>
+                                             <input type="text" class="form-control" id="p" value="" name="p" placeholder="P" required>
+                                        </div>
+
+                                  </div>
+
+                                     <div class="row">
+                                          <div class="form-group col-md-4">
+                                           <label class="col-form-label" for="bdate">LMP</label>
+                                           <div class="input-group date" >
+                                             <input type="text" id="lmp" name="lmp" placeholder="YYY-MM-DD"   class="form-control">
+                                             <div class="input-group-addon">
+                                               <span class="glyphicon glyphicon-th"></span>
+                                             </div>
+                                           </div>
+                                         </div>
+                                         <div class="form-group col-md-8">
+                                         <label class="col-form-label" for="bdate">EDC</label>
+                                         <div class="input-group date" >
+                                           <input type="text" id="edc" name="edc" placeholder="YYY-MM-DD"    class="form-control">
+                                           <div class="input-group-addon">
+                                             <span class="glyphicon glyphicon-th"></span>
+                                           </div>
+                                         </div>
+                                      </div>
+                                   </div>
+                             <div class="form-group">
+                                      <label class="col-form-label" for="email">R(Code #)</label>
+                                      <input type="text" class="form-control" id="rcode" value="" name="rcode" placeholder="R Code Number" required="required">
+                              </div>
+                                        <div class="row">
+                                             <div class="form-group  col-md-6">
+                                               <select class="form-control" name="btype" id="nrisk">
+                                                  <option value="Normal">Normal</option>
+                                                  <option value="Risk">Risk</option>
+                                                </select>
+                                             </div>
+                                             <div class="form-group col-md-6">
+                                                  <select class="form-control" name="btype" id="range">
+                                                     <option value="1">1-3</option>
+                                                     <option value="4">4-6</option>
+                                                     <option value="7">7-9</option>
+                                                   </select>
+                                              </div>
+                                        </div>
+                              <div class="form-group">
+                                        <label class="col-form-label" for="remarks">Remarks</label>
+                                        <textarea class="form-control" id="remarks" value="" name="remarks" placeholder="Remarks" required="required"></textarea>
+                              </div>
                           <div class="form-group pull-right">
-                          <button type="submit" class="btn btn-primary" name="signup" value="Sign up">Save Changes</button>
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                               <button type="submit" class="btn btn-primary">Save Changes</button>
+                               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                           </div>
                           </form>
                         </div>
-                        <div role="tabpanel" class="tab-pane" id="mch">janrey pogi janrey pogi janrey pogi</div>
+
+                        <div role="tabpanel" class="tab-pane active" id="ppdiv">
+                            <form id="ppForm" novalidate="novalidate" method="post" >
+                               {{ csrf_field() }}
+                             <input type="hidden" name="id" id="id" value="">
+                             <input type="hidden" name="button_action" id="button_action" value="">
+                                    <div class="row">
+                                         <div class="form-group col-md-6">
+                                             <label class="col-form-label" for="firstname">Age</label>
+                                             <input type="number" class="form-control" id="age" value="" name="age" placeholder="Age" required>
+                                        </div>
+                                         <div class="form-group col-md-6">
+                                         <label class="col-form-label" for="bdate">Date of Delivery</label>
+                                         <div class="input-group date" >
+                                            <input type="text" id="delivery" name="delivery" placeholder="YYY-MM-DD"   class="form-control">
+                                            <div class="input-group-addon">
+                                              <span class="glyphicon glyphicon-th"></span>
+                                            </div>
+                                         </div>
+                                       </div>
+
+                                         </div>
+                            <div class="form-group">
+                                     <label class="col-form-label" for="email">Place of Delivery</label>
+                                     <input type="text" class="form-control" id="delivery" value="" name="delivery" placeholder="Place of Delivery" required="required">
+                             </div>
+                             <div class="form-group">
+                                     <label class="col-form-label" for="email">Attended By</label>
+                                     <input type="text" class="form-control" id="attendee" value="" name="attendee" placeholder="Attended By" required="required">
+                             </div>
+                                       <div class="row">
+                                            <div class="form-group col col-md-4">
+                                               <label class="col-form-label" for="email">Gender</label>
+                                              <select class="form-control" name="gender" id="gender">
+                                                 <option value="M">Male</option>
+                                                 <option value="F">Female</option>
+                                              </select>
+                                            </div>
+                                            <div class="form-group col col-md-4">
+                                                    <label class="col-form-label" for="email">FDG</label>
+                                                    <input type="text" class="form-control" id="fdg" value="" name="fdg" placeholder="FDG" required="required">
+                                            </div>
+                                            <div class="form-group col col-md-4">
+                                                    <label class="col-form-label" for="email">Weight</label>
+                                                    <input type="number" class="form-control" id="weightpp" value="" name="weightpp" placeholder="Weight" required="required">
+                                            </div>
+                                       </div>
+                                       <div class="row">
+                                           <div class="form-group col-md-6">
+                                            <label class="col-form-label" for="bdate">Vitamin A</label>
+                                            <div class="input-group date" >
+                                              <input type="text" id="vita" name="vita" placeholder="YYY-MM-DD"   class="form-control">
+                                              <div class="input-group-addon">
+                                                <span class="glyphicon glyphicon-th"></span>
+                                              </div>
+                                            </div>
+                                         </div>
+                                         <div class="form-group col-md-6">
+                                         <label class="col-form-label" for="bdate">Date of PP</label>
+                                         <div class="input-group date" >
+                                            <input type="text" id="datepp" name="datepp" placeholder="YYY-MM-DD"    class="form-control">
+                                            <div class="input-group-addon">
+                                              <span class="glyphicon glyphicon-th"></span>
+                                            </div>
+                                         </div>
+                                       </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-form-label" for="remarks">F</label>
+                                        <input type="text" class="form-control" id="f" value="" name="f" placeholder="F" required="required">
+                                   </div>
+                         <div class="form-group pull-right">
+                              <button type="submit" class="btn btn-primary">Save Changes</button>
+                              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                         </div>
+                         </form>
+                       </div>
                     </div>
                 </div>
             </div>
