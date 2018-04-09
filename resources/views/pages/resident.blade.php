@@ -15,6 +15,7 @@
                //alert('maoni')
                $("#mch").hide();
                $("#ppdiv").hide();
+               $("#walkin2").hide();
           }
           if($( '#emsiech' ).hasClass( "nav-link active" ))
           {
@@ -25,6 +26,11 @@
           {
                //alert('maoni')
                $("ppdiv").show();
+          }
+          if($( '#walkin1' ).hasClass( "nav-link active" ))
+          {
+               //alert('maoni')
+               $("#walkin2").show();
           }
 
 
@@ -85,6 +91,7 @@
                     $("#mch").show();
                     $("#walkin").hide();
                     $("#ppdiv").hide();
+                    $("#walkin2").hide();
                }
      function unhide1()
                {
@@ -92,16 +99,27 @@
                //     alert('mao ni');
                     $("#mch").hide();
                     $("#ppdiv").hide();
+                    $("#walkin2").hide();
                }
      function unhide2()
               {
                     //alert('mao ni');
-
+                    $("#walkin2").hide();
                     $("#ppdiv").show();
                     $("#mch").hide();
                    $("#walkin").hide();
                    $('#walkin').addClass('tab-pane').removeClass('tab-pane active');
                }
+
+               function unhide3()
+                        {
+                              //alert('mao ni');
+                              $("#walkin2").show();
+                              $("#ppdiv").hide();
+                              $("#mch").hide();
+                             $("#walkin").hide();
+                             $('#walkin').addClass('tab-pane').removeClass('tab-pane active');
+                         }
 
 
 
@@ -521,10 +539,46 @@
                         <a class="nav-link active" id="profile1" data-toggle="tab" onclick="return unhide1();" href="#walkIn" role="tab" aria-controls="walkIn">Walk-In</a>
                       </li>
                       <li class="nav-item">
+                        <a class="nav-link" id="walkin1" data-toggle="tab" onclick="return unhide3();" href="#walkin2" role="tab" aria-controls="walkin2">Walk-In</a>
+                      </li>
+                      <li class="nav-item">
                         <a class="nav-link" id="emsiech" data-toggle="tab" onclick="return unhide();" href="#mch" role="tab" aria-controls="mch">MCH</a>
                       </li>
                       <li class="nav-item">
                         <a class="nav-link" id="pp" data-toggle="tab" onclick="return unhide2();" href="#pp" role="tab" aria-controls="pp">PP</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" id="epi" data-toggle="tab" onclick="return unhide2();" href="#epi" role="tab" aria-controls="epi">EPI</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" id="ufc" data-toggle="tab" onclick="return unhide2();" href="#ufc" role="tab" aria-controls="ufc">UFC</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" id="fp" data-toggle="tab" onclick="return unhide2();" href="#fp" role="tab" aria-controls="fp">FP</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" id="cdd" data-toggle="tab" onclick="return unhide2();" href="#cdd" role="tab" aria-controls="cdd">CDD</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" id="mortality" data-toggle="tab" onclick="return unhide2();" href="#mortality" role="tab" aria-controls="mortality">Mortality</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" id="cari" data-toggle="tab" onclick="return unhide2();" href="#cari" role="tab" aria-controls="cari">CARI</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" id="gms" data-toggle="tab" onclick="return unhide2();" href="#gms" role="tab" aria-controls="gms">GMS</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" id="bip" data-toggle="tab" onclick="return unhide2();" href="#bip" role="tab" aria-controls="bip">BIP</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" id="tbsymp" data-toggle="tab" onclick="return unhide2();" href="#tbsymp" role="tab" aria-controls="tbsymp">TB SYMP</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" id="rabies" data-toggle="tab" onclick="return unhide2();" href="#rabies" role="tab" aria-controls="rabies">RABIES</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" id="san" data-toggle="tab" onclick="return unhide2();" href="#san" role="tab" aria-controls="san">SANITATION</a>
                       </li>
                     </ul>
 
@@ -839,6 +893,63 @@
                          </div>
                          </form>
                        </div>
+
+
+                       <div role="tabpanel" class="tab-pane active" id="walkin2">
+                          <form id="walkinForm" novalidate="novalidate" method="post" >
+                              {{ csrf_field() }}
+                            <input type="hidden" name="id_pp" id="id_pp" value="">
+                            <input type="hidden" name="button_action" id="button_action" value="">
+                                   <div class="row">
+                                       <div class="form-group col-md-6">
+                                            <label class="col-form-label" for="firstname">Blood Pressure</label>
+                                            <input type="number" class="form-control" id="bp" value="" name="bp" placeholder="Blood Pressure" required>
+                                       </div>
+                                       <div class="form-group col-md-6">
+                                       <label class="col-form-label" for="bdate">Date of Delivery</label>
+                                       <label class="col-form-label" for="firstname">Blood Sugar</label>
+                                       <input type="number" class="form-control" id="bs" value="" name="bs" placeholder="Blood Sugar" required>
+
+                                      </div>
+
+                                       </div>
+                                       <div class="row">
+                                      <div class="form-group col-md-6">
+                                          <label class="col-form-label" for="email">Consultation</label>
+                                          <input type="text" class="form-control" id="consultation" value="" name="consultation" placeholder="Consultation" required="required">
+                                     </div>
+                                     <div class="form-group col-md-6">
+                                         <label class="col-form-label" for="email">Findings</label>
+                                         <input type="text" class="form-control" id="findings" value="" name="findings" placeholder="Findings" required="required">
+                                    </div>
+
+                                   </div>
+                                   <div class="form-group">
+                                      <label class="col-form-label" for="email">Notes</label>
+                                      <textarea type="text" class="form-control" id="notes" value="" name="notes" placeholder="Notes" required="required"></textarea>
+                                  </div>
+                                   <h3><i class="icon-note"></i> Medicine</h3>
+                                  <hr>
+                                      <div class="row">
+                                           <div class="form-group col col-md-6">
+                                              <label class="col-form-label" for="email">Medicine</label>
+                                             <select class="form-control" name="med" id="med">
+                                                <option value="Ascorbic Acid">Ascorbic Acid</option>
+                                                <option value="Mefenamic">Mefenamic</option>
+                                                 <option value="Paracetamol">Paracetamol</option>
+                                             </select>
+                                           </div>
+                                           <div class="form-group col col-md-6">
+                                                   <label class="col-form-label" for="email">Quantity</label>
+                                                   <input type="number" class="form-control" id="quantity" value="" name="quantity" placeholder="Quantity" required="required">
+                                           </div>
+                                      </div>
+                        <div class="form-group pull-right">
+                             <button type="submit" class="btn btn-primary">Save Changes</button>
+                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                        </form>
+                     </div>
                   </div>
                   </div>
                   </div>
