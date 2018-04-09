@@ -13,13 +13,13 @@ class AddColumnsForPatient extends Migration
      */
     public function up()
     {
-        // Schema::table('persons', function (Blueprint $table) {
-        //    $table->string('street');
-		//    $table->string('purok');
-		//    $table->string('barangay');
-		//    $table->string('city');
+        Schema::table('persons', function (Blueprint $table) {
+              $table->string('street');
+		    $table->string('purok');
+		    $table->string('barangay');
+		    $table->string('city');
 
-        // });
+         });
     }
 
     /**
@@ -29,8 +29,11 @@ class AddColumnsForPatient extends Migration
      */
     public function down()
     {
-        // Schema::table('persons', function (Blueprint $table) {
-        //     //
-        // });
+          Schema::table('persons', function (Blueprint $table) {
+               $table->dropColumn('street');
+               $table->dropColumn('purok');
+               $table->dropColumn('barangay');
+               $table->dropColumn('city');
+         });
     }
 }

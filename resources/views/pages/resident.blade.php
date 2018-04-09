@@ -210,12 +210,12 @@
                           refresh_resident_table();
                       });
                       }else{
-                         swal( "Error!", "Fill Up Every Field!", "warning", "Ok")
+                         swal( "Error!", "Something went wrong!", "warning", "Ok")
                       }
       },
 
       error: function(err) {
-             swal( "Error!", "Fill Up Very Field!", "warning", "Ok");
+             swal( "Error!", "Something went wrong!", "warning", "Ok");
       }
     });
   });
@@ -245,7 +245,7 @@
                       $('#level_mch').val('');
                       $('#range_mch').val('');
                       $('#remarks_mch').val('');
-                      swal( "Success!", "You added a resident!", "success", "Ok")
+                      swal( "Success!", "You added a MCH consultation!", "success", "Ok")
                       .then((value) => {
                     $("#mchForm").trigger('reset');
                           refresh_resident_table();
@@ -283,7 +283,7 @@
                       $('#vita').val('');
                       $('#date').val('');
                       $('#f_pp').val('');
-                      
+
                       swal( "Success!", "You added a resident!", "success", "Ok")
                       .then((value) => {
                     $("#ppForm").trigger('reset');

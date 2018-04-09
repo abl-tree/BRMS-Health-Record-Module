@@ -13,21 +13,21 @@ class CreateHouseholdsTable extends Migration
      */
     public function up()
     {
-        // Schema::create('households', function (Blueprint $table) {
-        //     $table->increments('id');
-        //     $table->string('district');
-        //     $table->string('province');
-        //     $table->integer('encoder');
-        //     $table->foreign('encoder')
-        //             ->references('id')
-        //             ->on('account');
-        //     $table->integer('household_info_id')->unsigned();
-        //     $table->foreign('household_info_id')
-        //             ->references('id')
-        //             ->on('household_infos')
-        //             ->onDelete('cascade');
-        //     $table->timestamps();
-        // });
+         Schema::create('households', function (Blueprint $table) {
+             $table->increments('id');
+             $table->string('district');
+             $table->string('province');
+             $table->integer('encoder');
+             $table->foreign('encoder')
+                     ->references('id')
+                     ->on('account');
+             $table->integer('household_info_id')->unsigned();
+             $table->foreign('household_info_id')
+                     ->references('id')
+                     ->on('household_infos')
+                     ->onDelete('cascade');
+             $table->timestamps();
+         });
     }
 
     /**
@@ -37,6 +37,6 @@ class CreateHouseholdsTable extends Migration
      */
     public function down()
     {
-        // Schema::dropIfExists('households');
+         Schema::dropIfExists('households');
     }
 }

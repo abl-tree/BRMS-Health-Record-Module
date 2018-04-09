@@ -13,21 +13,21 @@ class CreateSanitationStatusesTable extends Migration
      */
     public function up()
     {
-        // Schema::create('sanitation_statuses', function (Blueprint $table) {
-        //     $table->increments('id');
-        //     $table->integer('sanitation_opt_id')->unsigned();
-        //     $table->foreign('sanitation_opt_id')
-        //             ->references('id')
-        //             ->on('sanitation_options')
-        //             ->onDelete('cascade');
-        //     $table->enum('score', [1, 0]);
-        //     $table->string('others')->nullable();
-        //     $table->integer('household_id')->unsigned();
-        //     $table->foreign('household_id')
-        //             ->references('id')
-        //             ->on('households')
-        //             ->onDelete('cascade');
-        // });
+         Schema::create('sanitation_statuses', function (Blueprint $table) {
+             $table->increments('id');
+             $table->integer('sanitation_opt_id')->unsigned();
+             $table->foreign('sanitation_opt_id')
+                     ->references('id')
+                    ->on('sanitation_options')
+                     ->onDelete('cascade');
+             $table->enum('score', [1, 0]);
+             $table->string('others')->nullable();
+            $table->integer('household_id')->unsigned();
+             $table->foreign('household_id')
+                     ->references('id')
+                     ->on('households')
+                     ->onDelete('cascade');
+         });
     }
 
     /**
@@ -37,6 +37,6 @@ class CreateSanitationStatusesTable extends Migration
      */
     public function down()
     {
-        // Schema::dropIfExists('sanitation_statuses');
+         Schema::dropIfExists('sanitation_statuses');
     }
 }
