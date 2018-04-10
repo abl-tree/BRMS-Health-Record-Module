@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Validator;
 use App\Person;
 use App\mch;
 use App\pp;
+use App\walkin;
 
 use Auth;
  
@@ -229,5 +230,18 @@ class ResidentController extends Controller
         $pp->dod = $request->get('DOdelivery');
         $pp->F = $request->get('f');
         $pp->save();
+    }
+    public function addWalkin(Request $request){
+
+        $walkin = new walkin;
+        $walkin->walkin_id = $request->get('walkin_id');
+        $walkin->blood_pressure = $request->get('bp');
+        $walkin->blood_sugar = $request->get('bs');
+        $walkin->consultation = $request->get('consultation');
+        $walkin->findings = $request->get('findings');
+        $walkin->notes = $request->get('notes');
+        $walkin->medicine = $request->get('med');
+        $walkin->med_quantity = $request->get('quantity');
+        $walkin->save();
     }
 }

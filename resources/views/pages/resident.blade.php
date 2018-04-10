@@ -185,6 +185,7 @@
                   $('#id').val(id);
                   $('#id_mch').val(id);
                   $('#id_pp').val(id);
+                  $('#walkin_id').val(id);
                   $('#firstname_update').val(data.firstName);
                   $('a#profile1').text(data.firstName+"'s Profile");
                   $('#midname_update').val(data.midName);
@@ -315,6 +316,41 @@
                     }
               });
             });
+
+    $('#walkinForm').submit(function(e){
+      alert();
+                         e.preventDefault();
+          	              $.ajaxSetup({
+                                  headers: {
+                                      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                                 }
+                            });
+              $.ajax({
+                    type: "POST",
+                    url: "/add_walkin",
+                    data: $(this).serialize(),
+                    success: function(data){
+                      $('#bp').val('');
+                      $('#bs').val('');
+                      $('#consultation').val('');
+                      $('#findings').val('');
+                      $('#notes').val('');
+                      $('#med').val('');
+                      $('#quantity').val('');
+                      swal( "Success!", "You added a resident!", "success", "Ok")
+                      .then((value) => {
+                    $("#walkinForm").trigger('reset');
+                          refresh_resident_table();
+                      });
+
+                    },
+                    error: function(e) {
+
+                    swal( "Oh no!", "Something went wrong!", "warning", "Ok");
+                    }
+              });
+            });
+
 
 
 </script>
@@ -898,7 +934,7 @@
                        <div role="tabpanel" class="tab-pane active" id="walkin2">
                           <form id="walkinForm" novalidate="novalidate" method="post" >
                               {{ csrf_field() }}
-                            <input type="hidden" name="id_pp" id="id_pp" value="">
+                            <input type="hidden" name="walkin_id" id="walkin_id" value="">
                             <input type="hidden" name="button_action" id="button_action" value="">
                                    <div class="row">
                                        <div class="form-group col-md-6">
@@ -906,12 +942,12 @@
                                             <input type="number" class="form-control" id="bp" value="" name="bp" placeholder="Blood Pressure" required>
                                        </div>
                                        <div class="form-group col-md-6">
-                                       <label class="col-form-label" for="bdate">Date of Delivery</label>
+                                       <label class="col-form-label" for="bdate"></label>
                                        <label class="col-form-label" for="firstname">Blood Sugar</label>
                                        <input type="number" class="form-control" id="bs" value="" name="bs" placeholder="Blood Sugar" required>
-
+                                      
                                       </div>
-
+                                
                                        </div>
                                        <div class="row">
                                       <div class="form-group col-md-6">
