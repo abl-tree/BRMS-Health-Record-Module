@@ -14,9 +14,9 @@ class AddColumnsForPatient1 extends Migration
     public function up()
     {
         Schema::table('persons', function (Blueprint $table) {
-            $table->string('inname');
-		   $table->string('contact');
-		   $table->string('relationship');
+            $table->string('inname')->nullable();
+            $table->string('contact')->nullable();
+            $table->string('relationship')->nullable();
         });
     }
 
@@ -28,7 +28,9 @@ class AddColumnsForPatient1 extends Migration
     public function down()
     {
         Schema::table('persons', function (Blueprint $table) {
-            //
+            $table->dropColumn('inname');
+            $table->dropColumn('contact');
+            $table->dropColumn('relationship');
         });
     }
 }
