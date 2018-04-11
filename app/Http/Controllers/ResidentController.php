@@ -129,7 +129,10 @@ class ResidentController extends Controller
             'midName' => $person->midName,
             'lastName' => $person->lastName,
             'gender' => $person->gender,
-            'address' => $person->address,
+            'purok' => $person->purok,
+            'barangay' => $person->barangay,
+            'street' => $person->street,
+            'city' => $person->city,
             'dob' => $person->dob,
             'civilStatus' => $person->civilStatus,
             'height' => $person->height,
@@ -150,7 +153,10 @@ class ResidentController extends Controller
                 'lastname'              => 'required',
                 'civStatus'             => 'required',                
                 'gender'                => 'required',
-                'address'               => 'required',
+                'barangay'               => 'required',
+                'purok'               => 'required',
+                'street'               => 'required',
+                'city'               => 'required',
                 'bday'                  => 'required',
                 'height'                => 'required',
                 'weight'                => 'required',
@@ -172,7 +178,10 @@ class ResidentController extends Controller
                 $data->dob = date("Y-m-d", strtotime($request->bday));
                 $data->height = $request->height;
                 $data->gender = $request->gender;
-                $data->address = $request->address;
+                $data->purok = $request->purok;
+                $data->barangay = $request->barangay;
+                $data->street = $request->street;
+                $data->city = $request->city;
                 $data->weight = $request->weight;
                 $data->blood_type = $request->btype;
                 $data->contact_number = $request->contact;
