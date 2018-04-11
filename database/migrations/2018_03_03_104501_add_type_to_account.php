@@ -15,7 +15,7 @@ class AddTypeToAccount extends Migration
     {
 
          Schema::table('account', function (Blueprint $table) {
-             $table->string('remember_token');
+             $table->string('remember_token')->nullable();
         });
     }
 
