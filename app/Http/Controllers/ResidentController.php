@@ -6,6 +6,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use App\Person;
+use App\mch;
+use App\pp;
+use App\walkin;
+
 use Auth;
  
 
@@ -194,4 +198,50 @@ class ResidentController extends Controller
             }
         echo json_encode($check);
         }
+        
+    public function addMch(Request $request){
+
+        $mch = new mch;
+        $mch->mch_id = $request->get('id_mch');
+        $mch->age = $request->get('age');
+        $mch->g = $request->get('g');
+        $mch->p = $request->get('p');
+        $mch->rcode = $request->get('rcode');
+        $mch->level = $request->get('level');
+        $mch->range = $request->get('range');
+        $mch->lmp = $request->get('lmp');
+        $mch->edc = $request->get('edc');
+        $mch->remarks = $request->get('remarks');
+        $mch->save();
+    }
+
+    public function addPp(Request $request){
+
+        $pp = new pp;
+        $pp->pp_id = $request->get('id_pp');
+        $pp->age = $request->get('age');
+        $pp->PlaceofDelivery = $request->get('POdelivery');
+        $pp->attended_by = $request->get('attendee');
+        $pp->gender = $request->get('gender');
+        $pp->fdg = $request->get('fdg');
+        $pp->weight = $request->get('weight');
+        $pp->date_of_pp = $request->get('date');
+        $pp->vitamina = $request->get('vita');
+        $pp->dod = $request->get('DOdelivery');
+        $pp->F = $request->get('f');
+        $pp->save();
+    }
+    public function addWalkin(Request $request){
+
+        $walkin = new walkin;
+        $walkin->walkin_id = $request->get('walkin_id');
+        $walkin->blood_pressure = $request->get('bp');
+        $walkin->blood_sugar = $request->get('bs');
+        $walkin->consultation = $request->get('consultation');
+        $walkin->findings = $request->get('findings');
+        $walkin->notes = $request->get('notes');
+        $walkin->medicine = $request->get('med');
+        $walkin->med_quantity = $request->get('quantity');
+        $walkin->save();
+    }
 }

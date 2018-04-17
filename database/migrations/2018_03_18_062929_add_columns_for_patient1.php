@@ -27,10 +27,10 @@ class AddColumnsForPatient1 extends Migration
      */
     public function down()
     {
-        Schema::table('persons', function (Blueprint $table) {
+         Schema::table('persons', function (Blueprint $table) {
             $table->dropColumn('inname');
             $table->dropColumn('contact');
             $table->dropColumn('relationship');
-        });
+         });
     }
 }

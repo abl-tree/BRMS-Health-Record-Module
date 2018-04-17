@@ -14,12 +14,12 @@ class AddColumnPerson extends Migration
     public function up()
     {
       Schema::table('persons', function (Blueprint $table) {
-             $table->decimal('height', 8, 2)->nullable();
-             $table->decimal('weight', 8, 2)->nullable();
-             $table->string('blood_type')->nullable();
-             $table->string('contact_number')->nullable();
-             $table->string('email')->nullable();
-             $table->timestamp('updated_at')->nullable();
+            $table->decimal('height', 8, 2)->nullable();
+            $table->decimal('weight', 8, 2)->nullable();
+            $table->string('blood_type')->nullable();
+            $table->string('contact_number')->nullable();
+            $table->string('email')->nullable();
+            $table->timestamps();
         });
     }
 
@@ -30,13 +30,14 @@ class AddColumnPerson extends Migration
      */
     public function down()
     {
-       Schema::table('persons', function(Blueprint $table) {
+       Schema::table('persons', function($table) {
             $table->dropColumn('height');
             $table->dropColumn('weight');
             $table->dropColumn('blood_type');
             $table->dropColumn('contact_number');
             $table->dropColumn('email');
-            $table->dropColumn('updated_at');             
-        });
+            $table->dropColumn('updated_at');
+            $table->dropColumn('created_at');
+         });
     }
 }
