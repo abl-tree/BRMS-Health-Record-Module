@@ -19,7 +19,7 @@ class AddColumnPerson extends Migration
              $table->string('blood_type')->nullable();
              $table->string('contact_number')->nullable();
              $table->string('email')->nullable();
-             $table->timestamp();
+             $table->timestamps();
         });
     }
 
