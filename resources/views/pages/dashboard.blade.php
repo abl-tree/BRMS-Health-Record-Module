@@ -1,4 +1,4 @@
-<script src="{{ asset('/assets/js/views/main.js') }}" async></script>
+<script src="{{ asset('/assets/js/views/main.js') }}" defer></script>
 
 <div class="animated fadeIn">
   <div class="row">
