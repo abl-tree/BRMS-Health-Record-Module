@@ -41,6 +41,7 @@
   <!-- Main styles for this application -->
 	<link rel="stylesheet" href="{{ secure_asset('/assets/css/style.css') }}">
 	<link rel="stylesheet" href="{{ secure_asset('/plugins/bootstrap-select/css/bootstrap-select.css') }}">
+	<link rel="stylesheet" href="{{ secure_asset('/plugins/pnotify/pnotify.custom.min.css') }}">
 	@else
 	<!-- Icons -->
 	<link href="{{ asset('images/tab-logo.ico') }}" rel="shortcut icon"/>
@@ -53,6 +54,7 @@
 	<!-- Main styles for this application -->
 	<link rel="stylesheet" href="{{ asset('/assets/css/style.css') }}">
 	<link rel="stylesheet" href="{{ asset('/plugins/bootstrap-select/css/bootstrap-select.css') }}">
+	<link rel="stylesheet" href="{{ asset('/plugins/pnotify/pnotify.custom.min.css') }}">
 	@endif
 
 </head>
@@ -156,24 +158,26 @@
 		
   <!-- CoreUI main scripts -->
 	<script src="{{ secure_asset('/assets/js/app.js') }}" defer></script>
-	<script src="{{ secure_asset('/assets/js/views/tooltips.js') }}" defer></script>
+	<script src="{{ secure_asset('/assets/js/views/tooltips.js') }}" defer></script>	
 	<script src="{{ secure_asset('/assets/js/moment.min.js') }}" defer></script>
 	<script src="{{ secure_asset('/assets/js/jquery.validate.min.js') }}" defer></script>
 	<script src="{{ secure_asset('/assets/js/bootstrap-datetimepicker.min.js') }}" defer></script>
 	<script src="{{ secure_asset('/assets/js/sweetalert.min.js') }}" defer></script>
-	<script src="{{ secure_asset('/plugins/bootstrap-select-1.13.0-beta/js/bootstrap-select.min.js') }}" defer></script>
+	<script src="{{ secure_asset('/plugins/bootstrap-select/js/bootstrap-select.js') }}" defer></script>
+	<script src="{{ secure_asset('/plugins/pnotify/pnotify.custom.min.js') }}" defer></script>
 @else
 	<!-- App JS -->
 	<script src="{{ asset('/js/app.js') }}" defer></script>
 
   <!-- CoreUI main scripts -->
 	<script src="{{ asset('/assets/js/app.js') }}" defer></script>
-	<script src="{{ asset('/assets/js/views/tooltips.js') }}" defer></script>
+	<script src="{{ asset('/assets/js/views/tooltips.js') }}" defer></script>	
 	<script src="{{ asset('/assets/js/moment.min.js') }}" defer></script>
 	<script src="{{ asset('/assets/js/jquery.validate.min.js') }}" defer></script>
 	<script src="{{ asset('/assets/js/bootstrap-datetimepicker.min.js') }}" defer></script>
 	<script src="{{ asset('/assets/js/sweetalert.min.js') }}" defer></script>
-	<script src="{{ asset('/plugins/bootstrap-select-1.13.0-beta/js/bootstrap-select.min.js') }}" defer></script>
+	<script src="{{ asset('/plugins/bootstrap-select/js/bootstrap-select.js') }}" defer></script>
+	<script src="{{ asset('/plugins/pnotify/pnotify.custom.min.js') }}" defer></script>
 @endif
 </body>
 </html>

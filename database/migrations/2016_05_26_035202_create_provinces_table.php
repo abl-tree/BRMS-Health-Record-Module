@@ -12,14 +12,14 @@ class CreateProvincesTable extends Migration
      */
     public function up()
     {
-        Schema::create('provinces', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('name');
-            $table->integer('country_id')->unsigned()->index();
-            $table->foreign('country_id')->references('id')->on('countries');
-            $table->integer('status')->default(0);
-            $table->timestamps();
-        });
+         Schema::create('provinces', function (Blueprint $table) {
+             $table->increments('id');
+             $table->string('name');
+             $table->integer('country_id')->unsigned()->index();
+             $table->foreign('country_id')->references('id')->on('countries');
+             $table->integer('status')->default(0);
+             $table->timestamps();
+         });
     }
 
     /**
@@ -29,6 +29,6 @@ class CreateProvincesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('provinces');
+          Schema::dropIfExists('provinces');
     }
 }
