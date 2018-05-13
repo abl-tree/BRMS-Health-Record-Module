@@ -65,6 +65,9 @@ Route::middleware(['ajax'])->group(function() {
 	Route::post('/add_mch', 'residentController@addMch');
 	Route::post('/add_pp', 'residentController@addpp');
 	Route::post('/add_walkin', 'residentController@addWalkin');
+	Route::post('/add_epi', 'residentController@addepi');
+	Route::post('/add_ufc', 'residentController@addufc');
+	Route::post('/add_fp', 'residentController@addfp');
 	Route::get('/household', 'HouseholdController@index')->name('household');
 	Route::get('/account', 'UserAccountController@index')->name('account');
 	Route::get('/resident', 'ResidentController@index')->name('resident');

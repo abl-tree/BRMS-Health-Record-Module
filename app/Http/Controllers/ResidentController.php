@@ -9,6 +9,9 @@ use App\Person;
 use App\mch;
 use App\pp;
 use App\walkin;
+use App\epi;
+use App\fp;
+use App\ufc;
 
 use Auth;
  
@@ -243,5 +246,43 @@ class ResidentController extends Controller
         $walkin->medicine = $request->get('med');
         $walkin->med_quantity = $request->get('quantity');
         $walkin->save();
+    }
+    public function addepi(Request $request){
+
+        $epi = new epi;
+        $epi->epi_id = $request->get('epi_id');
+        $epi->age = $request->get('age');
+        $epi->mother_name = $request->get('mn');
+        $epi->father_name = $request->get('fn');
+        $epi->fdg = $request->get('fdg');
+        $epi->weight = $request->get('weight');
+        $epi->r_code = $request->get('r_code');
+        $epi->vaccine = $request->get('vaccine');
+        $epi->save();
+    }
+    public function addufc(Request $request){
+
+        $ufc = new ufc;
+        $ufc->ufc_id = $request->get('ufc_id');
+        $ufc->age = $request->get('age');
+        $ufc->mother_name = $request->get('mn');
+        $ufc->father_name = $request->get('fn');
+        $ufc->fdg = $request->get('fdg');
+        $ufc->weight = $request->get('weight');
+        $ufc->r_code = $request->get('r_code');
+        $ufc->remarks = $request->get('remarks');
+        $ufc->save();
+    }
+    public function addfp(Request $request){
+
+        $fp = new fp;
+        $fp->fp_id = $request->get('fp_id');
+        $fp->age = $request->get('age');
+        $fp->num_child = $request->get('num_child');
+        $fp->lmp = $request->get('lmp1');
+        $fp->client_type = $request->get('client_type');
+        $fp->method_accepted = $request->get('method_accepted');
+        $fp->remarks = $request->get('remarks');
+        $fp->save();
     }
 }

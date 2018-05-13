@@ -15,6 +15,17 @@ class CreateFpReportTable extends Migration
     {
         Schema::create('fp_report', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('fp_id')->unsigned();
+            $table->foreign('fp_id')
+                    ->references('id')
+                    ->on('persons')
+                    ->onDelete('cascade');
+            $table->integer('age');
+            $table->integer('num_child');
+            $table->date('lmp');
+            $table->string('client_type',100);
+            $table->string('method_accepted', 100);
+            $table->longText('remarks');
             $table->timestamps();
         });
     }

@@ -248,6 +248,9 @@
                   $('#id_mch').val(id);
                   $('#id_pp').val(id);
                   $('#walkin_id').val(id);
+                  $('#epi_id').val(id);
+                  $('#ufc_id').val(id);
+                  $('#fp_id').val(id);
                   $('#firstname_update').val(data.firstName);
                   $('a#profile1').text(data.firstName+"'s Profile");
                   $('#midname_update').val(data.midName);
@@ -380,7 +383,6 @@
             });
 
     $('#walkinForm').submit(function(e){
-      alert();
                          e.preventDefault();
           	              $.ajaxSetup({
                                   headers: {
@@ -412,6 +414,102 @@
                     }
               });
             });
+     $('#epiForm').submit(function(e){
+       e.preventDefault();
+          $.ajaxSetup({
+                  headers: {
+                      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                 }
+            });
+                  $.ajax({
+                        type: "POST",
+                        url: "/add_epi",
+                        data: $(this).serialize(),
+                        success: function(data){
+                          $('#ageepi').val('');
+                          $('#mn').val('');
+                          $('#fn').val('');
+                          $('#fdg').val('');
+                          $('#weight').val('');
+                          $('#r_code').val('');
+                          $('#vaccine').val('');
+                          swal( "Success!", "EPI added successfuly!", "success", "Ok")
+                          .then((value) => {
+                        $("#epiForm").trigger('reset');
+                              refresh_resident_table();
+                          });
+
+                        },
+                        error: function(e) {
+
+                        swal( "Oh no!", "Something went wrong!", "warning", "Ok");
+                        }
+                  });
+                });
+     $('#ufcForm').submit(function(e){
+       e.preventDefault();
+          $.ajaxSetup({
+                  headers: {
+                      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                 }
+            });
+                  $.ajax({
+                        type: "POST",
+                        url: "/add_ufc",
+                        data: $(this).serialize(),
+                        success: function(data){
+                          $('#age_ufc').val('');
+                          $('#mn_ufc').val('');
+                          $('#fn_ufc').val('');
+                          $('#fdg_ufc').val('');
+                          $('#weight_ufc').val('');
+                          $('#r_code_ufc').val('');
+                          $('#remarks_ufc').val('');
+                          swal( "Success!", "UFC added successfuly!", "success", "Ok")
+                          .then((value) => {
+                        $("#epiForm").trigger('reset');
+                              refresh_resident_table();
+                          });
+
+                        },
+                        error: function(e) {
+
+                        swal( "Oh no!", "Something went wrong!", "warning", "Ok");
+                        }
+                  });
+                });
+     $('#fpForm').submit(function(e){
+       e.preventDefault();
+          $.ajaxSetup({
+                  headers: {
+                      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                 }
+            });
+                  $.ajax({
+                        type: "POST",
+                        url: "/add_fp",
+                        data: $(this).serialize(),
+                        success: function(data){
+                          $('#age_fp').val('');
+                          $('#num_child').val('');
+                          $('#lmp1').val('');
+                          $('#fdg').val('');
+                          $('#method_accepted').val('');
+                          $('#remarks_fp').val('');
+                          swal( "Success!", "FP added successfuly!", "success", "Ok")
+                          .then((value) => {
+                        $("#epiForm").trigger('reset');
+                              refresh_resident_table();
+                          });
+
+                        },
+                        error: function(e) {
+
+                        swal( "Oh no!", "Something went wrong!", "warning", "Ok");
+                        }
+                  });
+                });
+
 
 
 
@@ -1050,19 +1148,19 @@
                      </div>
 
                      <div role="tabpanel" class="tab-pane active" id="epi1">
-                        <form id="epi1" novalidate="novalidate" method="post" >
+                        <form id="epiForm" novalidate="novalidate" method="post" >
                             {{ csrf_field() }}
                           <input type="hidden" name="epi_id" id="epi_id" value="">
                           <input type="hidden" name="button_action" id="button_action" value="">
                                  <div class="row">
                                      <div class="form-group col-md-6">
                                           <label class="col-form-label" for="firstname">Mother's Name</label>
-                                          <input type="number" class="form-control" id="mn" value="" name="mn" placeholder="Mother's Name" required>
+                                          <input type="" class="form-control" id="mn" value="" name="mn" placeholder="Mother's Name" required>
                                      </div>
                                      <div class="form-group col-md-6">
                                      <label class="col-form-label" for="bdate"></label>
                                      <label class="col-form-label" for="firstname">Father's Name</label>
-                                     <input type="number" class="form-control" id="fn" value="" name="fn" placeholder="Father's Name" required>
+                                     <input type="" class="form-control" id="fn" value="" name="fn" placeholder="Father's Name" required>
 
                                     </div>
 
@@ -1070,11 +1168,11 @@
                                      <div class="row">
                                     <div class="form-group col-md-4">
                                         <label class="col-form-label" for="email">Age</label>
-                                        <input type="number" class="form-control" id="consultation" value="" name="consultation" placeholder="Consultation" required="required">
+                                        <input type="number" class="form-control" id="ageepi" value="" name="age" placeholder="Age" required="required">
                                    </div>
                                    <div class="form-group col-md-4">
                                        <label class="col-form-label" for="email">FDG</label>
-                                       <input type="text" class="form-control" id="FDG" value="" name="FDG" placeholder="FDG" required="required">
+                                       <input type="text" class="form-control" id="fdg" value="" name="fdg" placeholder="FDG" required="required">
                                   </div>
                                   <div class="form-group col-md-4">
                                       <label class="col-form-label" for="email">Weight</label>
@@ -1085,11 +1183,11 @@
                                  <div class="row">
                                      <div class="form-group col-md-6">
                                           <label class="col-form-label" for="email">R-Code</label>
-                                          <input type="number" class="form-control" id="consultation" value="" name="consultation" placeholder="R-Code" required="required">
+                                          <input type="" class="form-control" id="r_code" value="" name="r_code" placeholder="R-Code" required="required">
                                      </div>
                                      <div class="form-group col-md-6">
                                           <label class="col-form-label" for="email">Vaccines</label>
-                                          <input type="text" class="form-control" id="FDG" value="" name="FDG" placeholder="Vaccines" required="required">
+                                          <input type="text" class="form-control" id="vaccine" value="" name="vaccine" placeholder="Vaccines" required="required">
                                      </div>
 
 
@@ -1102,19 +1200,19 @@
                            </form>
                    </div>
                    <div role="tabpanel" class="tab-pane active" id="ufc1">
-                     <form id="ufc1" novalidate="novalidate" method="post" >
+                     <form id="ufcForm" novalidate="novalidate" method="post" >
                           {{ csrf_field() }}
-                        <input type="hidden" name="epi_id" id="epi_id" value="">
+                        <input type="hidden" name="ufc_id" id="ufc_id" value="">
                         <input type="hidden" name="button_action" id="button_action" value="">
                                <div class="row">
                                   <div class="form-group col-md-6">
                                        <label class="col-form-label" for="firstname">Mother's Name</label>
-                                       <input type="number" class="form-control" id="mn" value="" name="mn" placeholder="Mother's Name" required>
+                                       <input type="" class="form-control" id="mn_ufc" value="" name="mn" placeholder="Mother's Name" required>
                                   </div>
                                   <div class="form-group col-md-6">
                                   <label class="col-form-label" for="bdate"></label>
                                   <label class="col-form-label" for="firstname">Father's Name</label>
-                                  <input type="number" class="form-control" id="fn" value="" name="fn" placeholder="Father's Name" required>
+                                  <input type="" class="form-control" id="fn_ufc" value="" name="fn" placeholder="Father's Name" required>
 
                                   </div>
 
@@ -1122,26 +1220,26 @@
                                   <div class="row">
                                   <div class="form-group col-md-4">
                                       <label class="col-form-label" for="email">Age</label>
-                                      <input type="number" class="form-control" id="consultation" value="" name="consultation" placeholder="Consultation" required="required">
+                                      <input type="number" class="form-control" id="age_ufc" value="" name="age" placeholder="Age" required="required">
                                  </div>
                                  <div class="form-group col-md-4">
                                      <label class="col-form-label" for="email">FDG</label>
-                                     <input type="text" class="form-control" id="FDG" value="" name="FDG" placeholder="FDG" required="required">
+                                     <input type="text" class="form-control" id="fdg_ufc" value="" name="fdg" placeholder="FDG" required="required">
                                </div>
                                <div class="form-group col-md-4">
                                     <label class="col-form-label" for="email">Weight</label>
-                                    <input type="number" class="form-control" id="weight" value="" name="weight" placeholder="Weight" required="required">
+                                    <input type="number" class="form-control" id="weight_ufc" value="" name="weight" placeholder="Weight" required="required">
                                </div>
 
                                </div>
                                <div class="row">
                                   <div class="form-group col-md-6">
                                        <label class="col-form-label" for="email">R-Code</label>
-                                       <input type="number" class="form-control" id="consultation" value="" name="consultation" placeholder="R-Code" required="required">
+                                       <input type="" class="form-control" id="r_code_ufc" value="" name="r_code" placeholder="R-Code" required="required">
                                   </div>
                                   <div class="form-group col-md-6">
                                        <label class="col-form-label" for="email">Remarks</label>
-                                       <textarea type="text" class="form-control" id="FDG" value="" name="FDG" placeholder="Remarks" required="required"></textarea>
+                                       <textarea type="text" class="form-control" id="remarks_ufc" value="" name="remarks" placeholder="Remarks" required="required"></textarea>
                                   </div>
 
 
@@ -1155,19 +1253,19 @@
                 </div>
 
                 <div role="tabpanel" class="tab-pane active" id="fp1">
-                  <form id="fp1" novalidate="novalidate" method="post" >
+                  <form id="fpForm" novalidate="novalidate" method="post" >
                        {{ csrf_field() }}
-                     <input type="hidden" name="epi_id" id="epi_id" value="">
+                     <input type="hidden" name="fp_id" id="fp_id" value="">
                      <input type="hidden" name="button_action" id="button_action" value="">
                             <div class="row">
                                <div class="form-group col-md-6">
                                     <label class="col-form-label" for="firstname">Age</label>
-                                    <input type="number" class="form-control" id="mn" value="" name="mn" placeholder="Age" required>
+                                    <input type="number" class="form-control" id="age_fp" value="" name="age" placeholder="Age" required>
                                </div>
                                <div class="form-group col-md-6">
                                <label class="col-form-label" for="bdate"></label>
                                <label class="col-form-label" for="firstname">Number of Children</label>
-                               <input type="number" class="form-control" id="fn" value="" name="fn" placeholder="Number of Children" required>
+                               <input type="number" class="form-control" id="num_child" value="" name="num_child" placeholder="Number of Children" required>
 
                                </div>
 
@@ -1184,20 +1282,20 @@
                                    </div>
                                    <div class="form-group col-md-4">
                                     <label for="gender">Type of Client:</label>
-                                    <select name="gender"  id="gender"class="form-control">
+                                    <select name="client_type"  id="client_type" class="form-control">
                                       <option>Old</option>
                                       <option>New</option>
                                     </select>
                                   </div>
                             <div class="form-group col-md-4">
                                  <label class="col-form-label" for="email">Method Accepted</label>
-                                 <input type="text" class="form-control" id="weight" value="" name="weight" placeholder="Weight" required="required">
+                                 <input type="text" class="form-control" id="method_accepted" value="" name="method_accepted" placeholder="Method Accepted" required="required">
                             </div>
 
                             </div>
                                <div class="form-group col-md-12">
                                     <label class="col-form-label" for="email">Remarks</label>
-                                    <textarea type="text" class="form-control" id="FDG" value="" name="FDG" placeholder="Remarks" required="required"></textarea>
+                                    <textarea type="text" class="form-control" id="remarks_fp" value="" name="remarks" placeholder="Remarks" required="required"></textarea>
                                </div>
 
 
