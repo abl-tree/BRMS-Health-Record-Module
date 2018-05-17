@@ -20,6 +20,14 @@
                $("#epi1").hide();
                $("#fp1").hide();
                $("#ufc1").hide();
+               $("#cdd1").hide();
+               $("#cari1").hide();
+               $("#gms1").hide();
+               $("#bip1").hide();
+               $("#tbsymp1").hide();
+               $("#rabies1").hide();
+               $("#sani1").hide();
+               $("#mortality1").hide();
           }
           if($( '#emsiech' ).hasClass( "nav-link active" ))
           {
@@ -71,6 +79,21 @@
           $('#datepp').datetimepicker({
                format: 'YYYY-MM-DD'
           });
+          $('#shi').datetimepicker({
+               format: 'YYYY-MM-DD'
+          });
+          $('#dx').datetimepicker({
+               format: 'YYYY-MM-DD'
+          });
+          $('#d1').datetimepicker({
+               format: 'YYYY-MM-DD'
+          });
+          $('#d11').datetimepicker({
+               format: 'YYYY-MM-DD'
+          });
+          $('#ra').datetimepicker({
+               format: 'YYYY-MM-DD'
+          });
 
           var resident = $('#residents-dt').DataTable({
                "processing": true,
@@ -107,6 +130,12 @@
                     $("#epi1").hide();
                     $("#fp1").hide();
                     $("#ufc1").hide();
+                    $("#cdd1").hide();
+                    $("#bip1").hide();
+                    $("#tbsymp1").hide();
+                    $("#rabies1").hide();
+                    $("#sani1").hide();
+                    $("#mortality1").hide();
                }
      function unhide1()
                {
@@ -117,7 +146,15 @@
                     $("#mch").hide();
                     $("#ppdiv").hide();
                     $("#walkin2").hide();
+                    $("#cari1").hide();
                     $("#ufc1").hide();
+                    $("#cdd1").hide();
+                    $("#gms1").hide();
+                    $("#bip1").hide();
+                    $("#tbsymp1").hide();
+                    $("#sani1").hide();
+                    $("#rabies1").hide();
+                    $("#mortality1").hide();
                }
      function unhide2()
               {
@@ -128,7 +165,15 @@
                     $("#ppdiv").show();
                     $("#mch").hide();
                    $("#walkin").hide();
+                   $("#cari1").hide();
                    $("#ufc1").hide();
+                   $("#cdd1").hide();
+                   $("#mortality1").hide();
+                   $("#gms1").hide();
+                   $("#bip1").hide();
+                   $("#sani1").hide();
+                   $("#tbsymp1").hide();
+                   $("#rabies1").hide();
                    $('#walkin').addClass('tab-pane').removeClass('tab-pane active');
                }
 
@@ -142,6 +187,14 @@
                              $("#walkin").hide();
                              $("#epi1").hide();
                              $("#ufc1").hide();
+                             $("#mortality1").hide();
+                             $("#cdd1").hide();
+                             $("#cari1").hide();
+                             $("#gms1").hide();
+                             $("#bip1").hide();
+                             $("#sani1").hide();
+                             $("#tbsymp1").hide();
+                             $("#rabies1").hide();
                              $('#walkin').addClass('tab-pane').removeClass('tab-pane active');
                          }
                function unhide4()
@@ -154,6 +207,14 @@
                                    $("#mch").hide();
                                    $("#walkin").hide();
                                    $("#epi1").show();
+                                   $("#mortality1").hide();
+                                   $("#cdd1").hide();
+                                   $("#cari1").hide();
+                                   $("#gms1").hide();
+                                   $("#sani1").hide();
+                                   $("#bip1").hide();
+                                   $("#tbsymp1").hide();
+                                   $("#rabies1").hide();
                                    $('#walkin').addClass('tab-pane').removeClass('tab-pane active');
                          }
                          function unhide5()
@@ -166,6 +227,14 @@
                                              $("#mch").hide();
                                              $("#walkin").hide();
                                              $("#epi1").hide();
+                                             $("#mortality1").hide();
+                                             $("#cdd1").hide();
+                                             $("#cari1").hide();
+                                             $("#gms1").hide();
+                                             $("#sani1").hide();
+                                             $("#bip1").hide();
+                                             $("#tbsymp1").hide();
+                                             $("#rabies1").hide();
                                              $('#walkin').addClass('tab-pane').removeClass('tab-pane active');
                                    }
                                    function unhide6()
@@ -178,8 +247,177 @@
                                                        $("#mch").hide();
                                                        $("#walkin").hide();
                                                        $("#epi1").hide();
+                                                       $("#cdd1").hide();
+                                                       $("#sani1").hide();
+                                                       $("#mortality1").hide();
+                                                       $("#cari1").hide();
+                                                       $("#gms1").hide();
+                                                       $("#bip1").hide();
+                                                       $("#tbsymp1").hide();
+                                                       $("#rabies1").hide();
                                                        $('#walkin').addClass('tab-pane').removeClass('tab-pane active');
                                              }
+                                             function unhide7()
+                                                       {
+                                                                      //alert('mao ni');
+                                                                 $("#ufc1").hide();
+                                                                 $("#walkin2").hide();
+                                                                 $("#fp1").hide();
+                                                                 $("#ppdiv").hide();
+                                                                 $("#mch").hide();
+                                                                 $("#walkin").hide();
+                                                                 $("#epi1").hide();
+                                                                 $("#mortality1").hide();
+                                                                 $("#cdd1").show();
+                                                                 $("#sani1").hide();
+                                                                 $("#cari1").hide();
+                                                                 $("#gms1").hide();
+                                                                 $("#bip1").hide();
+                                                                 $("#tbsymp1").hide();
+                                                                 $("#rabies1").hide();
+                                                                 $('#walkin').addClass('tab-pane').removeClass('tab-pane active');
+                                                       }
+                                                       function unhide8()
+                                                                 {
+                                                                                //alert('mao ni');
+                                                                           $("#ufc1").hide();
+                                                                           $("#walkin2").hide();
+                                                                           $("#fp1").hide();
+                                                                           $("#ppdiv").hide();
+                                                                           $("#mch").hide();
+                                                                           $("#walkin").hide();
+                                                                           $("#epi1").hide();
+                                                                           $("#mortality1").show();
+                                                                           $("#cdd1").hide();
+                                                                           $("#sani1").hide();
+                                                                           $("#cari1").hide();
+                                                                           $("#bip1").hide();
+                                                                           $("#gms1").hide();
+                                                                           $("#tbsymp1").hide();
+                                                                           $("#rabies1").hide();
+                                                                           $('#walkin').addClass('tab-pane').removeClass('tab-pane active');
+                                                                 }
+                                                                 function unhide9()
+                                                                           {
+                                                                                          //alert('mao ni');
+                                                                                     $("#ufc1").hide();
+                                                                                     $("#walkin2").hide();
+                                                                                     $("#fp1").hide();
+                                                                                     $("#ppdiv").hide();
+                                                                                     $("#mch").hide();
+                                                                                     $("#walkin").hide();
+                                                                                     $("#epi1").hide();
+                                                                                     $("#mortality1").hide();
+                                                                                     $("#cdd1").hide();
+                                                                                     $("#cari1").show();
+                                                                                     $("#bip1").hide();
+                                                                                     $("#sani1").hide();
+                                                                                     $("#gms1").hide();
+                                                                                     $("#tbsymp1").hide();
+                                                                                     $("#rabies1").hide();
+                                                                                     $('#walkin').addClass('tab-pane').removeClass('tab-pane active');
+                                                                           }
+                                                                           function unhide10()
+                                                                                     {
+                                                                                                    //alert('mao ni');
+                                                                                               $("#ufc1").hide();
+                                                                                               $("#walkin2").hide();
+                                                                                               $("#fp1").hide();
+                                                                                               $("#ppdiv").hide();
+                                                                                               $("#mch").hide();
+                                                                                               $("#walkin").hide();
+                                                                                               $("#epi1").hide();
+                                                                                               $("#mortality1").hide();
+                                                                                               $("#cdd1").hide();
+                                                                                               $("#sani1").hide();
+                                                                                               $("#cari1").hide();
+                                                                                               $("#gms1").show();
+                                                                                               $("#bip1").hide();
+                                                                                               $("#tbsymp1").hide();
+                                                                                               $("#rabies1").hide();
+                                                                                               $('#walkin').addClass('tab-pane').removeClass('tab-pane active');
+                                                                                     }
+                                                                                     function unhide11()
+                                                                                               {
+                                                                                                              //alert('mao ni');
+                                                                                                         $("#ufc1").hide();
+                                                                                                         $("#walkin2").hide();
+                                                                                                         $("#fp1").hide();
+                                                                                                         $("#ppdiv").hide();
+                                                                                                         $("#mch").hide();
+                                                                                                         $("#walkin").hide();
+                                                                                                         $("#epi1").hide();
+                                                                                                         $("#mortality1").hide();
+                                                                                                         $("#cdd1").hide();
+                                                                                                         $("#sani1").hide();
+                                                                                                         $("#cari1").hide();
+                                                                                                         $("#gms1").hide();
+                                                                                                         $("#bip1").show();
+                                                                                                         $("#tbsymp1").hide();
+                                                                                                         $("#rabies1").hide();
+                                                                                                         $('#walkin').addClass('tab-pane').removeClass('tab-pane active');
+                                                                                               }
+                                                                                               function unhide12()
+                                                                                                         {
+                                                                                                                        //alert('mao ni');
+                                                                                                                   $("#ufc1").hide();
+                                                                                                                   $("#walkin2").hide();
+                                                                                                                   $("#fp1").hide();
+                                                                                                                   $("#sani1").hide();
+                                                                                                                   $("#ppdiv").hide();
+                                                                                                                   $("#mch").hide();
+                                                                                                                   $("#walkin").hide();
+                                                                                                                   $("#epi1").hide();
+                                                                                                                   $("#mortality1").hide();
+                                                                                                                   $("#cdd1").hide();
+                                                                                                                   $("#cari1").hide();
+                                                                                                                   $("#gms1").hide();
+                                                                                                                   $("#bip1").hide();
+                                                                                                                   $("#tbsymp1").show();
+                                                                                                                   $("#rabies1").hide();
+                                                                                                                   $('#walkin').addClass('tab-pane').removeClass('tab-pane active');
+                                                                                                         }
+                                                                                                         function unhide13()
+                                                                                                                   {
+                                                                                                                                  //alert('mao ni');
+                                                                                                                             $("#ufc1").hide();
+                                                                                                                             $("#walkin2").hide();
+                                                                                                                             $("#fp1").hide();
+                                                                                                                             $("#ppdiv").hide();
+                                                                                                                             $("#mch").hide();
+                                                                                                                             $("#walkin").hide();
+                                                                                                                             $("#epi1").hide();
+                                                                                                                             $("#mortality1").hide();
+                                                                                                                             $("#cdd1").hide();
+                                                                                                                             $("#cari1").hide();
+                                                                                                                             $("#gms1").hide();
+                                                                                                                             $("#bip1").hide();
+                                                                                                                             $("#tbsymp1").hide();
+                                                                                                                             $("#rabies1").show();
+                                                                                                                             $("#sani1").hide();
+                                                                                                                             $('#walkin').addClass('tab-pane').removeClass('tab-pane active');
+                                                                                                                   }
+                                                                                                                   function unhide14()
+                                                                                                                             {
+                                                                                                                                            //alert('mao ni');
+                                                                                                                                       $("#ufc1").hide();
+                                                                                                                                       $("#walkin2").hide();
+                                                                                                                                       $("#fp1").hide();
+                                                                                                                                       $("#ppdiv").hide();
+                                                                                                                                       $("#mch").hide();
+                                                                                                                                       $("#walkin").hide();
+                                                                                                                                       $("#epi1").hide();
+                                                                                                                                       $("#mortality1").hide();
+                                                                                                                                       $("#cdd1").hide();
+                                                                                                                                       $("#cari1").hide();
+                                                                                                                                       $("#gms1").hide();
+                                                                                                                                       $("#bip1").hide();
+                                                                                                                                       $("#tbsymp1").hide();
+                                                                                                                                       $("#rabies1").hide();
+                                                                                                                                       $("#sani1").show();
+                                                                                                                                       $('#walkin').addClass('tab-pane').removeClass('tab-pane active');
+                                                                                                                             }
+
 
 
 
@@ -753,28 +991,28 @@
                         <a class="nav-link" id="fp" data-toggle="tab" onclick="return unhide6();" href="#fp1" role="tab" aria-controls="fp1">FP</a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link" id="cdd" data-toggle="tab" onclick="return unhide2();" href="#cdd" role="tab" aria-controls="cdd">CDD</a>
+                        <a class="nav-link" id="cdd" data-toggle="tab" onclick="return unhide7();" href="#cdd1" role="tab" aria-controls="cdd1">CDD</a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link" id="mortality" data-toggle="tab" onclick="return unhide2();" href="#mortality" role="tab" aria-controls="mortality">Mortality</a>
+                        <a class="nav-link" id="mortality" data-toggle="tab" onclick="return unhide8();" href="#mortality1" role="tab" aria-controls="mortality1">Mortality</a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link" id="cari" data-toggle="tab" onclick="return unhide2();" href="#cari" role="tab" aria-controls="cari">CARI</a>
+                        <a class="nav-link" id="cari" data-toggle="tab" onclick="return unhide9();" href="#cari1" role="tab" aria-controls="cari1">CARI</a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link" id="gms" data-toggle="tab" onclick="return unhide2();" href="#gms" role="tab" aria-controls="gms">GMS</a>
+                        <a class="nav-link" id="gms" data-toggle="tab" onclick="return unhide10();" href="#gms1" role="tab" aria-controls="gms1">GMS</a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link" id="bip" data-toggle="tab" onclick="return unhide2();" href="#bip" role="tab" aria-controls="bip">BIP</a>
+                        <a class="nav-link" id="bip" data-toggle="tab" onclick="return unhide11();" href="#bip1" role="tab" aria-controls="bip1">BIP</a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link" id="tbsymp" data-toggle="tab" onclick="return unhide2();" href="#tbsymp" role="tab" aria-controls="tbsymp">TB SYMP</a>
+                        <a class="nav-link" id="tbsymp" data-toggle="tab" onclick="return unhide12();" href="#tbsymp1" role="tab" aria-controls="tbsymp1">TB SYMP</a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link" id="rabies" data-toggle="tab" onclick="return unhide2();" href="#rabies" role="tab" aria-controls="rabies">RABIES</a>
+                        <a class="nav-link" id="rabies" data-toggle="tab" onclick="return unhide13();" href="#rabies1" role="tab" aria-controls="rabies1">RABIES</a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link" id="san" data-toggle="tab" onclick="return unhide2();" href="#san" role="tab" aria-controls="san">SANITATION</a>
+                        <a class="nav-link" id="san" data-toggle="tab" onclick="return unhide14();" href="#sani1" role="tab" aria-controls="sani1">SANITATION</a>
                       </li>
                     </ul>
 
@@ -1307,6 +1545,351 @@
                             </div>
                      </form>
              </div>
+                             <div role="tabpanel" class="tab-pane active" id="cdd1">
+                               <form id="cddForm" novalidate="novalidate" method="post" >
+                                    {{ csrf_field() }}
+                                  <input type="hidden" name="fp_id" id="fp_id" value="">
+                                  <input type="hidden" name="button_action" id="button_action" value="">
+                                         <div class="row">
+                                              <div class="form-group col-md-4">
+                                                  <label class="col-form-label" for="firstname">Age</label>
+                                                  <input type="number" class="form-control" id="age_fp" value="" name="age" placeholder="Age" required>
+                                             </div>
+                                            <div class="form-group col-md-8">
+                                                 <label class="col-form-label" for="email">Complaints</label>
+                                                 <textarea type="text" class="form-control" id="remarks_fp" value="" name="remarks" placeholder="Complaints" required="required"></textarea>
+                                            </div>
+
+
+                                            </div>
+                                            <div class="row">
+                                                 <div class="form-group col-md-4">
+                                                     <label class="col-form-label" for="firstname">Number of OR's Given</label>
+                                                     <input type="number" class="form-control" id="age_fp" value="" name="age" placeholder="Number of OR's Given" required>
+                                                </div>
+                                               <div class="form-group col-md-8">
+                                                    <label class="col-form-label" for="email">Remarks</label>
+                                                    <textarea type="text" class="form-control" id="remarks_fp" value="" name="remarks" placeholder="Remarks" required="required"></textarea>
+                                               </div>
+
+
+                                               </div>
+
+
+
+
+
+                                            <div class="form-group pull-right">
+                                                <button type="submit" class="btn btn-primary">Save Changes</button>
+                                               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                         </div>
+                                  </form>
+                          </div>
+
+                          <div role="tabpanel" class="tab-pane active" id="mortality1">
+                            <form id="mortalityForm" novalidate="novalidate" method="post" >
+                                 {{ csrf_field() }}
+                               <input type="hidden" name="fp_id" id="fp_id" value="">
+                               <input type="hidden" name="button_action" id="button_action" value="">
+                                      <div class="row">
+                                         <div class="form-group col-md-6">
+                                              <label class="col-form-label" for="firstname">Age</label>
+                                              <input type="number" class="form-control" id="age_fp" value="" name="age" placeholder="Age" required>
+                                         </div>
+                                         <div class="form-group col-md-6">
+                                       <label class="col-form-label" for="bdate">Date of death</label>
+                                       <div class="input-group date" >
+                                           <input type="text" id="shi" name="shi" placeholder="YYY-MM-DD"   class="form-control">
+                                           <div class="input-group-addon">
+                                            <span class="glyphicon glyphicon-th"></span>
+                                           </div>
+                                       </div>
+                                       </div>
+                                         </div>
+
+                                         <div class="form-group col-md-12">
+                                              <label class="col-form-label" for="email">Cause of Death</label>
+                                              <textarea type="text" class="form-control" id="remarks_fp" value="" name="remarks" placeholder="Cause of Death" required="required"></textarea>
+                                         </div>
+
+
+
+
+                                         <div class="form-group pull-right">
+                                             <button type="submit" class="btn btn-primary">Save Changes</button>
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                      </div>
+                               </form>
+                       </div>
+
+                       <div role="tabpanel" class="tab-pane active" id="cari1">
+                         <form id="cariForm" novalidate="novalidate" method="post" >
+                              {{ csrf_field() }}
+                            <input type="hidden" name="fp_id" id="fp_id" value="">
+                            <input type="hidden" name="button_action" id="button_action" value="">
+                                  <div class="row">
+                                       <div class="form-group col-md-4">
+                                            <label class="col-form-label" for="firstname">Age</label>
+                                            <input type="number" class="form-control" id="age_fp" value="" name="age" placeholder="Age" required>
+                                       </div>
+                                      <div class="form-group col-md-8">
+                                           <label class="col-form-label" for="email">Complaints</label>
+                                           <textarea type="text" class="form-control" id="remarks_fp" value="" name="remarks" placeholder="Complaints" required="required"></textarea>
+                                      </div>
+
+
+                                      </div>
+                                         <div class="form-group col-md-12">
+                                              <label class="col-form-label" for="email">Home Care Advice</label>
+                                              <textarea type="text" class="form-control" id="remarks_fp" value="" name="remarks" placeholder="Home Care Advice" required="required"></textarea>
+                                         </div>
+
+
+
+
+                                      <div class="form-group pull-right">
+                                         <button type="submit" class="btn btn-primary">Save Changes</button>
+                                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                  </div>
+                            </form>
+                    </div>
+                    <div role="tabpanel" class="tab-pane active" id="gms1">
+                      <form id="gmsForm" novalidate="novalidate" method="post" >
+                           {{ csrf_field() }}
+                         <input type="hidden" name="fp_id" id="fp_id" value="">
+                         <input type="hidden" name="button_action" id="button_action" value="">
+                               <div class="row">
+                                    <div class="form-group col-md-4">
+                                         <label class="col-form-label" for="firstname">Age</label>
+                                         <input type="number" class="form-control" id="age_fp" value="" name="age" placeholder="Age" required>
+                                    </div>
+                                   <div class="form-group col-md-8">
+                                        <label class="col-form-label" for="email">Complaints</label>
+                                        <textarea type="text" class="form-control" id="remarks_fp" value="" name="remarks" placeholder="Complaints" required="required"></textarea>
+                                   </div>
+
+
+                                   </div>
+                                      <div class="form-group col-md-12">
+                                           <label class="col-form-label" for="email">Home Care Advice</label>
+                                           <textarea type="text" class="form-control" id="remarks_fp" value="" name="remarks" placeholder="Home Care Advice" required="required"></textarea>
+                                      </div>
+
+
+
+
+                                   <div class="form-group pull-right">
+                                      <button type="submit" class="btn btn-primary">Save Changes</button>
+                                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                               </div>
+                         </form>
+                 </div>
+
+                 <div role="tabpanel" class="tab-pane active" id="bip1">
+                   <form id="bipForm" novalidate="novalidate" method="post" >
+                        {{ csrf_field() }}
+                      <input type="hidden" name="fp_id" id="fp_id" value="">
+                      <input type="hidden" name="button_action" id="button_action" value="">
+                            <div class="row">
+                                 <div class="form-group col-md-4">
+                                      <label class="col-form-label" for="firstname">Age</label>
+                                      <input type="number" class="form-control" id="age_fp" value="" name="age" placeholder="Age" required>
+                                 </div>
+                                 <div class="form-group col-md-4">
+                                      <label class="col-form-label" for="firstname">BP</label>
+                                      <input type="text" class="form-control" id="age_fp" value="" name="age" placeholder="BP" required>
+                                 </div>
+                                 <div class="form-group col-md-4">
+                                  <label for="gender">Type of Client:</label>
+                                  <select name="client_type"  id="client_type" class="form-control">
+                                   <option>Old</option>
+                                   <option>New</option>
+                                  </select>
+                                 </div>
+
+
+                                </div>
+                                <div class="form-group col-md-12">
+                                     <label class="col-form-label" for="email">Family History</label>
+                                     <textarea type="text" class="form-control" id="remarks_fp" value="" name="remarks" placeholder="Family History" required="required"></textarea>
+                                </div>
+                                   <div class="form-group col-md-12">
+                                        <label class="col-form-label" for="email">Remarks</label>
+                                        <textarea type="text" class="form-control" id="remarks_fp" value="" name="remarks" placeholder="Remarks" required="required"></textarea>
+                                   </div>
+
+
+
+
+                                <div class="form-group pull-right">
+                                   <button type="submit" class="btn btn-primary">Save Changes</button>
+                                   <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
+                      </form>
+              </div>
+
+              <div role="tabpanel" class="tab-pane active" id="tbsymp1">
+               <form id="mortalityForm" novalidate="novalidate" method="post" >
+                    {{ csrf_field() }}
+                   <input type="hidden" name="fp_id" id="fp_id" value="">
+                   <input type="hidden" name="button_action" id="button_action" value="">
+                         <div class="row">
+                            <div class="form-group col-md-4">
+                                 <label class="col-form-label" for="firstname">Age</label>
+                                 <input type="number" class="form-control" id="age_fp" value="" name="age" placeholder="Age" required>
+                            </div>
+                            <div class="form-group col-md-4">
+                          <label class="col-form-label" for="bdate">Date of X-Ray Result</label>
+                          <div class="input-group date" >
+                              <input type="text" id="dx" name="dx" placeholder="YYY-MM-DD"   class="form-control">
+                              <div class="input-group-addon">
+                               <span class="glyphicon glyphicon-th"></span>
+                              </div>
+                          </div>
+                          </div>
+                          <div class="form-group col-md-4">
+                        <label class="col-form-label" for="bdate">Date 1st</label>
+                        <div class="input-group date" >
+                            <input type="text" id="d1" name="d1" placeholder="YYY-MM-DD"   class="form-control">
+                            <div class="input-group-addon">
+                             <span class="glyphicon glyphicon-th"></span>
+                            </div>
+                        </div>
+                        </div>
+                            </div>
+                            <div class="row">
+                              <div class="form-group col-md-4">
+                                   <label class="col-form-label" for="firstname">Sputum 2nd</label>
+                                   <input type="text" class="form-control" id="age_fp" value="" name="age" placeholder="Sputum 2nd" required>
+                              </div>
+                              <div class="form-group col-md-4">
+                                   <label class="col-form-label" for="firstname">Submitted 3rd</label>
+                                   <input type="text" class="form-control" id="age_fp" value="" name="age" placeholder="Submitted 3rd" required>
+                              </div>
+                              <div class="form-group col-md-4">
+                            <label class="col-form-label" for="bdate">Date of 1st</label>
+                            <div class="input-group date" >
+                                <input type="text" id="d11" name="d11" placeholder="YYY-MM-DD"   class="form-control">
+                                <div class="input-group-addon">
+                                 <span class="glyphicon glyphicon-th"></span>
+                                </div>
+                            </div>
+                            </div>
+
+                              </div>
+                              <div class="row">
+                                <div class="form-group col-md-6">
+                                     <label class="col-form-label" for="firstname">Sputum 2nd</label>
+                                     <input type="text" class="form-control" id="age_fp" value="" name="age" placeholder="Sputum 2nd" required>
+                                </div>
+                                <div class="form-group col-md-6">
+                                     <label class="col-form-label" for="firstname">Result 3rd</label>
+                                     <input type="text" class="form-control" id="age_fp" value="" name="age" placeholder="Result 3rd" required>
+                                </div>
+
+
+                                </div>
+
+
+
+
+                            <div class="form-group pull-right">
+                                 <button type="submit" class="btn btn-primary">Save Changes</button>
+                               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                         </div>
+                   </form>
+          </div>
+
+          <div role="tabpanel" class="tab-pane active" id="rabies1">
+            <form id="gmsForm" novalidate="novalidate" method="post" >
+                 {{ csrf_field() }}
+               <input type="hidden" name="fp_id" id="fp_id" value="">
+               <input type="hidden" name="button_action" id="button_action" value="">
+                     <div class="row">
+                          <div class="form-group col-md-4">
+                              <label class="col-form-label" for="firstname">Age</label>
+                              <input type="number" class="form-control" id="age_fp" value="" name="age" placeholder="Age" required>
+                          </div>
+                          <div class="form-group col-md-4">
+                        <label class="col-form-label" for="bdate">Date </label>
+                        <div class="input-group date" >
+                            <input type="text" id="ra" name="ra" placeholder="YYY-MM-DD"   class="form-control">
+                            <div class="input-group-addon">
+                             <span class="glyphicon glyphicon-th"></span>
+                            </div>
+                        </div>
+                        </div>
+
+                         <div class="form-group col-md-4">
+                             <label class="col-form-label" for="firstname">Complaint Animal Bite</label>
+                             <input type="text" class="form-control" id="age_fp" value="" name="age" placeholder="Complaint Animal Bite" required>
+                         </div>
+
+
+                         </div>
+                            <div class="form-group col-md-12">
+                                 <label class="col-form-label" for="email">Remarks</label>
+                                 <textarea type="text" class="form-control" id="remarks_fp" value="" name="remarks" placeholder="Remarks" required="required"></textarea>
+                            </div>
+
+
+
+
+                         <div class="form-group pull-right">
+                            <button type="submit" class="btn btn-primary">Save Changes</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                     </div>
+               </form>
+       </div>
+
+       <div role="tabpanel" class="tab-pane active" id="sani1">
+         <form id="gmsForm" novalidate="novalidate" method="post" >
+              {{ csrf_field() }}
+            <input type="hidden" name="fp_id" id="fp_id" value="">
+            <input type="hidden" name="button_action" id="button_action" value="">
+                  <div class="row">
+                       <div class="form-group col-md-6">
+                           <label class="col-form-label" for="firstname">W/O Toilet:</label>
+                           <input type="text" class="form-control" id="age_fp" value="" name="age" placeholder="W/O Toilet" required>
+                       </div>
+
+
+                      <div class="form-group col-md-6">
+                         <label class="col-form-label" for="firstname">W/O Proper Waste Disposal:</label>
+                         <input type="text" class="form-control" id="age_fp" value="" name="age" placeholder="W/O Proper Waste Disposal" required>
+                      </div>
+
+
+                      </div>
+                      <div class="row">
+                           <div class="form-group col-md-6">
+                               <label class="col-form-label" for="firstname">Poor:</label>
+                               <input type="text" class="form-control" id="age_fp" value="" name="age" placeholder="Poor" required>
+                           </div>
+
+
+                          <div class="form-group col-md-6">
+                             <label class="col-form-label" for="firstname">W/O:</label>
+                             <input type="text" class="form-control" id="age_fp" value="" name="age" placeholder="W/O" required>
+                          </div>
+
+
+                          </div>
+                         <div class="form-group col-md-12">
+                              <label class="col-form-label" for="email">Remarks</label>
+                              <textarea type="text" class="form-control" id="remarks_fp" value="" name="remarks" placeholder="Remarks" required="required"></textarea>
+                         </div>
+
+
+
+
+                      <div class="form-group pull-right">
+                         <button type="submit" class="btn btn-primary">Save Changes</button>
+                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  </div>
+            </form>
+   </div>
+
                   </div>
                   </div>
                   </div>
