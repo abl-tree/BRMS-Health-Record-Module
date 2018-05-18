@@ -79,19 +79,19 @@
           $('#datepp').datetimepicker({
                format: 'YYYY-MM-DD'
           });
-          $('#shi').datetimepicker({
+          $('#DOD').datetimepicker({
                format: 'YYYY-MM-DD'
           });
-          $('#dx').datetimepicker({
+          $('#DOX_ray').datetimepicker({
                format: 'YYYY-MM-DD'
           });
-          $('#d1').datetimepicker({
+          $('#date_first').datetimepicker({
                format: 'YYYY-MM-DD'
           });
-          $('#d11').datetimepicker({
+          $('#date_first2').datetimepicker({
                format: 'YYYY-MM-DD'
           });
-          $('#ra').datetimepicker({
+          $('#date_rabies').datetimepicker({
                format: 'YYYY-MM-DD'
           });
 
@@ -489,6 +489,14 @@
                   $('#epi_id').val(id);
                   $('#ufc_id').val(id);
                   $('#fp_id').val(id);
+                  $('#cdd_id').val(id);
+                  $('#mortality_id').val(id);
+                  $('#cari_id').val(id);
+                  $('#gms_id').val(id);
+                  $('#bip_id').val(id);
+                  $('#tb_id').val(id);
+                  $('#rabies_id').val(id);
+                  $('#sanitation_id').val(id);
                   $('#firstname_update').val(data.firstName);
                   $('a#profile1').text(data.firstName+"'s Profile");
                   $('#midname_update').val(data.midName);
@@ -705,7 +713,7 @@
                           $('#remarks_ufc').val('');
                           swal( "Success!", "UFC added successfuly!", "success", "Ok")
                           .then((value) => {
-                        $("#epiForm").trigger('reset');
+                        $("#ufcForm").trigger('reset');
                               refresh_resident_table();
                           });
 
@@ -736,6 +744,64 @@
                           $('#remarks_fp').val('');
                           swal( "Success!", "FP added successfuly!", "success", "Ok")
                           .then((value) => {
+                        $("#fpForm").trigger('reset');
+                              refresh_resident_table();
+                          });
+
+                        },
+                        error: function(e) {
+
+                        swal( "Oh no!", "Something went wrong!", "warning", "Ok");
+                        }
+                  });
+                });
+
+          $('#cddForm').submit(function(e){
+       e.preventDefault();
+          $.ajaxSetup({
+                  headers: {
+                      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                 }
+            });
+                  $.ajax({
+                        type: "POST",
+                        url: "/add_cdd",
+                        data: $(this).serialize(),
+                        success: function(data){
+                          $('#age_cdd').val('');
+                          $('#complaints_cdd').val('');
+                          $('#num_OR').val('');
+                          $('#remarks_cdd').val('');
+                          swal( "Success!", "CDD added successfuly!", "success", "Ok")
+                          .then((value) => {
+                        $("#cddForm").trigger('reset');
+                              refresh_resident_table();
+                          });
+
+                        },
+                        error: function(e) {
+
+                        swal( "Oh no!", "Something went wrong!", "warning", "Ok");
+                        }
+                  });
+                });
+          $('#mortalityForm').submit(function(e){
+       e.preventDefault();
+          $.ajaxSetup({
+                  headers: {
+                      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                 }
+            });
+                  $.ajax({
+                        type: "POST",
+                        url: "/add_mortality",
+                        data: $(this).serialize(),
+                        success: function(data){
+                          $('#age_mortality').val('');
+                          $('#DOD').val('');
+                          $('#COD').val('');
+                          swal( "Success!", "Mortality added successfuly!", "success", "Ok")
+                          .then((value) => {
                         $("#epiForm").trigger('reset');
                               refresh_resident_table();
                           });
@@ -747,6 +813,185 @@
                         }
                   });
                 });
+          $('#cariForm').submit(function(e){
+       e.preventDefault();
+          $.ajaxSetup({
+                  headers: {
+                      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                 }
+            });
+                  $.ajax({
+                        type: "POST",
+                        url: "/add_cari",
+                        data: $(this).serialize(),
+                        success: function(data){
+                          $('#age_cari').val('');
+                          $('#complaints_cari').val('');
+                          $('#remarks_fp').val('');
+                          swal( "Success!", "CARI added successfuly!", "success", "Ok")
+                          .then((value) => {
+                        $("#cariForm").trigger('reset');
+                              refresh_resident_table();
+                          });
+
+                        },
+                        error: function(e) {
+
+                        swal( "Oh no!", "Something went wrong!", "warning", "Ok");
+                        }
+                  });
+                });
+          $('#gmsForm').submit(function(e){
+       e.preventDefault();
+          $.ajaxSetup({
+                  headers: {
+                      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                 }
+            });
+                  $.ajax({
+                        type: "POST",
+                        url: "/add_gms",
+                        data: $(this).serialize(),
+                        success: function(data){
+                          $('#age_gms').val('');
+                          $('#complaints_gms').val('');
+                          $('#HO_advice').val('');
+                          swal( "Success!", "GMS added successfuly!", "success", "Ok")
+                          .then((value) => {
+                        $("#gmsForm").trigger('reset');
+                              refresh_resident_table();
+                          });
+
+                        },
+                        error: function(e) {
+                        swal( "Oh no!", "Something went wrong!", "warning", "Ok");
+                        }
+                  });
+                });
+          $('#bipForm').submit(function(e){
+       e.preventDefault();
+          $.ajaxSetup({
+                  headers: {
+                      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                 }
+            });
+                  $.ajax({
+                        type: "POST",
+                        url: "/add_bip",
+                        data: $(this).serialize(),
+                        success: function(data){
+                          $('#age_bip').val('');
+                          $('#BP').val('');
+                          $('#client_type').val('');
+                          $('#f_history').val('');
+                          $('#remarks_bip').val('');
+                          swal( "Success!", "BIP added successfuly!", "success", "Ok")
+                          .then((value) => {
+                        $("#bipForm").trigger('reset');
+                              refresh_resident_table();
+                          });
+
+                        },
+                        error: function(e) {
+
+                        swal( "Oh no!", "Something went wrong!", "warning", "Ok");
+                        }
+                  });
+                });
+          $('#TBForm').submit(function(e){
+       e.preventDefault();
+          $.ajaxSetup({
+                  headers: {
+                      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                 }
+            });
+                  $.ajax({
+                        type: "POST",
+                        url: "/add_tb",
+                        data: $(this).serialize(),
+                        success: function(data){
+                          $('#age_tb').val('');
+                          $('#DOX_ray').val('');
+                          $('#date_first').val('');
+                          $('#sputum').val('');
+                          $('#submit3').val('');
+                          $('#date_first2').val('');
+                          $('#sputum2').val('');
+                          $('#result3').val('');
+                          swal( "Success!", "TB added successfuly!", "success", "Ok")
+                          .then((value) => {
+                        $("#TBForm").trigger('reset');
+                              refresh_resident_table();
+                          });
+
+                        },
+                        error: function(e) {
+
+                        swal( "Oh no!", "Something went wrong!", "warning", "Ok");
+                        }
+                  });
+                });
+          $('#rabiesForm').submit(function(e){
+       e.preventDefault();
+          $.ajaxSetup({
+                  headers: {
+                      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                 }
+            });
+                  $.ajax({
+                        type: "POST",
+                        url: "/add_rabies",
+                        data: $(this).serialize(),
+                        success: function(data){
+                          $('#age_rabies').val('');
+                          $('#date_rabies').val('');
+                          $('#complaint_bite').val('');
+                          $('#remarks_rabies').val('');
+                          swal( "Success!", "Rabies Complaint added successfuly!", "success", "Ok")
+                          .then((value) => {
+                        $("#rabiesForm").trigger('reset');
+                              refresh_resident_table();
+                          });
+
+                        },
+                        error: function(e) {
+
+                        swal( "Oh no!", "Something went wrong!", "warning", "Ok");
+                        }
+                  });
+                });
+          $('#sanitationForm').submit(function(e){
+       e.preventDefault();
+          $.ajaxSetup({
+                  headers: {
+                      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                 }
+            });
+                  $.ajax({
+                        type: "POST",
+                        url: "/add_sanitation",
+                        data: $(this).serialize(),
+                        success: function(data){
+                          $('#no_toilet').val('');
+                          $('#not_proper').val('');
+                          $('#poor').val('');
+                          $('#without').val('');
+                          $('#remarks_sanitation').val('');
+                          swal( "Success!", "Sanitation added successfuly!", "success", "Ok")
+                          .then((value) => {
+                        $("#sanitationForm").trigger('reset');
+                              refresh_resident_table();
+                          });
+
+                        },
+                        error: function(e) {
+
+                        swal( "Oh no!", "Something went wrong!", "warning", "Ok");
+                        }
+                  });
+                });
+
+
 
 
 
@@ -1548,16 +1793,16 @@
                              <div role="tabpanel" class="tab-pane active" id="cdd1">
                                <form id="cddForm" novalidate="novalidate" method="post" >
                                     {{ csrf_field() }}
-                                  <input type="hidden" name="fp_id" id="fp_id" value="">
+                                  <input type="hidden" name="cdd_id" id="cdd_id" value="">
                                   <input type="hidden" name="button_action" id="button_action" value="">
                                          <div class="row">
                                               <div class="form-group col-md-4">
                                                   <label class="col-form-label" for="firstname">Age</label>
-                                                  <input type="number" class="form-control" id="age_fp" value="" name="age" placeholder="Age" required>
+                                                  <input type="number" class="form-control" id="age_cdd" value="" name="age" placeholder="Age" required>
                                              </div>
                                             <div class="form-group col-md-8">
                                                  <label class="col-form-label" for="email">Complaints</label>
-                                                 <textarea type="text" class="form-control" id="remarks_fp" value="" name="remarks" placeholder="Complaints" required="required"></textarea>
+                                                 <textarea type="text" class="form-control" id="complaints_cdd" value="" name="complaints" placeholder="Complaints" required="required"></textarea>
                                             </div>
 
 
@@ -1565,21 +1810,16 @@
                                             <div class="row">
                                                  <div class="form-group col-md-4">
                                                      <label class="col-form-label" for="firstname">Number of OR's Given</label>
-                                                     <input type="number" class="form-control" id="age_fp" value="" name="age" placeholder="Number of OR's Given" required>
+                                                     <input type="number" class="form-control" id="num_OR" value="" name="num_OR" placeholder="Number of OR's Given" required>
                                                 </div>
                                                <div class="form-group col-md-8">
                                                     <label class="col-form-label" for="email">Remarks</label>
-                                                    <textarea type="text" class="form-control" id="remarks_fp" value="" name="remarks" placeholder="Remarks" required="required"></textarea>
+                                                    <textarea type="text" class="form-control" id="remarks_cdd" value="" name="remarks" placeholder="Remarks" required="required"></textarea>
                                                </div>
 
 
                                                </div>
-
-
-
-
-
-                                            <div class="form-group pull-right">
+                                       <div class="form-group pull-right">
                                                 <button type="submit" class="btn btn-primary">Save Changes</button>
                                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                          </div>
@@ -1589,17 +1829,17 @@
                           <div role="tabpanel" class="tab-pane active" id="mortality1">
                             <form id="mortalityForm" novalidate="novalidate" method="post" >
                                  {{ csrf_field() }}
-                               <input type="hidden" name="fp_id" id="fp_id" value="">
+                               <input type="hidden" name="mortality_id" id="mortality_id" value="">
                                <input type="hidden" name="button_action" id="button_action" value="">
                                       <div class="row">
                                          <div class="form-group col-md-6">
                                               <label class="col-form-label" for="firstname">Age</label>
-                                              <input type="number" class="form-control" id="age_fp" value="" name="age" placeholder="Age" required>
+                                              <input type="number" class="form-control" id="age_mortality" value="" name="age" placeholder="Age" required>
                                          </div>
                                          <div class="form-group col-md-6">
-                                       <label class="col-form-label" for="bdate">Date of death</label>
+                                       <label class="col-form-label" for="DOD">Date of death</label>
                                        <div class="input-group date" >
-                                           <input type="text" id="shi" name="shi" placeholder="YYY-MM-DD"   class="form-control">
+                                           <input type="text" id="DOD" name="DOD" placeholder="YYY-MM-DD"   class="form-control">
                                            <div class="input-group-addon">
                                             <span class="glyphicon glyphicon-th"></span>
                                            </div>
@@ -1609,7 +1849,7 @@
 
                                          <div class="form-group col-md-12">
                                               <label class="col-form-label" for="email">Cause of Death</label>
-                                              <textarea type="text" class="form-control" id="remarks_fp" value="" name="remarks" placeholder="Cause of Death" required="required"></textarea>
+                                              <textarea type="text" class="form-control" id="COD" value="" name="COD" placeholder="Cause of Death" required="required"></textarea>
                                          </div>
 
 
@@ -1625,29 +1865,25 @@
                        <div role="tabpanel" class="tab-pane active" id="cari1">
                          <form id="cariForm" novalidate="novalidate" method="post" >
                               {{ csrf_field() }}
-                            <input type="hidden" name="fp_id" id="fp_id" value="">
+                            <input type="hidden" name="cari_id" id="cari_id" value="">
                             <input type="hidden" name="button_action" id="button_action" value="">
                                   <div class="row">
                                        <div class="form-group col-md-4">
                                             <label class="col-form-label" for="firstname">Age</label>
-                                            <input type="number" class="form-control" id="age_fp" value="" name="age" placeholder="Age" required>
+                                            <input type="number" class="form-control" id="age_cari" value="" name="age" placeholder="Age" required>
                                        </div>
                                       <div class="form-group col-md-8">
                                            <label class="col-form-label" for="email">Complaints</label>
-                                           <textarea type="text" class="form-control" id="remarks_fp" value="" name="remarks" placeholder="Complaints" required="required"></textarea>
+                                           <textarea type="text" class="form-control" id="complaints_cari" value="" name="complaints" placeholder="Complaints" required="required"></textarea>
                                       </div>
 
 
                                       </div>
                                          <div class="form-group col-md-12">
                                               <label class="col-form-label" for="email">Home Care Advice</label>
-                                              <textarea type="text" class="form-control" id="remarks_fp" value="" name="remarks" placeholder="Home Care Advice" required="required"></textarea>
+                                              <textarea type="text" class="form-control" id="HO_advice_cari" value="" name="HO_advice" placeholder="Home Care Advice" required="required"></textarea>
                                          </div>
-
-
-
-
-                                      <div class="form-group pull-right">
+                                  <div class="form-group pull-right">
                                          <button type="submit" class="btn btn-primary">Save Changes</button>
                                          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                   </div>
@@ -1656,28 +1892,24 @@
                     <div role="tabpanel" class="tab-pane active" id="gms1">
                       <form id="gmsForm" novalidate="novalidate" method="post" >
                            {{ csrf_field() }}
-                         <input type="hidden" name="fp_id" id="fp_id" value="">
+                         <input type="hidden" name="gms_id" id="gms_id" value="">
                          <input type="hidden" name="button_action" id="button_action" value="">
                                <div class="row">
                                     <div class="form-group col-md-4">
                                          <label class="col-form-label" for="firstname">Age</label>
-                                         <input type="number" class="form-control" id="age_fp" value="" name="age" placeholder="Age" required>
+                                         <input type="number" class="form-control" id="age_gms" value="" name="age" placeholder="Age" required>
                                     </div>
                                    <div class="form-group col-md-8">
                                         <label class="col-form-label" for="email">Complaints</label>
-                                        <textarea type="text" class="form-control" id="remarks_fp" value="" name="remarks" placeholder="Complaints" required="required"></textarea>
+                                        <textarea type="text" class="form-control" id="complaints_gms" value="" name="complaints" placeholder="Complaints" required="required"></textarea>
                                    </div>
 
 
                                    </div>
                                       <div class="form-group col-md-12">
                                            <label class="col-form-label" for="email">Home Care Advice</label>
-                                           <textarea type="text" class="form-control" id="remarks_fp" value="" name="remarks" placeholder="Home Care Advice" required="required"></textarea>
+                                           <textarea type="text" class="form-control" id="HO_advice" value="" name="HO_advice" placeholder="Home Care Advice" required="required"></textarea>
                                       </div>
-
-
-
-
                                    <div class="form-group pull-right">
                                       <button type="submit" class="btn btn-primary">Save Changes</button>
                                       <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -1688,16 +1920,16 @@
                  <div role="tabpanel" class="tab-pane active" id="bip1">
                    <form id="bipForm" novalidate="novalidate" method="post" >
                         {{ csrf_field() }}
-                      <input type="hidden" name="fp_id" id="fp_id" value="">
+                      <input type="hidden" name="bip_id" id="bip_id" value="">
                       <input type="hidden" name="button_action" id="button_action" value="">
                             <div class="row">
                                  <div class="form-group col-md-4">
                                       <label class="col-form-label" for="firstname">Age</label>
-                                      <input type="number" class="form-control" id="age_fp" value="" name="age" placeholder="Age" required>
+                                      <input type="number" class="form-control" id="age_bip" value="" name="age" placeholder="Age" required>
                                  </div>
                                  <div class="form-group col-md-4">
                                       <label class="col-form-label" for="firstname">BP</label>
-                                      <input type="text" class="form-control" id="age_fp" value="" name="age" placeholder="BP" required>
+                                      <input type="text" class="form-control" id="BP" value="" name="BP" placeholder="BP" required>
                                  </div>
                                  <div class="form-group col-md-4">
                                   <label for="gender">Type of Client:</label>
@@ -1711,16 +1943,12 @@
                                 </div>
                                 <div class="form-group col-md-12">
                                      <label class="col-form-label" for="email">Family History</label>
-                                     <textarea type="text" class="form-control" id="remarks_fp" value="" name="remarks" placeholder="Family History" required="required"></textarea>
+                                     <textarea type="text" class="form-control" id="f_history" value="" name="f_history" placeholder="Family History" required="required"></textarea>
                                 </div>
                                    <div class="form-group col-md-12">
                                         <label class="col-form-label" for="email">Remarks</label>
-                                        <textarea type="text" class="form-control" id="remarks_fp" value="" name="remarks" placeholder="Remarks" required="required"></textarea>
+                                        <textarea type="text" class="form-control" id="remarks_bip" value="" name="remarks" placeholder="Remarks" required="required"></textarea>
                                    </div>
-
-
-
-
                                 <div class="form-group pull-right">
                                    <button type="submit" class="btn btn-primary">Save Changes</button>
                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -1729,19 +1957,19 @@
               </div>
 
               <div role="tabpanel" class="tab-pane active" id="tbsymp1">
-               <form id="mortalityForm" novalidate="novalidate" method="post" >
+               <form id="TBForm" novalidate="novalidate" method="post" >
                     {{ csrf_field() }}
-                   <input type="hidden" name="fp_id" id="fp_id" value="">
+                   <input type="hidden" name="tb_id" id="tb_id" value="">
                    <input type="hidden" name="button_action" id="button_action" value="">
                          <div class="row">
                             <div class="form-group col-md-4">
                                  <label class="col-form-label" for="firstname">Age</label>
-                                 <input type="number" class="form-control" id="age_fp" value="" name="age" placeholder="Age" required>
+                                 <input type="number" class="form-control" id="age_tb" value="" name="age" placeholder="Age" required>
                             </div>
                             <div class="form-group col-md-4">
                           <label class="col-form-label" for="bdate">Date of X-Ray Result</label>
                           <div class="input-group date" >
-                              <input type="text" id="dx" name="dx" placeholder="YYY-MM-DD"   class="form-control">
+                              <input type="text" id="DOX_ray" name="DOX_ray" placeholder="YYY-MM-DD"   class="form-control">
                               <div class="input-group-addon">
                                <span class="glyphicon glyphicon-th"></span>
                               </div>
@@ -1750,7 +1978,7 @@
                           <div class="form-group col-md-4">
                         <label class="col-form-label" for="bdate">Date 1st</label>
                         <div class="input-group date" >
-                            <input type="text" id="d1" name="d1" placeholder="YYY-MM-DD"   class="form-control">
+                            <input type="text" id="date_first" name="date_first" placeholder="YYY-MM-DD"   class="form-control">
                             <div class="input-group-addon">
                              <span class="glyphicon glyphicon-th"></span>
                             </div>
@@ -1760,16 +1988,16 @@
                             <div class="row">
                               <div class="form-group col-md-4">
                                    <label class="col-form-label" for="firstname">Sputum 2nd</label>
-                                   <input type="text" class="form-control" id="age_fp" value="" name="age" placeholder="Sputum 2nd" required>
+                                   <input type="text" class="form-control" id="sputum" value="" name="sputum" placeholder="Sputum 2nd" required>
                               </div>
                               <div class="form-group col-md-4">
                                    <label class="col-form-label" for="firstname">Submitted 3rd</label>
-                                   <input type="text" class="form-control" id="age_fp" value="" name="age" placeholder="Submitted 3rd" required>
+                                   <input type="text" class="form-control" id="submit3" value="" name="submit3" placeholder="Submitted 3rd" required>
                               </div>
                               <div class="form-group col-md-4">
                             <label class="col-form-label" for="bdate">Date of 1st</label>
                             <div class="input-group date" >
-                                <input type="text" id="d11" name="d11" placeholder="YYY-MM-DD"   class="form-control">
+                                <input type="text" id="date_first2" name="date_first2" placeholder="YYY-MM-DD"   class="form-control">
                                 <div class="input-group-addon">
                                  <span class="glyphicon glyphicon-th"></span>
                                 </div>
@@ -1780,11 +2008,11 @@
                               <div class="row">
                                 <div class="form-group col-md-6">
                                      <label class="col-form-label" for="firstname">Sputum 2nd</label>
-                                     <input type="text" class="form-control" id="age_fp" value="" name="age" placeholder="Sputum 2nd" required>
+                                     <input type="text" class="form-control" id="sputum2" value="" name="sputum2" placeholder="Sputum 2nd" required>
                                 </div>
                                 <div class="form-group col-md-6">
                                      <label class="col-form-label" for="firstname">Result 3rd</label>
-                                     <input type="text" class="form-control" id="age_fp" value="" name="age" placeholder="Result 3rd" required>
+                                     <input type="text" class="form-control" id="result3" value="" name="result3" placeholder="Result 3rd" required>
                                 </div>
 
 
@@ -1801,19 +2029,19 @@
           </div>
 
           <div role="tabpanel" class="tab-pane active" id="rabies1">
-            <form id="gmsForm" novalidate="novalidate" method="post" >
+            <form id="rabiesForm" novalidate="novalidate" method="post" >
                  {{ csrf_field() }}
-               <input type="hidden" name="fp_id" id="fp_id" value="">
+               <input type="hidden" name="rabies_id" id="rabies_id" value="">
                <input type="hidden" name="button_action" id="button_action" value="">
                      <div class="row">
                           <div class="form-group col-md-4">
                               <label class="col-form-label" for="firstname">Age</label>
-                              <input type="number" class="form-control" id="age_fp" value="" name="age" placeholder="Age" required>
+                              <input type="number" class="form-control" id="age_rabies" value="" name="age" placeholder="Age" required>
                           </div>
                           <div class="form-group col-md-4">
                         <label class="col-form-label" for="bdate">Date </label>
                         <div class="input-group date" >
-                            <input type="text" id="ra" name="ra" placeholder="YYY-MM-DD"   class="form-control">
+                            <input type="text" id="date_rabies" name="date" placeholder="YYY-MM-DD"   class="form-control">
                             <div class="input-group-addon">
                              <span class="glyphicon glyphicon-th"></span>
                             </div>
@@ -1822,19 +2050,15 @@
 
                          <div class="form-group col-md-4">
                              <label class="col-form-label" for="firstname">Complaint Animal Bite</label>
-                             <input type="text" class="form-control" id="age_fp" value="" name="age" placeholder="Complaint Animal Bite" required>
+                             <input type="text" class="form-control" id="complaint_bite" value="" name="complaint_bite" placeholder="Complaint Animal Bite" required>
                          </div>
 
 
                          </div>
                             <div class="form-group col-md-12">
                                  <label class="col-form-label" for="email">Remarks</label>
-                                 <textarea type="text" class="form-control" id="remarks_fp" value="" name="remarks" placeholder="Remarks" required="required"></textarea>
+                                 <textarea type="text" class="form-control" id="remarks_rabies" value="" name="remarks" placeholder="Remarks" required="required"></textarea>
                             </div>
-
-
-
-
                          <div class="form-group pull-right">
                             <button type="submit" class="btn btn-primary">Save Changes</button>
                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -1843,20 +2067,20 @@
        </div>
 
        <div role="tabpanel" class="tab-pane active" id="sani1">
-         <form id="gmsForm" novalidate="novalidate" method="post" >
+         <form id="sanitationForm" novalidate="novalidate" method="post" >
               {{ csrf_field() }}
-            <input type="hidden" name="fp_id" id="fp_id" value="">
+            <input type="hidden" name="sanitation_id" id="sanitation_id" value="">
             <input type="hidden" name="button_action" id="button_action" value="">
                   <div class="row">
                        <div class="form-group col-md-6">
                            <label class="col-form-label" for="firstname">W/O Toilet:</label>
-                           <input type="text" class="form-control" id="age_fp" value="" name="age" placeholder="W/O Toilet" required>
+                           <input type="text" class="form-control" id="no_toilet" value="" name="no_toilet" placeholder="W/O Toilet" required>
                        </div>
 
 
                       <div class="form-group col-md-6">
                          <label class="col-form-label" for="firstname">W/O Proper Waste Disposal:</label>
-                         <input type="text" class="form-control" id="age_fp" value="" name="age" placeholder="W/O Proper Waste Disposal" required>
+                         <input type="text" class="form-control" id="not_proper" value="" name="not_proper" placeholder="W/O Proper Waste Disposal" required>
                       </div>
 
 
@@ -1864,20 +2088,20 @@
                       <div class="row">
                            <div class="form-group col-md-6">
                                <label class="col-form-label" for="firstname">Poor:</label>
-                               <input type="text" class="form-control" id="age_fp" value="" name="age" placeholder="Poor" required>
+                               <input type="text" class="form-control" id="poor" value="" name="poor" placeholder="Poor" required>
                            </div>
 
 
                           <div class="form-group col-md-6">
                              <label class="col-form-label" for="firstname">W/O:</label>
-                             <input type="text" class="form-control" id="age_fp" value="" name="age" placeholder="W/O" required>
+                             <input type="text" class="form-control" id="without" value="" name="without" placeholder="W/O" required>
                           </div>
 
 
                           </div>
                          <div class="form-group col-md-12">
                               <label class="col-form-label" for="email">Remarks</label>
-                              <textarea type="text" class="form-control" id="remarks_fp" value="" name="remarks" placeholder="Remarks" required="required"></textarea>
+                              <textarea type="text" class="form-control" id="remarks_sanitation" value="" name="remarks" placeholder="Remarks" required="required"></textarea>
                          </div>
 
 

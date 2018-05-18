@@ -15,6 +15,15 @@ class CreateCddReportTable extends Migration
     {
         Schema::create('cdd_report', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('cdd_id')->unsigned();
+            $table->foreign('cdd_id')
+                    ->references('id')
+                    ->on('persons')
+                    ->onDelete('cascade');
+            $table->integer('age');
+            $table->longText('complaints');
+            $table->integer('num_OR');
+            $table->longText('remarks');
             $table->timestamps();
         });
     }

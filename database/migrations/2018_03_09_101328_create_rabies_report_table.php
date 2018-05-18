@@ -15,6 +15,15 @@ class CreateRabiesReportTable extends Migration
     {
         Schema::create('rabies_report', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('rabies_id')->unsigned();
+            $table->foreign('rabies_id')
+                    ->references('id')
+                    ->on('persons')
+                    ->onDelete('cascade');
+            $table->integer('age');
+            $table->date('date');
+            $table->string('complaint_bite',255);
+            $table->longText('remarks');
             $table->timestamps();
         });
     }

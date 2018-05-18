@@ -11,7 +11,14 @@ use App\pp;
 use App\walkin;
 use App\epi;
 use App\fp;
-use App\ufc;
+use App\cdd;
+use App\mortality;
+use App\cari;
+use App\gms;
+use App\bip;
+use App\tb;
+use App\rabies;
+use App\sanitation;
 
 use Auth;
  
@@ -284,5 +291,88 @@ class ResidentController extends Controller
         $fp->method_accepted = $request->get('method_accepted');
         $fp->remarks = $request->get('remarks');
         $fp->save();
+    }
+    public function addcdd(Request $request){
+
+        $cdd = new cdd;
+        $cdd->cdd_id = $request->get('cdd_id');
+        $cdd->age = $request->get('age');
+        $cdd->complaints = $request->get('complaints');
+        $cdd->num_OR = $request->get('num_OR');
+        $cdd->remarks = $request->get('remarks');
+        $cdd->save();
+    }
+    public function addmortality(Request $request){
+
+        $mortality = new mortality;
+        $mortality->mortality_id = $request->get('mortality_id');
+        $mortality->age = $request->get('age');
+        $mortality->DOD = $request->get('DOD');
+        $mortality->COD = $request->get('COD');
+        $mortality->save();
+    }
+    public function addcari(Request $request){
+
+        $cari = new cari;
+        $cari->cari_id = $request->get('cari_id');
+        $cari->age = $request->get('age');
+        $cari->complaints = $request->get('complaints');
+        $cari->HO_advice = $request->get('HO_advice');
+        $cari->save();
+    }
+    public function addgms(Request $request){
+
+        $gms = new gms;
+        $gms->gms_id = $request->get('gms_id');
+        $gms->age = $request->get('age');
+        $gms->complaints = $request->get('complaints');
+        $gms->HO_advice = $request->get('HO_advice');        
+        $gms->save();
+    }
+    public function addbip(Request $request){
+
+        $bip = new bip;
+        $bip->bip_id = $request->get('bip_id');
+        $bip->age = $request->get('age');
+        $bip->BP = $request->get('BP');
+        $bip->client_type = $request->get('client_type');
+        $bip->f_history = $request->get('f_history');
+        $bip->remarks = $request->get('remarks');
+        $bip->save();
+    }
+    public function addtb(Request $request){
+
+        $tb = new tb;
+        $tb->tb_id = $request->get('tb_id');
+        $tb->age = $request->get('age');
+        $tb->DOX_ray = $request->get('DOX_ray');
+        $tb->date_first = $request->get('date_first');
+        $tb->sputum = $request->get('sputum');
+        $tb->submit3 = $request->get('submit3');
+        $tb->date_first2 = $request->get('date_first2');
+        $tb->sputum2 = $request->get('sputum2');
+        $tb->result3 = $request->get('result3');
+        $tb->save();
+    }
+    public function addrabies(Request $request){
+
+        $rabies = new rabies;
+        $rabies->rabies_id = $request->get('rabies_id');
+        $rabies->age = $request->get('age');
+        $rabies->date = $request->get('date');
+        $rabies->complaint_bite = $request->get('complaint_bite');
+        $rabies->remarks = $request->get('remarks');
+        $rabies->save();
+    }
+    public function addsanitation(Request $request){
+
+        $sanitation = new sanitation;
+        $sanitation->sanitation_id = $request->get('sanitation_id');
+        $sanitation->no_toilet = $request->get('no_toilet');
+        $sanitation->not_proper = $request->get('not_proper');
+        $sanitation->poor = $request->get('poor');
+        $sanitation->without = $request->get('without');
+        $sanitation->remarks = $request->get('remarks');
+        $sanitation->save();
     }
 }

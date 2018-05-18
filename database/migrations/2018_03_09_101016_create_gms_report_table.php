@@ -15,6 +15,14 @@ class CreateGmsReportTable extends Migration
     {
         Schema::create('gms_report', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('gms_id')->unsigned();
+            $table->foreign('gms_id')
+                    ->references('id')
+                    ->on('persons')
+                    ->onDelete('cascade');
+            $table->integer('age');
+            $table->longText('complaints');
+            $table->longText('HO_advice');
             $table->timestamps();
         });
     }
