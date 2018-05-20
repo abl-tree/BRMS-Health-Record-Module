@@ -28,15 +28,22 @@ Route::middleware(['auth'])->group(function() {
 		if ($page = $request->page){
 			dd($page);
 		}
-        return view('index');		
+        return view('index');
 	});
 	Route::get('/test', 'HouseholdController@test');
 	Route::get('/population/{option}', 'PopulationController@population');
 	Route::get('/resident_profile', 'ResidentController@profile');
+     Route::get('/pp_profile', 'ReportController@refresh1');
+     Route::get('/epi_profile', 'ReportController@refresh2');
+     Route::get('/ufc_profile', 'ReportController@refresh3');
+     Route::get('/fp_profile', 'ReportController@refresh4');
+     Route::get('/cdd_profile', 'ReportController@refresh5');
+     Route::get('/cari_profile', 'ReportController@refresh6');
+     Route::get('/gms_profile', 'ReportController@refresh7');
 	Route::post('/household/member/{option}', 'HouseholdController@set')->name('set_household');
 	Route::post('/household/set/{option}', 'HouseholdController@member')->name('household_member');
 	Route::get('/household/get/{option}', 'HouseholdController@get')->name('member_queue');
-	
+
 	Route::get('data/resident', function(Request $request) {
 		if($q = $request->q) {
 			$query = Person::select(DB::raw('CONCAT(firstName, " ", midName, " ", lastName) as name'), 'id')
@@ -52,7 +59,7 @@ Route::middleware(['auth'])->group(function() {
 		}else {
 			$query = Person::all();
 		}
-	
+
 		return new ResidentCollection($query);
 	});
 });

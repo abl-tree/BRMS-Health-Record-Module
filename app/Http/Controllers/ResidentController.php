@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use App\Person;
 use App\mch;
+use App\ufc;
 use App\pp;
 use App\walkin;
 use App\epi;
@@ -21,7 +22,7 @@ use App\rabies;
 use App\sanitation;
 
 use Auth;
- 
+
 
 class ResidentController extends Controller
 {
@@ -158,14 +159,14 @@ class ResidentController extends Controller
         echo json_encode($output);
     }
 
-    public function updateResident(Request $request){ 
+    public function updateResident(Request $request){
                 $check = array();
                 $validator = Validator::make($request->all(), [
-                'id'                    => 'required',    
+                'id'                    => 'required',
                 'firstname'             => 'required',
                 'midname'               => 'required',
                 'lastname'              => 'required',
-                'civStatus'             => 'required',                
+                'civStatus'             => 'required',
                 'gender'                => 'required',
                 'barangay'               => 'required',
                 'purok'               => 'required',
@@ -177,10 +178,10 @@ class ResidentController extends Controller
                 'btype'                 => 'required',
                 'contact'               => 'required',
                 'email'                 => 'required',
-            ]);    
+            ]);
               if($validator->fails()){
                  $check = array(
-                    'success' => false, 
+                    'success' => false,
                     'message' => $validator->errors());
              }else{
                 $data = Person::where('id', $request->id)->first();
@@ -203,12 +204,12 @@ class ResidentController extends Controller
                 $residentsaved= $data->save();
             }
                 $check = array(
-                'success' => true, 
+                'success' => true,
                 'message' => 'Resident has been updated successfully.');
             }
         echo json_encode($check);
         }
-        
+
     public function addMch(Request $request){
 
         $mch = new mch;
@@ -326,7 +327,7 @@ class ResidentController extends Controller
         $gms->gms_id = $request->get('gms_id');
         $gms->age = $request->get('age');
         $gms->complaints = $request->get('complaints');
-        $gms->HO_advice = $request->get('HO_advice');        
+        $gms->HO_advice = $request->get('HO_advice');
         $gms->save();
     }
     public function addbip(Request $request){

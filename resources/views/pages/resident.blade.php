@@ -120,6 +120,7 @@
                },
           ]
      });
+
      function unhide()
                {
                     //alert('mao ni');
@@ -575,10 +576,12 @@
                       $('#level_mch').val('');
                       $('#range_mch').val('');
                       $('#remarks_mch').val('');
+                      $('#addModal').modal('hide');
                       swal( "Success!", "You added a MCH consultation!", "success", "Ok")
                       .then((value) => {
                     $("#mchForm").trigger('reset');
                           refresh_resident_table();
+
                       });
 
                     },
@@ -613,11 +616,14 @@
                       $('#vita').val('');
                       $('#date').val('');
                       $('#f_pp').val('');
-
-                      swal( "Success!", "You added a resident!", "success", "Ok")
+                      $('#addModal').modal('hide');
+                      swal( "Success!", "You added a PP consultation!", "success", "Ok")
                       .then((value) => {
+
                     $("#ppForm").trigger('reset');
                           refresh_resident_table();
+
+
                       });
 
                     },
@@ -647,10 +653,12 @@
                       $('#notes').val('');
                       $('#med').val('');
                       $('#quantity').val('');
+                      $('#addModal').modal('hide');
                       swal( "Success!", "You added a resident!", "success", "Ok")
                       .then((value) => {
                     $("#walkinForm").trigger('reset');
                           refresh_resident_table();
+
                       });
 
                     },
@@ -679,10 +687,12 @@
                           $('#weight').val('');
                           $('#r_code').val('');
                           $('#vaccine').val('');
+                          $('#addModal').modal('hide');
                           swal( "Success!", "EPI added successfuly!", "success", "Ok")
                           .then((value) => {
                         $("#epiForm").trigger('reset');
                               refresh_resident_table();
+
                           });
 
                         },
@@ -711,10 +721,12 @@
                           $('#weight_ufc').val('');
                           $('#r_code_ufc').val('');
                           $('#remarks_ufc').val('');
+                          $('#addModal').modal('hide');
                           swal( "Success!", "UFC added successfuly!", "success", "Ok")
                           .then((value) => {
                         $("#ufcForm").trigger('reset');
                               refresh_resident_table();
+
                           });
 
                         },
@@ -742,6 +754,7 @@
                           $('#fdg').val('');
                           $('#method_accepted').val('');
                           $('#remarks_fp').val('');
+                          $('#addModal').modal('hide');
                           swal( "Success!", "FP added successfuly!", "success", "Ok")
                           .then((value) => {
                         $("#fpForm").trigger('reset');
@@ -772,6 +785,7 @@
                           $('#complaints_cdd').val('');
                           $('#num_OR').val('');
                           $('#remarks_cdd').val('');
+                          $('#addModal').modal('hide');
                           swal( "Success!", "CDD added successfuly!", "success", "Ok")
                           .then((value) => {
                         $("#cddForm").trigger('reset');
@@ -800,6 +814,7 @@
                           $('#age_mortality').val('');
                           $('#DOD').val('');
                           $('#COD').val('');
+                          $('#addModal').modal('hide');
                           swal( "Success!", "Mortality added successfuly!", "success", "Ok")
                           .then((value) => {
                         $("#epiForm").trigger('reset');
@@ -828,6 +843,7 @@
                           $('#age_cari').val('');
                           $('#complaints_cari').val('');
                           $('#remarks_fp').val('');
+                          $('#addModal').modal('hide');
                           swal( "Success!", "CARI added successfuly!", "success", "Ok")
                           .then((value) => {
                         $("#cariForm").trigger('reset');
@@ -856,6 +872,7 @@
                           $('#age_gms').val('');
                           $('#complaints_gms').val('');
                           $('#HO_advice').val('');
+                          $('#addModal').modal('hide');
                           swal( "Success!", "GMS added successfuly!", "success", "Ok")
                           .then((value) => {
                         $("#gmsForm").trigger('reset');
@@ -885,6 +902,7 @@
                           $('#client_type').val('');
                           $('#f_history').val('');
                           $('#remarks_bip').val('');
+                          $('#addModal').modal('hide');
                           swal( "Success!", "BIP added successfuly!", "success", "Ok")
                           .then((value) => {
                         $("#bipForm").trigger('reset');
@@ -918,6 +936,7 @@
                           $('#date_first2').val('');
                           $('#sputum2').val('');
                           $('#result3').val('');
+                          $('#addModal').modal('hide');
                           swal( "Success!", "TB added successfuly!", "success", "Ok")
                           .then((value) => {
                         $("#TBForm").trigger('reset');
@@ -947,6 +966,7 @@
                           $('#date_rabies').val('');
                           $('#complaint_bite').val('');
                           $('#remarks_rabies').val('');
+                          $('#addModal').modal('hide');
                           swal( "Success!", "Rabies Complaint added successfuly!", "success", "Ok")
                           .then((value) => {
                         $("#rabiesForm").trigger('reset');
@@ -977,6 +997,7 @@
                           $('#poor').val('');
                           $('#without').val('');
                           $('#remarks_sanitation').val('');
+                          $('#addModal').modal('hide');
                           swal( "Success!", "Sanitation added successfuly!", "success", "Ok")
                           .then((value) => {
                         $("#sanitationForm").trigger('reset');
