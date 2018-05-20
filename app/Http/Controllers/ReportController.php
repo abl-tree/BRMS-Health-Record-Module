@@ -11,13 +11,19 @@ use App\cdd;
 use App\cari;
 use App\gms;
 use App\fp;
+use App\sanitation;
+use App\tb;
+use App\bip;
+use App\rabies;
+use App\mortality;
 use App\Person;
 use App\epi;
 class ReportController extends Controller
 {
     protected $db_connection;
 
-//Syempre par kailangan mo maging wise , pag ayaw sayo edi putangina sakalin mo tutal demonyo ka naman e.
+   //Syempre par kailangan mo maging wise , pag ayaw gumana edi putangina sirain mo pc mo tutal demonyo ka naman e.
+
     /**
      * Create a new controller instance.
      *
@@ -58,7 +64,7 @@ class ReportController extends Controller
        $ultimatesickquery= DB::table('pp_report')
             ->join('persons', 'persons.id', '=', 'pp_report.pp_id')
 
-            ->select('pp_report.id','pp_report.age','pp_report.PlaceofDelivery','pp_report.attended_by','pp_report.gender','pp_report.fdg','pp_report.weight','pp_report.date_of_pp','pp_report.vitamina','pp_report.dod', 'pp_report.F','persons.firstName','persons.midName','persons.lastName')
+            ->select('pp_report.id','pp_report.age','pp_report.PlaceofDelivery','pp_report.attended_by','pp_report.gender','pp_report.fdg','pp_report.weight','pp_report.date_of_pp','pp_report.vitamina','pp_report.dod', 'pp_report.F','persons.firstName','persons.midName','persons.lastName','persons.dob')
             ->get();
        return \DataTables::of($ultimatesickquery)
 
@@ -137,7 +143,78 @@ class ReportController extends Controller
 
        ->make(true);
     }
+    public function refresh8()
+    {
+       //$user = User::all();
+       $ultimatesickquery= DB::table('bip_report')
+            ->join('persons', 'persons.id', '=', 'bip_report.bip_id')
 
+            ->select('bip_report.id','bip_report.age','bip_report.BP','bip_report.client_type','bip_report.f_history','bip_report.remarks','persons.firstName','persons.midName','persons.lastName','persons.gender')
+            ->get();
+       return \DataTables::of($ultimatesickquery)
+
+       ->make(true);
+    }
+    public function refresh9()
+    {
+       //$user = User::all();
+       $ultimatesickquery= DB::table('tb_symp_report')
+            ->join('persons', 'persons.id', '=', 'tb_symp_report.tb_id')
+
+            ->select('tb_symp_report.id','tb_symp_report.age','tb_symp_report.DOX_ray','tb_symp_report.date_first','tb_symp_report.sputum','tb_symp_report.submit3','tb_symp_report.date_first2','tb_symp_report.sputum2','tb_symp_report.result3','persons.firstName','persons.midName','persons.lastName')
+            ->get();
+       return \DataTables::of($ultimatesickquery)
+
+       ->make(true);
+    }
+    public function refresh10()
+    {
+       //$user = User::all();
+       $ultimatesickquery= DB::table('rabies_report')
+            ->join('persons', 'persons.id', '=', 'rabies_report.rabies_id')
+
+            ->select('rabies_report.id','rabies_report.age','rabies_report.date','rabies_report.complaint_bite','rabies_report.remarks','persons.firstName','persons.midName','persons.lastName')
+            ->get();
+       return \DataTables::of($ultimatesickquery)
+
+       ->make(true);
+    }
+    public function refresh11()
+    {
+       //$user = User::all();
+       $ultimatesickquery= DB::table('sanitation_report')
+            ->join('persons', 'persons.id', '=', 'sanitation_report.sanitation_id')
+
+            ->select('sanitation_report.id','sanitation_report.no_toilet','sanitation_report.not_proper','sanitation_report.poor','sanitation_report.without','sanitation_report.remarks','persons.firstName','persons.midName','persons.lastName')
+            ->get();
+       return \DataTables::of($ultimatesickquery)
+
+       ->make(true);
+    }
+    public function refresh12()
+    {
+       //$user = User::all();
+       $ultimatesickquery= DB::table('mortality')
+            ->join('persons', 'persons.id', '=', 'mortality.mortality_id')
+
+            ->select('mortality.id','mortality.age','mortality.DOD','mortality.COD','persons.firstName','persons.midName','persons.lastName')
+            ->get();
+       return \DataTables::of($ultimatesickquery)
+
+       ->make(true);
+    }
+    public function refresh13()
+    {
+       //$user = User::all();
+       $ultimatesickquery= DB::table('mch')
+            ->join('persons', 'persons.id', '=', 'mch.mch_id')
+
+            ->select('mch.id','mch.age','mch.g','mch.p','mch.rcode','mch.level','mch.range','mch.lmp','mch.edc','mch.remarks','persons.firstName','persons.midName','persons.lastName')
+            ->get();
+       return \DataTables::of($ultimatesickquery)
+
+       ->make(true);
+    }
 
 
     public function quarterlyView()

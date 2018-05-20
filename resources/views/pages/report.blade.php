@@ -2,7 +2,27 @@
   $('.breadcrumb').html('<li class="breadcrumb-item">Report</li><li class="breadcrumb-item active">Monthly</li>');
 
   $('#mch-dt').DataTable({
-      responsive: true
+       responsive: true,
+       "processing": true,
+       "serverSide": true,
+       "ajax": "/mch_profile",
+       "columns": [
+       {data: 'id'},
+       {data:'firstName',
+       render: function(data, type, full, meta){
+            return full.lastName +", "+ full.firstName+" "+full.midName;
+       }
+       },
+       {data: 'age'},
+       {data: 'g'},
+       {data: 'p'},
+       {data: 'lmp'},
+       {data: 'edc'},
+       {data: 'rcode'},
+       {data: 'range'},
+       {data: 'remarks'},
+
+]
   });
 
 
@@ -19,15 +39,16 @@
             }
            },
            {data: 'age'},
+           {data: 'dob'},
            {data: 'PlaceofDelivery'},
            {data: 'attended_by'},
            {data: 'gender'},
            {data: 'fdg'},
            {data: 'weight'},
-           {data: 'date_of_pp'},
            {data: 'vitamina'},
-           {data: 'dod'},
            {data: 'F'},
+           {data: 'date_of_pp'},
+
 
 
   ]
@@ -169,23 +190,108 @@
   });
 
   $('#bip-dt').DataTable({
-      responsive: true
+       responsive: true,
+       "processing": true,
+       "serverSide": true,
+       "ajax": "/bip_profile",
+       "columns": [
+       {data: 'id'},
+       {data:'firstName',
+       render: function(data, type, full, meta){
+            return full.lastName +", "+ full.firstName+" "+full.midName;
+       }
+       },
+       {data: 'age'},
+       {data: 'gender'},
+       {data: 'BP'},
+       {data: 'client_type'},
+       {data: 'f_history'},
+       {data: 'remarks'},
+
+]
   });
 
   $('#tbsymp-dt').DataTable({
-      responsive: true
+       responsive: true,
+       "processing": true,
+       "serverSide": true,
+       "ajax": "/tb_profile",
+       "columns": [
+       {data: 'id'},
+       {data:'firstName',
+       render: function(data, type, full, meta){
+            return full.lastName +", "+ full.firstName+" "+full.midName;
+       }
+       },
+       {data: 'age'},
+       {data: 'DOX_ray'},
+       {data: 'date_first'},
+       {data: 'sputum'},
+       {data: 'submit3'},
+       {data: 'date_first2'},
+       {data: 'sputum2'},
+       {data: 'result3'},
+]
   });
 
   $('#rabies-dt').DataTable({
-      responsive: true
+       responsive: true,
+       "processing": true,
+       "serverSide": true,
+       "ajax": "/rabies_profile",
+       "columns": [
+       {data: 'id'},
+       {data:'firstName',
+       render: function(data, type, full, meta){
+            return full.lastName +", "+ full.firstName+" "+full.midName;
+       }
+       },
+       {data: 'age'},
+       {data: 'date'},
+       {data: 'complaint_bite'},
+       {data: 'remarks'},
+
+]
   });
 
   $('#sanitation-dt').DataTable({
-      responsive: true
+       responsive: true,
+       "processing": true,
+       "serverSide": true,
+       "ajax": "/sanitation_profile",
+       "columns": [
+       {data: 'id'},
+       {data:'firstName',
+       render: function(data, type, full, meta){
+            return full.lastName +", "+ full.firstName+" "+full.midName;
+       }
+       },
+       {data: 'no_toilet'},
+       {data: 'not_proper'},
+       {data: 'poor'},
+       {data: 'without'},
+       {data: 'remarks'},
+
+]
   });
 
   $('#mortality-dt').DataTable({
-      responsive: true
+       responsive: true,
+       "processing": true,
+       "serverSide": true,
+       "ajax": "/mortality_profile",
+       "columns": [
+       {data: 'id'},
+       {data:'firstName',
+       render: function(data, type, full, meta){
+            return full.lastName +", "+ full.firstName+" "+full.midName;
+       }
+       },
+       {data: 'age'},
+       {data: 'DOD'},
+       {data: 'COD'},
+
+]
   });
 </script>
 <div class="animated fadeIn">
@@ -199,25 +305,16 @@
           <table id="mch-dt" class="table table-hover table-bordered table-responsive" cellspacing="0" width="100%">
             <thead>
               <tr>
-                <th class="text-center col" rowspan="2">ID</th>
-                <th class="text-center col" rowspan="2">Name</th>
-                <th class="text-center col" rowspan="2">Age</th>
-                <th class="text-center col" rowspan="2">G</th>
-                <th class="text-center col" rowspan="2">P</th>
-                <th class="text-center col" rowspan="2">LMP</th>
-                <th class="text-center col" rowspan="2">EDC</th>
-                <th class="text-center col" rowspan="2">R CODE #</th>
-                <th class="text-center col" rowspan="1" colspan="3">NORMAL</th>
-                <th class="text-center col" rowspan="1" colspan="3">RMK</th>
-                <th class="text-center col" rowspan="2">REMARKS</th>
-              </tr>
-              <tr>
-                <th class="text-center col">1-3</th>
-                <th class="text-center col">4-6</th>
-                <th class="text-center col">7-9</th>
-                <th class="text-center col">1-3</th>
-                <th class="text-center col">4-6</th>
-                <th class="text-center col">7-9</th>
+                <th class="text-center col" width="10%">ID</th>
+                <th class="text-center col"  width="30%">Name</th>
+                <th class="text-center col" width="10%">Age</th>
+                <th class="text-center col" width="10%">G</th>
+                <th class="text-center col"  width="10%">P</th>
+                <th class="text-center col" width="20%">LMP</th>
+                <th class="text-center col"  width="20%">EDC</th>
+                <th class="text-center col"  width="10%">R CODE #</th>
+                <th class="text-center col"  width="20%">RANGE</th>
+                <th class="text-center col" width="20%">REMARKS</th>
               </tr>
             </thead>
             <tbody>
@@ -231,11 +328,7 @@
                 <td>sample</td>
                 <td>sample</td>
                 <td>sample</td>
-                <td>sample</td>
-                <td>sample</td>
-                <td>sample</td>
-                <td>sample</td>
-                <td>sample</td>
+
             </tbody>
           </table>
         </div>
@@ -305,7 +398,7 @@
                 <th class="text-center col" width="20%">Birthday Date</th>
                 <th class="text-center col" width="40%">PARENTS</th>
                 <th class="text-center col" width="10%">Fdg</th>
-                <th class="text-center col"width="10%">Wt.</th>
+                <th class="text-center col" width="10%">Wt.</th>
                 <th class="text-center col" width="10%">R CODE #</th>
                 <th class="text-center col" width="20%">VACCINES</th>
               </tr>
@@ -509,21 +602,17 @@
           <table id="bip-dt" class="table table-hover table-bordered table-responsive" cellspacing="0" width="100%">
             <thead>
               <tr>
-                <th class="text-center col">ID</th>
-                <th class="text-center col">NAME</th>
-                <th class="text-center col">AGE</th>
-                <th class="text-center col">MALE</th>
-                <th class="text-center col">FEMALE</th>
-                <th class="text-center col">BIP</th>
-                <th class="text-center col">NEW</th>
-                <th class="text-center col">OLD</th>
-                <th class="text-center col">FAMILY HISTORY</th>
-                <th class="text-center col">REMARKS</th>
+                <th class="text-center col"  width="10%">ID</th>
+                <th class="text-center col"  width="30%">NAME</th>
+                <th class="text-center col"  width="10%">AGE</th>
+                <th class="text-center col"  width="10%">GENDER</th>
+                <th class="text-center col"  width="10%">BIP</th>
+                <th class="text-center col"  width="10%">CLIENT TYPE</th>
+                <th class="text-center col"  width="30%">FAMILY HISTORY</th>
+                <th class="text-center col"  width="30%">REMARKS</th>
               </tr>
             </thead>
             <tbody>
-                <td>sample</td>
-                <td>sample</td>
                 <td>sample</td>
                 <td>sample</td>
                 <td>sample</td>
@@ -550,16 +639,16 @@
           <table id="tbsymp-dt" class="table table-hover table-bordered table-responsive" cellspacing="0" width="100%">
             <thead>
               <tr>
-                <th class="text-center col">ID</th>
-                <th class="text-center col">NAME</th>
-                <th class="text-center col">AGE</th>
-                <th class="text-center col">DATE OF X-XRAY RESULT</th>
-                <th class="text-center col">DATE 1ST</th>
-                <th class="text-center col">SUBMITTED 2ND</th>
-                <th class="text-center col">SUBMITTED 3RD</th>
-                <th class="text-center col">DATE 1ST</th>
-                <th class="text-center col">SPUTUM 2ND</th>
-                <th class="text-center col">RESULT 3RD</th>
+                <th class="text-center col" width="10%">ID</th>
+                <th class="text-center col" width="30%">NAME</th>
+                <th class="text-center col" width="10%">AGE</th>
+                <th class="text-center col" width="10%">DATE OF X-XRAY RESULT</th>
+                <th class="text-center col" width="10%">DATE 1ST</th>
+                <th class="text-center col" width="10%">SUBMITTED 2ND</th>
+                <th class="text-center col" width="10%">SUBMITTED 3RD</th>
+                <th class="text-center col" width="10%">DATE 1ST</th>
+                <th class="text-center col" width="10%">SPUTUM 2ND</th>
+                <th class="text-center col" width="10%">RESULT 3RD</th>
               </tr>
             </thead>
             <tbody>
@@ -591,12 +680,12 @@
           <table id="rabies-dt" class="table table-hover table-bordered table-responsive" cellspacing="0" width="100%">
             <thead>
               <tr>
-                <th class="text-center col">ID</th>
-                <th class="text-center col">NAME</th>
-                <th class="text-center col">AGE</th>
-                <th class="text-center col">DATE</th>
-                <th class="text-center col">COMPLAINTS ANIMAL BITE</th>
-                <th class="text-center col">REMARKS</th>
+                <th class="text-center col" width="10%">ID</th>
+                <th class="text-center col" width="30%">NAME</th>
+                <th class="text-center col" width="10%">AGE</th>
+                <th class="text-center col" width="20%">DATE</th>
+                <th class="text-center col" width="30%">COMPLAINTS ANIMAL BITE</th>
+                <th class="text-center col" width="30%">REMARKS</th>
               </tr>
             </thead>
             <tbody>
@@ -624,7 +713,7 @@
           <table id="sanitation-dt" class="table table-hover table-bordered table-responsive" cellspacing="0" width="100%">
             <thead>
               <tr>
-                <th class="text-center col">ID</th>
+                <th class="text-center col" width="10%">ID</th>
                 <th class="text-center col">NAME</th>
                 <th class="text-center col">WITHOUT TOILET</th>
                 <th class="text-center col">WITHOUT PROPER WASTE DISPOSAL</th>

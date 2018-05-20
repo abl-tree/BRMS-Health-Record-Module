@@ -40,6 +40,12 @@ Route::middleware(['auth'])->group(function() {
      Route::get('/cdd_profile', 'ReportController@refresh5');
      Route::get('/cari_profile', 'ReportController@refresh6');
      Route::get('/gms_profile', 'ReportController@refresh7');
+     Route::get('/bip_profile', 'ReportController@refresh8');
+     Route::get('/tb_profile', 'ReportController@refresh9');
+     Route::get('/rabies_profile', 'ReportController@refresh10');
+     Route::get('/sanitation_profile', 'ReportController@refresh11');
+     Route::get('/mortality_profile', 'ReportController@refresh12');
+     Route::get('/mch_profile', 'ReportController@refresh13');
 	Route::post('/household/member/{option}', 'HouseholdController@set')->name('set_household');
 	Route::post('/household/set/{option}', 'HouseholdController@member')->name('household_member');
 	Route::get('/household/get/{option}', 'HouseholdController@get')->name('member_queue');

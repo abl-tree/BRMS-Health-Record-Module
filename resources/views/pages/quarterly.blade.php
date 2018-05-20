@@ -1,57 +1,298 @@
 <script>
   $('.breadcrumb').html('<li class="breadcrumb-item">Report</li><li class="breadcrumb-item active">Quarterly</li>');
-  
-  $('#mch-dt').DataTable({
-      responsive: true
+
+    $('#mch-dt').DataTable({
+         responsive: true,
+         "processing": true,
+         "serverSide": true,
+         "ajax": "/mch_profile",
+         "columns": [
+         {data: 'id'},
+         {data:'firstName',
+         render: function(data, type, full, meta){
+              return full.lastName +", "+ full.firstName+" "+full.midName;
+         }
+         },
+         {data: 'age'},
+         {data: 'g'},
+         {data: 'p'},
+         {data: 'lmp'},
+         {data: 'edc'},
+         {data: 'rcode'},
+         {data: 'range'},
+         {data: 'remarks'},
+
+  ]
+    });
+
+
+    var test = $('#pp-dt').DataTable({
+         responsive: true,
+         "processing": true,
+         "serverSide": true,
+         "ajax": "/pp_profile",
+         "columns": [
+              {data: 'id'},
+              {data:'firstName',
+              render: function(data, type, full, meta){
+                   return full.lastName +", "+ full.firstName+" "+full.midName;
+              }
+             },
+             {data: 'age'},
+             {data: 'dob'},
+             {data: 'PlaceofDelivery'},
+             {data: 'attended_by'},
+             {data: 'gender'},
+             {data: 'fdg'},
+             {data: 'weight'},
+             {data: 'vitamina'},
+             {data: 'F'},
+             {data: 'date_of_pp'},
+
+
+
+    ]
   });
 
-  $('#pp-dt').DataTable({
-      responsive: true
-  });
+    var test1 = $('#epi-dt').DataTable({
+        responsive: true,
+        "processing": true,
+        "serverSide": true,
+        "ajax": "/epi_profile",
+        "columns": [
+             {data: 'id'},
+             {data:'firstName',
+             render: function(data, type, full, meta){
+                  return full.lastName +", "+ full.firstName+" "+full.midName;
+             }
+            },
+            {data: 'age'},
+            {data: 'dob'},
+            {data:'mother_name',
+            render: function(data, type, full, meta){
+                 return full.mother_name +", "+ full.father_name;
+            }
+       },
+            {data: 'fdg'},
+            {data: 'weight'},
+            {data: 'r_code'},
+            {data: 'vaccine'},
+       ]
+    });
 
-  $('#epi-dt').DataTable({
-      responsive: true
-  });
+    $('#ufc-dt').DataTable({
+         responsive: true,
+        "processing": true,
+        "serverSide": true,
+        "ajax": "/ufc_profile",
+        "columns": [
+             {data: 'id'},
+             {data:'firstName',
+             render: function(data, type, full, meta){
+                  return full.lastName +", "+ full.firstName+" "+full.midName;
+             }
+            },
+            {data: 'age'},
+            {data: 'dob'},
+            {data:'mother_name',
+            render: function(data, type, full, meta){
+                 return full.mother_name +", "+ full.father_name;
+            }
+       },
+            {data: 'fdg'},
+            {data: 'weight'},
+            {data: 'r_code'},
+            {data: 'remarks'},
+       ]
+    });
 
-  $('#ufc-dt').DataTable({
-      responsive: true
-  });
+    $('#fp-dt').DataTable({
+         responsive: true,
+      "processing": true,
+      "serverSide": true,
+      "ajax": "/fp_profile",
+      "columns": [
+            {data: 'id'},
+            {data:'firstName',
+            render: function(data, type, full, meta){
+                 return full.lastName +", "+ full.firstName+" "+full.midName;
+            }
+           },
+           {data: 'age'},
 
-  $('#fp-dt').DataTable({
-      responsive: true
-  });
+           {data: 'num_child'},
+           {data: 'lmp'},
+           {data: 'client_type'},
+           {data: 'method_accepted'},
+           {data: 'remarks'},
+     ]
+    });
 
-  $('#cod-dt').DataTable({
-      responsive: true
-  });
+    $('#cod-dt').DataTable({
+         responsive: true,
+     "processing": true,
+     "serverSide": true,
+     "ajax": "/cdd_profile",
+     "columns": [
+           {data: 'id'},
+           {data:'firstName',
+           render: function(data, type, full, meta){
+                return full.lastName +", "+ full.firstName+" "+full.midName;
+           }
+          },
+          {data: 'age'},
 
-  $('#cari-dt').DataTable({
-      responsive: true
-  });
+          {data: 'complaints'},
+          {data: 'num_OR'},
+          {data: 'remarks'},
 
-  $('#gms-dt').DataTable({
-      responsive: true
-  });
+    ]
+    });
 
-  $('#bip-dt').DataTable({
-      responsive: true
-  });
+    $('#cari-dt').DataTable({
+         responsive: true,
+   "processing": true,
+   "serverSide": true,
+   "ajax": "/cari_profile",
+   "columns": [
+         {data: 'id'},
+         {data:'firstName',
+         render: function(data, type, full, meta){
+              return full.lastName +", "+ full.firstName+" "+full.midName;
+         }
+         },
+         {data: 'age'},
 
-  $('#tbsymp-dt').DataTable({
-      responsive: true
-  });
+         {data: 'complaints'},
+         {data: 'HO_advice'},
 
-  $('#rabies-dt').DataTable({
-      responsive: true
-  });
+  ]
+    });
 
-  $('#sanitation-dt').DataTable({
-      responsive: true
-  });
+    $('#gms-dt').DataTable({
+         responsive: true,
+  "processing": true,
+  "serverSide": true,
+  "ajax": "/gms_profile",
+  "columns": [
+         {data: 'id'},
+         {data:'firstName',
+         render: function(data, type, full, meta){
+              return full.lastName +", "+ full.firstName+" "+full.midName;
+         }
+         },
+         {data: 'age'},
 
-  $('#mortality-dt').DataTable({
-      responsive: true
-  });
+         {data: 'complaints'},
+         {data: 'HO_advice'},
+
+  ]
+    });
+
+    $('#bip-dt').DataTable({
+         responsive: true,
+         "processing": true,
+         "serverSide": true,
+         "ajax": "/bip_profile",
+         "columns": [
+         {data: 'id'},
+         {data:'firstName',
+         render: function(data, type, full, meta){
+              return full.lastName +", "+ full.firstName+" "+full.midName;
+         }
+         },
+         {data: 'age'},
+         {data: 'gender'},
+         {data: 'BP'},
+         {data: 'client_type'},
+         {data: 'f_history'},
+         {data: 'remarks'},
+
+  ]
+    });
+
+    $('#tbsymp-dt').DataTable({
+         responsive: true,
+         "processing": true,
+         "serverSide": true,
+         "ajax": "/tb_profile",
+         "columns": [
+         {data: 'id'},
+         {data:'firstName',
+         render: function(data, type, full, meta){
+              return full.lastName +", "+ full.firstName+" "+full.midName;
+         }
+         },
+         {data: 'age'},
+         {data: 'DOX_ray'},
+         {data: 'date_first'},
+         {data: 'sputum'},
+         {data: 'submit3'},
+         {data: 'date_first2'},
+         {data: 'sputum2'},
+         {data: 'result3'},
+  ]
+    });
+
+    $('#rabies-dt').DataTable({
+         responsive: true,
+         "processing": true,
+         "serverSide": true,
+         "ajax": "/rabies_profile",
+         "columns": [
+         {data: 'id'},
+         {data:'firstName',
+         render: function(data, type, full, meta){
+              return full.lastName +", "+ full.firstName+" "+full.midName;
+         }
+         },
+         {data: 'age'},
+         {data: 'date'},
+         {data: 'complaint_bite'},
+         {data: 'remarks'},
+
+  ]
+    });
+
+    $('#sanitation-dt').DataTable({
+         responsive: true,
+         "processing": true,
+         "serverSide": true,
+         "ajax": "/sanitation_profile",
+         "columns": [
+         {data: 'id'},
+         {data:'firstName',
+         render: function(data, type, full, meta){
+              return full.lastName +", "+ full.firstName+" "+full.midName;
+         }
+         },
+         {data: 'no_toilet'},
+         {data: 'not_proper'},
+         {data: 'poor'},
+         {data: 'without'},
+         {data: 'remarks'},
+
+  ]
+    });
+
+    $('#mortality-dt').DataTable({
+         responsive: true,
+         "processing": true,
+         "serverSide": true,
+         "ajax": "/mortality_profile",
+         "columns": [
+         {data: 'id'},
+         {data:'firstName',
+         render: function(data, type, full, meta){
+              return full.lastName +", "+ full.firstName+" "+full.midName;
+         }
+         },
+         {data: 'age'},
+         {data: 'DOD'},
+         {data: 'COD'},
+
+  ]
+    });
 </script>
 <div class="animated fadeIn">
   <div class="row">
@@ -64,25 +305,16 @@
           <table id="mch-dt" class="table table-hover table-bordered table-responsive" cellspacing="0" width="100%">
             <thead>
               <tr>
-                <th class="text-center col" rowspan="2">ID</th>
-                <th class="text-center col" rowspan="2">Name</th>
-                <th class="text-center col" rowspan="2">Age</th>
-                <th class="text-center col" rowspan="2">G</th>
-                <th class="text-center col" rowspan="2">P</th>
-                <th class="text-center col" rowspan="2">LMP</th>
-                <th class="text-center col" rowspan="2">EDC</th>
-                <th class="text-center col" rowspan="2">R CODE #</th>
-                <th class="text-center col" rowspan="1" colspan="3">NORMAL</th>
-                <th class="text-center col" rowspan="1" colspan="3">RMK</th>
-                <th class="text-center col" rowspan="2">REMARKS</th>
-              </tr>
-              <tr>
-                <th class="text-center col">1-3</th>
-                <th class="text-center col">4-6</th>
-                <th class="text-center col">7-9</th>
-                <th class="text-center col">1-3</th>
-                <th class="text-center col">4-6</th>
-                <th class="text-center col">7-9</th>
+                <th class="text-center col" width="10%">ID</th>
+                <th class="text-center col"  width="30%">Name</th>
+                <th class="text-center col" width="10%">Age</th>
+                <th class="text-center col" width="10%">G</th>
+                <th class="text-center col"  width="10%">P</th>
+                <th class="text-center col" width="20%">LMP</th>
+                <th class="text-center col"  width="20%">EDC</th>
+                <th class="text-center col"  width="10%">R CODE #</th>
+                <th class="text-center col"  width="20%">RANGE</th>
+                <th class="text-center col" width="20%">REMARKS</th>
               </tr>
             </thead>
             <tbody>
@@ -96,11 +328,7 @@
                 <td>sample</td>
                 <td>sample</td>
                 <td>sample</td>
-                <td>sample</td>
-                <td>sample</td>
-                <td>sample</td>
-                <td>sample</td>
-                <td>sample</td>
+
             </tbody>
           </table>
         </div>
@@ -116,19 +344,19 @@
           <i class="fa fa-align-justify"></i> PP Report
         </div>
         <div class="card-body">
-          <table id="pp-dt" class="table table-hover table-bordered table-responsive" cellspacing="0" width="100%">
+          <table id="pp-dt" class="table table-hover table-bordered table-responsive-sm datatable dataTable no-footer" cellspacing="0" width="100%">
             <thead>
               <tr>
-                <th class="text-center col">ID</th>
-                <th class="text-center col" width="30%">Name</th>
-                <th class="text-center col">Age</th>
-                <th class="text-center col">Date of Del.</th>
+                <th class="text-center col" width="10%">ID</th>
+                <th class="text-center col" width="40%">Name</th>
+                <th class="text-center col" width="10%">Age</th>
+                <th class="text-center col" width="20%">Date of Del.</th>
                 <th class="text-center col" width="30%">Place of Del.</th>
                 <th class="text-center col" width="30%">Attended By</th>
-                <th class="text-center col">Sex</th>
-                <th class="text-center col">Fdg</th>
-                <th class="text-center col">Wt.</th>
-                <th class="text-center col">Vit A</th>
+                <th class="text-center col" width="10%">Sex</th>
+                <th class="text-center col" width="10%">Fdg</th>
+                <th class="text-center col" width="10%">Wt.</th>
+                <th class="text-center col" width="120%">Vit A</th>
                 <th class="text-center col" width="10%">Ferroa</th>
                 <th class="text-center col">Date of PP</th>
               </tr>
@@ -164,15 +392,15 @@
           <table id="epi-dt" class="table table-hover table-bordered table-responsive" cellspacing="0" width="100%">
             <thead>
               <tr>
-                <th class="text-center col">ID</th>
-                <th class="text-center col" width="30%">NAME</th>
-                <th class="text-center col">AGE</th>
-                <th class="text-center col">Birthday Date</th>
-                <th class="text-center col" width="30%">PARENTS</th>
-                <th class="text-center col">Fdg</th>
-                <th class="text-center col">Wt.</th>
+                <th class="text-center col" width="10%">ID</th>
+                <th class="text-center col" width="40%">NAME</th>
+                <th class="text-center col" width="10%">AGE</th>
+                <th class="text-center col" width="20%">Birthday Date</th>
+                <th class="text-center col" width="40%">PARENTS</th>
+                <th class="text-center col" width="10%">Fdg</th>
+                <th class="text-center col" width="10%">Wt.</th>
                 <th class="text-center col" width="10%">R CODE #</th>
-                <th class="text-center col" width="30%">VACCINES</th>
+                <th class="text-center col" width="20%">VACCINES</th>
               </tr>
             </thead>
             <tbody>
@@ -203,13 +431,13 @@
           <table id="ufc-dt" class="table table-hover table-bordered table-responsive" cellspacing="0" width="100%">
             <thead>
               <tr>
-                <th class="text-center col">ID</th>
-                <th class="text-center col" width="30%">NAME</th>
-                <th class="text-center col">AGE</th>
-                <th class="text-center col">Birthday Date</th>
-                <th class="text-center col" width="30%">PARENTS</th>
-                <th class="text-center col">Fdg</th>
-                <th class="text-center col">Wt.</th>
+                <th class="text-center col" width="10%">ID</th>
+                <th class="text-center col" width="40%">NAME</th>
+                <th class="text-center col" width="10%">AGE</th>
+                <th class="text-center col" width="20%">Birthday Date</th>
+                <th class="text-center col" width="40%">PARENTS</th>
+                <th class="text-center col" width="10%">Fdg</th>
+                <th class="text-center col" width="10%">Wt.</th>
                 <th class="text-center col" width="10%">R CODE #</th>
                 <th class="text-center col" width="30%">REMARKS</th>
               </tr>
@@ -242,23 +470,18 @@
           <table id="fp-dt" class="table table-hover table-bordered table-responsive" cellspacing="0" width="100%">
             <thead>
               <tr>
-                <th class="text-center col" rowspan="2">ID</th>
-                <th class="text-center col" rowspan="2" width="30%">NAME</th>
-                <th class="text-center col" rowspan="2">AGE</th>
-                <th class="text-center col" rowspan="2">Number of Child</th>
-                <th class="text-center col" rowspan="2">LMP</th>
-                <th class="text-center col" colspan="2">TYPE OF CLIENT</th>
-                <th class="text-center col" rowspan="2">Method Accepted</th>
-                <th class="text-center col" rowspan="2" width="30%">REMARKS</th>
+                <th class="text-center col" width="10%">ID</th>
+                <th class="text-center col"  width="30%">NAME</th>
+                <th class="text-center col" width="10%">AGE</th>
+                <th class="text-center col" width="10%">Number of Child</th>
+                <th class="text-center col" width="20%">LMP</th>
+                <th class="text-center col" width="10%" >TYPE OF CLIENT</th>
+                <th class="text-center col" width="20%">Method Accepted</th>
+                <th class="text-center col" width="30%">REMARKS</th>
               </tr>
-              <tr>
-                <th class="text-center col">NEW</th>
-                <th class="text-center col">OLD</th>
-              </tr>
+
             </thead>
             <tbody>
-                <td>sample</td>
-                <td>sample</td>
                 <td>sample</td>
                 <td>sample</td>
                 <td>sample</td>
@@ -284,12 +507,12 @@
           <table id="cod-dt" class="table table-hover table-bordered table-responsive" cellspacing="0" width="100%">
             <thead>
               <tr>
-                <th class="text-center col">ID</th>
-                <th class="text-center col">NAME</th>
-                <th class="text-center col">AGE</th>
-                <th class="text-center col">COMPLAINTS</th>
-                <th class="text-center col">Number of Or's Given</th>
-                <th class="text-center col">REMARKS</th>
+                <th class="text-center col" width="10%">ID</th>
+                <th class="text-center col" width="30%">NAME</th>
+                <th class="text-center col" width="10%">AGE</th>
+                <th class="text-center col" width="30%">COMPLAINTS</th>
+                <th class="text-center col" width="10%">Number of Or's Given</th>
+                <th class="text-center col" width="40%">REMARKS</th>
               </tr>
             </thead>
             <tbody>
@@ -317,11 +540,11 @@
           <table id="cari-dt" class="table table-hover table-bordered table-responsive" cellspacing="0" width="100%">
             <thead>
               <tr>
-                <th class="text-center col">ID</th>
-                <th class="text-center col">NAME</th>
-                <th class="text-center col">AGE</th>
-                <th class="text-center col">COMPLAINTS</th>
-                <th class="text-center col">HOME CARE ADVICE</th>
+                <th class="text-center col" width="10%">ID</th>
+                <th class="text-center col" width="30%">NAME</th>
+                <th class="text-center col" width="10%">AGE</th>
+                <th class="text-center col" width="30%">COMPLAINTS</th>
+                <th class="text-center col" width="30%">HOME CARE ADVICE</th>
               </tr>
             </thead>
             <tbody>
@@ -348,11 +571,11 @@
           <table id="gms-dt" class="table table-hover table-bordered table-responsive" cellspacing="0" width="100%">
             <thead>
               <tr>
-                <th class="text-center col">ID</th>
-                <th class="text-center col">NAME</th>
-                <th class="text-center col">AGE</th>
-                <th class="text-center col">COMPLAINTS</th>
-                <th class="text-center col">HOME CARE ADVICE</th>
+                  <th class="text-center col" width="10%">ID</th>
+                  <th class="text-center col" width="30%">NAME</th>
+                  <th class="text-center col" width="10%">AGE</th>
+                  <th class="text-center col" width="30%">COMPLAINTS</th>
+                  <th class="text-center col" width="30%">HOME CARE ADVICE</th>
               </tr>
             </thead>
             <tbody>
@@ -379,21 +602,17 @@
           <table id="bip-dt" class="table table-hover table-bordered table-responsive" cellspacing="0" width="100%">
             <thead>
               <tr>
-                <th class="text-center col">ID</th>
-                <th class="text-center col">NAME</th>
-                <th class="text-center col">AGE</th>
-                <th class="text-center col">MALE</th>
-                <th class="text-center col">FEMALE</th>
-                <th class="text-center col">BIP</th>
-                <th class="text-center col">NEW</th>
-                <th class="text-center col">OLD</th>
-                <th class="text-center col">FAMILY HISTORY</th>
-                <th class="text-center col">REMARKS</th>
+                <th class="text-center col"  width="10%">ID</th>
+                <th class="text-center col"  width="30%">NAME</th>
+                <th class="text-center col"  width="10%">AGE</th>
+                <th class="text-center col"  width="10%">GENDER</th>
+                <th class="text-center col"  width="10%">BIP</th>
+                <th class="text-center col"  width="10%">CLIENT TYPE</th>
+                <th class="text-center col"  width="30%">FAMILY HISTORY</th>
+                <th class="text-center col"  width="30%">REMARKS</th>
               </tr>
             </thead>
             <tbody>
-                <td>sample</td>
-                <td>sample</td>
                 <td>sample</td>
                 <td>sample</td>
                 <td>sample</td>
@@ -420,16 +639,16 @@
           <table id="tbsymp-dt" class="table table-hover table-bordered table-responsive" cellspacing="0" width="100%">
             <thead>
               <tr>
-                <th class="text-center col">ID</th>
-                <th class="text-center col">NAME</th>
-                <th class="text-center col">AGE</th>
-                <th class="text-center col">DATE OF X-XRAY RESULT</th>
-                <th class="text-center col">DATE 1ST</th>
-                <th class="text-center col">SUBMITTED 2ND</th>
-                <th class="text-center col">SUBMITTED 3RD</th>
-                <th class="text-center col">DATE 1ST</th>
-                <th class="text-center col">SPUTUM 2ND</th>
-                <th class="text-center col">RESULT 3RD</th>
+                <th class="text-center col" width="10%">ID</th>
+                <th class="text-center col" width="30%">NAME</th>
+                <th class="text-center col" width="10%">AGE</th>
+                <th class="text-center col" width="10%">DATE OF X-XRAY RESULT</th>
+                <th class="text-center col" width="10%">DATE 1ST</th>
+                <th class="text-center col" width="10%">SUBMITTED 2ND</th>
+                <th class="text-center col" width="10%">SUBMITTED 3RD</th>
+                <th class="text-center col" width="10%">DATE 1ST</th>
+                <th class="text-center col" width="10%">SPUTUM 2ND</th>
+                <th class="text-center col" width="10%">RESULT 3RD</th>
               </tr>
             </thead>
             <tbody>
@@ -461,12 +680,12 @@
           <table id="rabies-dt" class="table table-hover table-bordered table-responsive" cellspacing="0" width="100%">
             <thead>
               <tr>
-                <th class="text-center col">ID</th>
-                <th class="text-center col">NAME</th>
-                <th class="text-center col">AGE</th>
-                <th class="text-center col">DATE</th>
-                <th class="text-center col">COMPLAINTS ANIMAL BITE</th>
-                <th class="text-center col">REMARKS</th>
+                <th class="text-center col" width="10%">ID</th>
+                <th class="text-center col" width="30%">NAME</th>
+                <th class="text-center col" width="10%">AGE</th>
+                <th class="text-center col" width="20%">DATE</th>
+                <th class="text-center col" width="30%">COMPLAINTS ANIMAL BITE</th>
+                <th class="text-center col" width="30%">REMARKS</th>
               </tr>
             </thead>
             <tbody>
@@ -494,7 +713,7 @@
           <table id="sanitation-dt" class="table table-hover table-bordered table-responsive" cellspacing="0" width="100%">
             <thead>
               <tr>
-                <th class="text-center col">ID</th>
+                <th class="text-center col" width="10%">ID</th>
                 <th class="text-center col">NAME</th>
                 <th class="text-center col">WITHOUT TOILET</th>
                 <th class="text-center col">WITHOUT PROPER WASTE DISPOSAL</th>
@@ -570,6 +789,6 @@
         <button type="button" class="btn btn-info">Save changes</button>
       </div>
     </div>
-  </div>	
-</div> 
+  </div>
+</div>
 <!-- end modals -->
