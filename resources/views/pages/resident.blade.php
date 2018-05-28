@@ -13,9 +13,13 @@
           if($( '#profile1' ).hasClass( "nav-link active" ))
           {
                //alert('maoni')
+
                $("#mch").hide();
                $("#ppdiv").hide();
                $("#walkin2").hide();
+               $("#epi1").hide();
+               $("#fp1").hide();
+               $("#ufc1").hide();
           }
           if($( '#emsiech' ).hasClass( "nav-link active" ))
           {
@@ -31,6 +35,11 @@
           {
                //alert('maoni')
                $("#walkin2").show();
+          }
+          if($( '#epi' ).hasClass( "nav-link active" ))
+          {
+               //alert('maoni')
+               $("#epi1").show();
           }
 
 
@@ -51,6 +60,9 @@
           });
 
           $('#lmp').datetimepicker({
+               format: 'YYYY-MM-DD'
+          });
+          $('#lmp1').datetimepicker({
                format: 'YYYY-MM-DD'
           });
           $('#vita').datetimepicker({
@@ -92,22 +104,31 @@
                     $("#walkin").hide();
                     $("#ppdiv").hide();
                     $("#walkin2").hide();
+                    $("#epi1").hide();
+                    $("#fp1").hide();
+                    $("#ufc1").hide();
                }
      function unhide1()
                {
                     $("#walkin").show();
                //     alert('mao ni');
+                    $("#epi1").hide();
+                    $("#fp1").hide();
                     $("#mch").hide();
                     $("#ppdiv").hide();
                     $("#walkin2").hide();
+                    $("#ufc1").hide();
                }
      function unhide2()
               {
                     //alert('mao ni');
                     $("#walkin2").hide();
+                    $("#epi1").hide();
+                    $("#fp1").hide();
                     $("#ppdiv").show();
                     $("#mch").hide();
                    $("#walkin").hide();
+                   $("#ufc1").hide();
                    $('#walkin').addClass('tab-pane').removeClass('tab-pane active');
                }
 
@@ -116,10 +137,51 @@
                               //alert('mao ni');
                               $("#walkin2").show();
                               $("#ppdiv").hide();
+                              $("#fp1").hide();
                               $("#mch").hide();
                              $("#walkin").hide();
+                             $("#epi1").hide();
+                             $("#ufc1").hide();
                              $('#walkin').addClass('tab-pane').removeClass('tab-pane active');
                          }
+               function unhide4()
+                         {
+                                        //alert('mao ni');
+                                   $("#ufc1").hide();
+                                   $("#walkin2").hide();
+                                   $("#fp1").hide();
+                                   $("#ppdiv").hide();
+                                   $("#mch").hide();
+                                   $("#walkin").hide();
+                                   $("#epi1").show();
+                                   $('#walkin').addClass('tab-pane').removeClass('tab-pane active');
+                         }
+                         function unhide5()
+                                   {
+                                                  //alert('mao ni');
+                                             $("#ufc1").show();
+                                             $("#walkin2").hide();
+                                             $("#fp1").hide();
+                                             $("#ppdiv").hide();
+                                             $("#mch").hide();
+                                             $("#walkin").hide();
+                                             $("#epi1").hide();
+                                             $('#walkin').addClass('tab-pane').removeClass('tab-pane active');
+                                   }
+                                   function unhide6()
+                                             {
+                                                            //alert('mao ni');
+                                                       $("#ufc1").hide();
+                                                       $("#walkin2").hide();
+                                                       $("#fp1").show();
+                                                       $("#ppdiv").hide();
+                                                       $("#mch").hide();
+                                                       $("#walkin").hide();
+                                                       $("#epi1").hide();
+                                                       $('#walkin').addClass('tab-pane').removeClass('tab-pane active');
+                                             }
+
+
 
 
 
@@ -584,13 +646,13 @@
                         <a class="nav-link" id="pp" data-toggle="tab" onclick="return unhide2();" href="#pp" role="tab" aria-controls="pp">PP</a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link" id="epi" data-toggle="tab" onclick="return unhide2();" href="#epi" role="tab" aria-controls="epi">EPI</a>
+                        <a class="nav-link" id="epi" data-toggle="tab" onclick="return unhide4();" href="#epi" role="tab" aria-controls="epi">EPI</a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link" id="ufc" data-toggle="tab" onclick="return unhide2();" href="#ufc" role="tab" aria-controls="ufc">UFC</a>
+                        <a class="nav-link" id="ufc" data-toggle="tab" onclick="return unhide5();" href="#ufc1" role="tab" aria-controls="ufc1">UFC</a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link" id="fp" data-toggle="tab" onclick="return unhide2();" href="#fp" role="tab" aria-controls="fp">FP</a>
+                        <a class="nav-link" id="fp" data-toggle="tab" onclick="return unhide6();" href="#fp1" role="tab" aria-controls="fp1">FP</a>
                       </li>
                       <li class="nav-item">
                         <a class="nav-link" id="cdd" data-toggle="tab" onclick="return unhide2();" href="#cdd" role="tab" aria-controls="cdd">CDD</a>
@@ -945,9 +1007,9 @@
                                        <label class="col-form-label" for="bdate"></label>
                                        <label class="col-form-label" for="firstname">Blood Sugar</label>
                                        <input type="number" class="form-control" id="bs" value="" name="bs" placeholder="Blood Sugar" required>
-                                      
+
                                       </div>
-                                
+
                                        </div>
                                        <div class="row">
                                       <div class="form-group col-md-6">
@@ -986,6 +1048,167 @@
                         </div>
                         </form>
                      </div>
+
+                     <div role="tabpanel" class="tab-pane active" id="epi1">
+                        <form id="epi1" novalidate="novalidate" method="post" >
+                            {{ csrf_field() }}
+                          <input type="hidden" name="epi_id" id="epi_id" value="">
+                          <input type="hidden" name="button_action" id="button_action" value="">
+                                 <div class="row">
+                                     <div class="form-group col-md-6">
+                                          <label class="col-form-label" for="firstname">Mother's Name</label>
+                                          <input type="number" class="form-control" id="mn" value="" name="mn" placeholder="Mother's Name" required>
+                                     </div>
+                                     <div class="form-group col-md-6">
+                                     <label class="col-form-label" for="bdate"></label>
+                                     <label class="col-form-label" for="firstname">Father's Name</label>
+                                     <input type="number" class="form-control" id="fn" value="" name="fn" placeholder="Father's Name" required>
+
+                                    </div>
+
+                                     </div>
+                                     <div class="row">
+                                    <div class="form-group col-md-4">
+                                        <label class="col-form-label" for="email">Age</label>
+                                        <input type="number" class="form-control" id="consultation" value="" name="consultation" placeholder="Consultation" required="required">
+                                   </div>
+                                   <div class="form-group col-md-4">
+                                       <label class="col-form-label" for="email">FDG</label>
+                                       <input type="text" class="form-control" id="FDG" value="" name="FDG" placeholder="FDG" required="required">
+                                  </div>
+                                  <div class="form-group col-md-4">
+                                      <label class="col-form-label" for="email">Weight</label>
+                                      <input type="number" class="form-control" id="weight" value="" name="weight" placeholder="Weight" required="required">
+                                 </div>
+
+                                 </div>
+                                 <div class="row">
+                                     <div class="form-group col-md-6">
+                                          <label class="col-form-label" for="email">R-Code</label>
+                                          <input type="number" class="form-control" id="consultation" value="" name="consultation" placeholder="R-Code" required="required">
+                                     </div>
+                                     <div class="form-group col-md-6">
+                                          <label class="col-form-label" for="email">Vaccines</label>
+                                          <input type="text" class="form-control" id="FDG" value="" name="FDG" placeholder="Vaccines" required="required">
+                                     </div>
+
+
+                                </div>
+
+                                    <div class="form-group pull-right">
+                                        <button type="submit" class="btn btn-primary">Save Changes</button>
+                                       <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                 </div>
+                           </form>
+                   </div>
+                   <div role="tabpanel" class="tab-pane active" id="ufc1">
+                     <form id="ufc1" novalidate="novalidate" method="post" >
+                          {{ csrf_field() }}
+                        <input type="hidden" name="epi_id" id="epi_id" value="">
+                        <input type="hidden" name="button_action" id="button_action" value="">
+                               <div class="row">
+                                  <div class="form-group col-md-6">
+                                       <label class="col-form-label" for="firstname">Mother's Name</label>
+                                       <input type="number" class="form-control" id="mn" value="" name="mn" placeholder="Mother's Name" required>
+                                  </div>
+                                  <div class="form-group col-md-6">
+                                  <label class="col-form-label" for="bdate"></label>
+                                  <label class="col-form-label" for="firstname">Father's Name</label>
+                                  <input type="number" class="form-control" id="fn" value="" name="fn" placeholder="Father's Name" required>
+
+                                  </div>
+
+                                  </div>
+                                  <div class="row">
+                                  <div class="form-group col-md-4">
+                                      <label class="col-form-label" for="email">Age</label>
+                                      <input type="number" class="form-control" id="consultation" value="" name="consultation" placeholder="Consultation" required="required">
+                                 </div>
+                                 <div class="form-group col-md-4">
+                                     <label class="col-form-label" for="email">FDG</label>
+                                     <input type="text" class="form-control" id="FDG" value="" name="FDG" placeholder="FDG" required="required">
+                               </div>
+                               <div class="form-group col-md-4">
+                                    <label class="col-form-label" for="email">Weight</label>
+                                    <input type="number" class="form-control" id="weight" value="" name="weight" placeholder="Weight" required="required">
+                               </div>
+
+                               </div>
+                               <div class="row">
+                                  <div class="form-group col-md-6">
+                                       <label class="col-form-label" for="email">R-Code</label>
+                                       <input type="number" class="form-control" id="consultation" value="" name="consultation" placeholder="R-Code" required="required">
+                                  </div>
+                                  <div class="form-group col-md-6">
+                                       <label class="col-form-label" for="email">Remarks</label>
+                                       <textarea type="text" class="form-control" id="FDG" value="" name="FDG" placeholder="Remarks" required="required"></textarea>
+                                  </div>
+
+
+                             </div>
+
+                                  <div class="form-group pull-right">
+                                      <button type="submit" class="btn btn-primary">Save Changes</button>
+                                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                               </div>
+                        </form>
+                </div>
+
+                <div role="tabpanel" class="tab-pane active" id="fp1">
+                  <form id="fp1" novalidate="novalidate" method="post" >
+                       {{ csrf_field() }}
+                     <input type="hidden" name="epi_id" id="epi_id" value="">
+                     <input type="hidden" name="button_action" id="button_action" value="">
+                            <div class="row">
+                               <div class="form-group col-md-6">
+                                    <label class="col-form-label" for="firstname">Age</label>
+                                    <input type="number" class="form-control" id="mn" value="" name="mn" placeholder="Age" required>
+                               </div>
+                               <div class="form-group col-md-6">
+                               <label class="col-form-label" for="bdate"></label>
+                               <label class="col-form-label" for="firstname">Number of Children</label>
+                               <input type="number" class="form-control" id="fn" value="" name="fn" placeholder="Number of Children" required>
+
+                               </div>
+
+                               </div>
+                               <div class="row">
+                                    <div class="form-group col-md-4">
+                                     <label class="col-form-label" for="bdate">LMP</label>
+                                     <div class="input-group date" >
+                                       <input type="text" id="lmp1" name="lmp1" placeholder="YYY-MM-DD"   class="form-control">
+                                       <div class="input-group-addon">
+                                         <span class="glyphicon glyphicon-th"></span>
+                                       </div>
+                                     </div>
+                                   </div>
+                                   <div class="form-group col-md-4">
+                                    <label for="gender">Type of Client:</label>
+                                    <select name="gender"  id="gender"class="form-control">
+                                      <option>Old</option>
+                                      <option>New</option>
+                                    </select>
+                                  </div>
+                            <div class="form-group col-md-4">
+                                 <label class="col-form-label" for="email">Method Accepted</label>
+                                 <input type="text" class="form-control" id="weight" value="" name="weight" placeholder="Weight" required="required">
+                            </div>
+
+                            </div>
+                               <div class="form-group col-md-12">
+                                    <label class="col-form-label" for="email">Remarks</label>
+                                    <textarea type="text" class="form-control" id="FDG" value="" name="FDG" placeholder="Remarks" required="required"></textarea>
+                               </div>
+
+
+
+
+                               <div class="form-group pull-right">
+                                   <button type="submit" class="btn btn-primary">Save Changes</button>
+                                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
+                     </form>
+             </div>
                   </div>
                   </div>
                   </div>
