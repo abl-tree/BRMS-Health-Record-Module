@@ -78,12 +78,26 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12 text-center">
-                        MUNICIPALITY/CITY/DISTRICT OF <ins>&lt;MUNICIPALITY&gt;</ins>
+                        MUNICIPALITY/CITY/DISTRICT OF 
+                        <ins>
+                            @if($households[0]->district)
+                            {{ $households[0]->district }}
+                            @else
+                            &lt;MUNICIPALITY&gt;
+                            @endif
+                        </ins>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-12 text-center">
-                        Province/City of <ins>&lt;PROVINCE&gt;</ins>, Davao Region
+                        Province/City of 
+                        <ins>
+                            @if($households[0]->province)
+                            {{ $households[0]->province }}
+                            @else
+                            &lt;PROVINCE&gt;
+                            @endif
+                        </ins>, Davao Region
                     </div>
                 </div>
                 <div class="row">
@@ -94,33 +108,89 @@
                 <div class="row">
                     <div class="col-md-3">
                         <div class="col-md-12">
-                            BARANGAY:
+                            BARANGAY: 
+                            <ins>
+                                @if($households[0]->info->brgy_id)
+                                {{ $households[0]->info->brgy()->get()[0]->brgy_name }}
+                                @else
+                                &lt;BARANGAY&gt;
+                                @endif
+                            </ins>
                         </div>
                         <div class="col-md-12">
                             BARANGAY CHAIRMAN:
+                            <ins>
+                                @if($households[0]->info->brgy_chairman_id)
+                                {{ $households[0]->info->brgy_chairman()->get()[0]->firstname." ".$households[0]->info->brgy_chairman()->get()[0]->lastname }}
+                                @else
+                                &lt;BARANGAY CHAIRMAN&gt;
+                                @endif
+                            </ins>
                         </div>
                         <div class="col-md-12">
                             COMMITTEE ON HEALTH:
+                            <ins>
+                                @if($households[0]->info->committee)
+                                {{ $households[0]->info->committee }}
+                                @else
+                                &lt;COMMITTEE&gt;
+                                @endif
+                            </ins>
                         </div>
                         <div class="col-md-12">
                             MIDWIFE/NDP ASSIGNED:
+                            <ins>
+                                @if($households[0]->info->brgy_chairman_id)
+                                {{ $households[0]->info->brgy_chairman()->get()[0]->firstname." ".$households[0]->info->brgy_chairman()->get()[0]->lastname }}
+                                @else
+                                &lt;MIDWIFE/NDP&gt;
+                                @endif
+                            </ins>
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class="col-md-12">
                             PUROK:
+                            <ins>
+                                @if($households[0]->info->purok_id)
+                                {{ $households[0]->info->purok()->get()[0]->name }}
+                                @else
+                                &lt;MIDWIFE/NDP&gt;
+                                @endif
+                            </ins>
                         </div>
                         <div class="col-md-12">
                             DATE PROFILED:
+                            <ins>
+                                @if($households[0]->info->date_profiled)
+                                {{ $households[0]->info->date_profiled }}
+                                @else
+                                &lt;MIDWIFE/NDP&gt;
+                                @endif
+                            </ins>
                         </div>
                         <div class="col-md-12">
                             PROFILED/INTERVIEWED BY:
+                            <ins>
+                                @if($households[0]->info->brgy_chairman_id)
+                                {{ $households[0]->info->brgy_chairman()->get()[0]->firstname." ".$households[0]->info->brgy_chairman()->get()[0]->lastname }}
+                                @else
+                                &lt;MIDWIFE/NDP&gt;
+                                @endif
+                            </ins>
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class="row">
                             <div class="col-md-6">
                                 NHTS:
+                                <ins>
+                                    @if($households[0]->info->nhts_no)
+                                    {{ $households[0]->info->nhts_no }}
+                                    @else
+                                    &lt;MIDWIFE/NDP&gt;
+                                    @endif
+                                </ins>
                             </div>
                             <div class="col-md-6">
                                 CCT:
@@ -155,7 +225,26 @@
                 <div class="row">
                     <table class="table table-bordered">
                         <thead>
-                            <tr><td>Family Serial No.</td></tr>
+                            <tr>
+                                <td rowspan="2">Family Serial No.</td>
+                                <td colspan="3">Name of Household Members</td>
+                                <td rowspan="2">Relationship to the Head of the Family</td>
+                                <td rowspan="2">Date of Birth and Age</td>
+                                <td rowspan="2">Place of Birth</td>
+                                <td rowspan="2">Sex</td>
+                                <td rowspan="2">Civil Status</td>
+                                <td rowspan="2">Educ. Attainment and Occupation</td>
+                                <td rowspan="2">Philhealth ID Number & Date of Expiration</td>
+                                <td>Health Status</td>
+                                <!-- <td>WRA (15-49 Y.O.)</td>
+                                <td>Child Health Status</td>
+                                <td rowspan="2">Trained on Basic Life Support/First Aid</td> -->
+                            </tr>
+                            <tr>
+                                <td>LAST NAME</td>
+                                <td>FIRST NAME</td>
+                                <td>MIDDLE NAME</td>
+                            </tr>
                         </thead>
                     </table>
                 </div>

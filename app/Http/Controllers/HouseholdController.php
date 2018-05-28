@@ -141,15 +141,15 @@ class HouseholdController extends Controller
                 return $validator->errors();
             }
 
-            $households = Household::find($request->id)->with('encoder', 'info', 'member');
+            $households = Household::find($request->id)->with('encoder', 'info', 'member')->get();
 
-            // echo json_encode($household->get());
+            // echo json_encode($households->get());
 
             return view('templates/household', compact('households'));
 
             // $pdf = App::make('dompdf.wrapper');
-            $pdf = PDF::loadHTML('<h1>Test</h1>');
-            return $pdf->stream();
+            // $pdf = PDF::loadHTML('<h1>Test</h1>');
+            // return $pdf->stream();
 
             // dd($request->id);
         }
