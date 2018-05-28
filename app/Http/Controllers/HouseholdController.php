@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Validator;
 use App\SanitationTypes;
 use App\SanitationOption;
 use App\SanitationStatus;
@@ -11,6 +12,7 @@ use App\household_infos;
 use App\Household;
 use App\HouseholdMember;
 use Carbon\Carbon;
+use PDF;
 
 class HouseholdController extends Controller
 {
@@ -130,6 +132,26 @@ class HouseholdController extends Controller
             }
             
             return datatables()::of($data)->make(true);
+        } else if($option === 'household') {
+            $validator = Validator::make($request->all(), [
+                'id' => 'required',
+            ]);
+
+            if ($validator->fails()) {
+                return $validator->errors();
+            }
+
+            $households = Household::find($request->id)->with('encoder', 'info', 'member')->get();
+
+            // echo json_encode($households->get());
+
+            return view('templates/household', compact('households'));
+
+            // $pdf = App::make('dompdf.wrapper');
+            // $pdf = PDF::loadHTML('<h1>Test</h1>');
+            // return $pdf->stream();
+
+            // dd($request->id);
         }
     }
 

@@ -439,6 +439,8 @@
                                               text: 'Household profile.',
                                               type: 'success'
                                             });
+
+                                            window.open("{{ route('get_household', 'household') }}");
                                             btnCancel.click();
                                           },
                                           error: function(err) {

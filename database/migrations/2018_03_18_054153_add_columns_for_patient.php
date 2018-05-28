@@ -14,11 +14,11 @@ class AddColumnsForPatient extends Migration
     public function up()
     {
         Schema::table('persons', function (Blueprint $table) {
-            $table->string('street')->nullable();
-		    $table->string('purok')->nullable();
-		    $table->string('barangay')->nullable();
-		    $table->string('city')->nullable();
-         });
+           $table->string('street')->nullable();
+		   $table->string('purok')->nullable();
+		   $table->string('barangay')->nullable();
+		   $table->string('city')->nullable();
+        });
     }
 
     /**

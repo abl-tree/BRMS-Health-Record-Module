@@ -49,7 +49,7 @@ Route::middleware(['auth'])->group(function() {
 	Route::post('/household/member/{option}', 'HouseholdController@set')->name('set_household');
 	Route::post('/household/set/{option}', 'HouseholdController@member')->name('household_member');
 	Route::get('/household/get/{option}', 'HouseholdController@get')->name('member_queue');
-
+	Route::get('/data/household/get/{option}', 'HouseholdController@get')->name('get_household');
 	Route::get('data/resident', function(Request $request) {
 		if($q = $request->q) {
 			$query = Person::select(DB::raw('CONCAT(firstName, " ", midName, " ", lastName) as name'), 'id')
