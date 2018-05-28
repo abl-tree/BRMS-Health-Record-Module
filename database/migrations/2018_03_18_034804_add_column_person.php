@@ -30,7 +30,7 @@ class AddColumnPerson extends Migration
      */
     public function down()
     {
-       Schema::table('persons', function($table) {
+       Schema::table('persons', function(Blueprint $table) {
             $table->dropColumn('height');
             $table->dropColumn('weight');
             $table->dropColumn('blood_type');
